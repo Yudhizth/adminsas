@@ -4,7 +4,7 @@
     $kd = explode('/', $kd);
 
     $type = $kd[0];
-    $noReg = $kd[1];
+    $noReg = $kd[0];
 
     $cek = new Admin();
 

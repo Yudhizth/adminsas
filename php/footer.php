@@ -63,7 +63,8 @@
 
     <!-- Custom Theme Scripts --> 
     <script src="build/js/custom.js"></script>
-    <script src="build/js/crud.js"></script>
+ <script src="build/js/crud.js"></script>
+ <script src="build/js/crudDetailProject.js"></script>
 
     <script type="text/javascript">
     $(document).on("click", ".tampilData", function(){

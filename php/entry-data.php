@@ -76,7 +76,7 @@ ORDER BY tb_temporary_perusahaan.tanggal ASC");
                                                 $st3 = '<a href="?p=add-list-job&name='.$row['nomor_kontrak'].'"><button type="button" class="btn btn-success btn-xs"> <i class="fa fa-edit"></i>  List Pekerjaan</button></a>';
                                             }
                                             else{
-                                                $st = '<a href="?p=entrydata&name='.$row['kode_kategori'].'/'.$row['no_pendaftaran'].'"><button type="button" class="btn btn-success btn-xs"> <i class="fa fa-edit"></i>  Detail Request </button></a>';
+                                                $st = '<a href="?p=data-entry&name='.$row['kode_kategori'].''.$row['no_pendaftaran'].'"><button type="button" class="btn btn-success btn-xs"> <i class="fa fa-edit"></i>  Detail Request </button></a>';
                                                 $st2 = '<span class="label label-default">not sett</span>';
                                                 $st3 = '<span class="label label-default">not sett</span>';
                                             }

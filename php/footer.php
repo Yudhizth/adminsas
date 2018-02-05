@@ -1,4 +1,5 @@
- <!-- footer content -->
+
+<!-- footer content -->
         </div>
         <footer>
           <div class="pull-right">
@@ -61,10 +62,15 @@
     <script src="vendors/google-code-prettify/src/prettify.js"></script>
     <script src="vendors/parsleyjs/dist/parsley.js"></script>
 
+<script src="vendors/echarts/dist/echarts.min.js"></script>
+
     <!-- Custom Theme Scripts --> 
     <script src="build/js/custom.js"></script>
  <script src="build/js/crud.js"></script>
- <script src="build/js/crudDetailProject.js"></script>
+<script src="build/js/crudDetailProject.js"></script>
+<script src="build/js/crudKaryawanProject.js"></script>
+<script src="build/js/crudLembur.js"></script>
+<script src="build/js/customOwn.js"></script>
 
     <script type="text/javascript">
     $(document).on("click", ".tampilData", function(){

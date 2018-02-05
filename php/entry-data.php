@@ -49,8 +49,8 @@
 FROM tb_temporary_perusahaan
 INNER JOIN tb_kategori_pekerjaan ON tb_kategori_pekerjaan.kode_kategori = tb_temporary_perusahaan.kebutuhan
 INNER JOIN tb_perusahaan ON tb_perusahaan.kode_perusahaan = tb_temporary_perusahaan.kode_perusahaan
-LEFT JOIN tb_kerjasama_perusahan ON tb_kerjasama_perusahan.kode_perusahaan = tb_temporary_perusahaan.kode_perusahaan
-ORDER BY tb_temporary_perusahaan.tanggal ASC");
+LEFT JOIN tb_kerjasama_perusahan ON tb_kerjasama_perusahan.kode_request = tb_temporary_perusahaan.no_pendaftaran
+ORDER BY tb_temporary_perusahaan.tanggal DESC");
                                     $stmt->execute(array());
                                     ?>
                                         <tbody>
@@ -68,13 +68,17 @@ ORDER BY tb_temporary_perusahaan.tanggal ASC");
                                             // jika detail-request
                                             if ($row['status'] == 3){
                                                 $st = '<i class="text-success"><span class="fa fa-fw fa-check-square-o"></span></i>';
-                                                $st2 = '<a href="?p=select-karyawan&id='.$row['nomor_kontrak'].'"><button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user"></i>  Add Karyawan </button></a>';
+                                                $st2 = '<a href="?p=karyawan-project&id='.$row['nomor_kontrak'].'"><button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user"></i>  Add Karyawan </button></a>';
                                                 $st3 = '<span class="label label-default">not sett</span>';
                                             }elseif ($row['status'] == 4){
                                                 $st = '<i class="text-success"><span class="fa fa-fw fa-check-square-o"></span></i>';
                                                 $st2 = '<i class="text-success"><span class="fa fa-fw fa-check-square-o"></span></i>';
                                                 $st3 = '<a href="?p=add-list-job&name='.$row['nomor_kontrak'].'"><button type="button" class="btn btn-success btn-xs"> <i class="fa fa-edit"></i>  List Pekerjaan</button></a>';
                                             }
+                                            elseif ($row['status'] == 5){
+                                                $st = '<i class="text-success"><span class="fa fa-fw fa-check-square-o"></span></i>';
+                                                $st2 = '<i class="text-success"><span class="fa fa-fw fa-check-square-o"></span></i>';
+                                                $st3 = '<i class="text-success"><span class="fa fa-fw fa-check-square-o"></span></i>';                                         }
                                             else{
                                                 $st = '<a href="?p=data-entry&name='.$row['kode_kategori'].''.$row['no_pendaftaran'].'"><button type="button" class="btn btn-success btn-xs"> <i class="fa fa-edit"></i>  Detail Request </button></a>';
                                                 $st2 = '<span class="label label-default">not sett</span>';
@@ -84,11 +88,11 @@ ORDER BY tb_temporary_perusahaan.tanggal ASC");
                                                 <tr class="even pointer">
 
 
-                                                    <td class="col-md-2" style="text-transform: uppercase;"><?php echo $row['nama_perusahaan']; ?></td>
-                                                    <td class="col-md-1"><?php echo $row['nama_kategori']; ?></td>
-                                                    <td class="col-md-2"><?php echo $st; ?></td>
-                                                    <td class="col-md-2"><?php echo $st2; ?></td>
-                                                    <td class="col-md-2"><?php echo $st3; ?></td>
+                                                    <td  style="text-transform: uppercase;"><?php echo $row['nama_perusahaan']; ?></td>
+                                                    <td ><?php echo $row['nama_kategori']; ?> / <?=$row['nama_project']?></td>
+                                                    <td ><?php echo $st; ?></td>
+                                                    <td ><?php echo $st2; ?></td>
+                                                    <td ><?php echo $st3; ?></td>
 
                                                 </tr>
                                     <?php } }?>

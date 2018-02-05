@@ -30,7 +30,7 @@
     <link href="vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="build/css/custom.min.css" rel="stylesheet">
+    <link href="build/css/custom.css" rel="stylesheet">
   </head>
 	<body class="nav-md">
 	    <div class="container body">
@@ -54,3 +54,4 @@
 	              </div>
 	            </div>
 	            <!-- /menu profile quick info -->
+

@@ -1,21 +1,7 @@
 <div class="x_panel">
     <div class="x_title">
       <h2><span class="fa fa-fw fa-list"></span> Perusahaan</h2>
-      <ul class="nav navbar-right panel_toolbox">
-        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Settings 1</a>
-            </li>
-            <li><a href="#">Settings 2</a>
-            </li>
-          </ul>
-        </li>
-        <li><a class="close-link"><i class="fa fa-close"></i></a>
-        </li>
-      </ul>
+
       <div class="clearfix"></div>
     </div>
     <div class="x_content">
@@ -65,9 +51,9 @@ while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
               <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-eye">
               </i>  Info </button>
                 </a>
-                <a href="?p=list-job&id=<?php echo $row['kode_perusahaan']; ?>">
+                <a href="?p=list-project&id=<?php echo $row['kode_perusahaan']; ?>">
                 <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-eye">
-                </i>  List Job </button>
+                </i>  List Project</button>
                   </a>
           </td>
 

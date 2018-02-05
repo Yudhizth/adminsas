@@ -1,0 +1,9 @@
+
+1. UPDATE STATUS ASSIGN KARYAWAN FROM CLIENT
+
+    ChangeStatusKaryawan('nomor_ktp', 'status');
+    status = {
+        '1' => 'suggested',
+        '2' => 'approved',
+        '3' => 'Decline'
+    }

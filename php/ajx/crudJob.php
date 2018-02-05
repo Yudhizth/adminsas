@@ -6,16 +6,17 @@ if(@$_GET['type'] == 'addJudul'){
     $spk = $_POST['spk'];
     $id = $_POST['id'];
     $judul = $_POST['judul'];
-
+    $type = $_POST['type'];
     
 
-    $sql = "INSERT INTO tb_job (nomor_kontrak, kode_detail_job, title) VALUES (:spk, :id, :title)";
+    $sql = "INSERT INTO tb_job (nomor_kontrak, kode_detail_job, title, type) VALUES (:spk, :id, :title, :type)";
 
     $stmt = $admin->runQuery($sql);
     $stmt->execute(array(
         ':spk'  => $spk,
         ':id'   => $id,
-        ':title'=> $judul
+        ':title'=> $judul,
+        ':type' => $type
     ));
     if(!$stmt){
         echo "Gagal di simpan.";
@@ -98,5 +99,37 @@ if(@$_GET['type'] == 'deleteTitle'){
         }
 
     }
+
+}
+elseif (@$_GET['type'] == 'finishJobs'){
+
+    $kode = $_POST['id'];
+
+    //cek data jika kurang/lebih karyawan
+
+    $cek = "SELECT tb_kerjasama_perusahan.nomor_kontrak, tb_kerjasama_perusahan.kode_perusahaan, tb_kerjasama_perusahan.kode_request, tb_kerjasama_perusahan.kode_list_karyawan, tb_kerjasama_perusahan.total_karyawan
+            FROM tb_kerjasama_perusahan WHERE tb_kerjasama_perusahan.nomor_kontrak = :spk";
+    $cekdata = $admin->runQuery($cek);
+    $cekdata->execute(array(
+        ':spk'  => $kode
+    ));
+
+    $data = $cekdata->fetch(PDO::FETCH_LAZY);
+
+    $nomorReq = $data['kode_request'];
+
+    $ubah = "UPDATE tb_temporary_perusahaan SET status = :a WHERE no_pendaftaran = :req";
+    $change = $admin->runQuery($ubah);
+    $change->execute(array(
+        ':a' => '5',
+        ':req' => $nomorReq
+    ));
+
+    if($change){
+        echo "berhasil";
+    }else{
+        echo "gagal";
+    }
+
 
 }

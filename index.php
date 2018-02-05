@@ -29,6 +29,7 @@
     $url = "$_SERVER[REQUEST_URI]";
     $url = explode('/', $url);
     $urltype = explode('=', $url[1]);
+
     // endread
   include_once 'php/header.php';
   include_once 'php/side-navbar.php';

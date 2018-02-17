@@ -186,98 +186,100 @@ $data = new Admin();
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Data Interview <span class="small">hasil interviews</span></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"></a>
-                    <li><a class="collapse-link"></a>
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                </ul>
-                <div class="clearfix"></div>
+    <?php if(!empty($interview)){ ?>
+        <div class="col-md-6">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Data Interview <span class="small">hasil interviews</span></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"></a>
+                        <li><a class="collapse-link"></a>
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br>
+                    <form class="form-inline" method="post" action="">
+                        <div class="form-group">
+                            <label class="sr-only" for="exampleInputEmail3">Email address</label>
+                            <input type="text" name="txt_nama" class="form-control" id="exampleInputEmail3" placeholder="nama kriteria penilaian" required>
+                            <input type="hidden" name="txt_kode" class="form-control" id="exampleInputEmail3" value="<?php echo $info['kd_interview'];?>">
+                            <input type="hidden" name="txt_admin" class="form-control" id="exampleInputEmail3" value="<?php echo $admin_id?>">
+                        </div>
+                        <div class="form-group">
+                            <select name="txt_nilai" class="form-control">
+                                <option value="0" selected>GRADE</option>
+                                <option value="4">=> A</option>
+                                <option value="3">=> B</option>
+                                <option value="2">=> C</option>
+                                <option value="1">=> D</option>
+                            </select>
+                        </div>
+                        <button type="submit" name="addInterview" class="btn btn-sm btn-danger"><span class="fa fa-fw fa-plus"></span></button>
+                    </form>
+                    <br>
+                    <table class="table table-striped">
+                        <thead>
+                        <th>nama kriteria</th>
+                        <th>grade</th>
+                        <th>#</th>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $data = new Perusahaan;
+                        $qr = "SELECT * FROM tb_hasil_interview WHERE kd_interview = :kd";
+                        $soq = $data->runQuery($qr);
+                        $soq->execute(array(
+                            ':kd'   => $interview
+                        ));
+                        $data = array();
+                        $sum = 0;
+                        while ($row = $soq->fetch(PDO::FETCH_LAZY)){
+                            $n = $row['nilai'];
+                            $sum +=$n;
+                            $data[] = $row;
+                            ?>
+                            <tr>
+                                <td width="60%"><?php echo $row['nama_penilaian'];?></td>
+                                <td width="20%"><?php echo $row['nilai'];?></td>
+                                <td width="20%">
+                                    <a href="php/delete-nilai-interview.php?kode=<?php echo $row['id'];?>&id=<?php echo $id;?>" onclick="return confirm('Are you sure you want to delete this item?');">
+                                        <button class="btn btn-xs btn-danger"><span class="fa fa-fw fa-trash"></span></button>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php }
+                        $total = count($data);
+                        if($sum != "0" && $total != "0"){
+                            $hasil_interview = @($sum/$total);
+                            $total = @($sum/$total);
+                            if(empty($total)){$grade = "null";}
+                            if($total > 0 && $total < 2){
+                                $grade = "D";
+                            } elseif($total = 2 && $total < 3 ){
+                                $grade = "C";
+                            } elseif($total = 3 && $total < 4){
+                                $grade = "B";
+                            } elseif($total = 4){
+                                $grade = "A";
+                            }else{
+                                $grade = "null";
+                            }
+                            ?>
+                            <tr>
+                                <td>Total Nilai:</td>
+                                <td><?php echo $sum; ?></td>
+                                <td>GRADE: <?php echo $grade; ?></td>
+                            </tr>
+                        <?php  } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="x_content">
-                <br>
-                <form class="form-inline" method="post" action="">
-                    <div class="form-group">
-                        <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                        <input type="text" name="txt_nama" class="form-control" id="exampleInputEmail3" placeholder="nama kriteria penilaian" required>
-                        <input type="hidden" name="txt_kode" class="form-control" id="exampleInputEmail3" value="<?php echo $info['kd_interview'];?>">
-                        <input type="hidden" name="txt_admin" class="form-control" id="exampleInputEmail3" value="<?php echo $admin_id?>">
-                    </div>
-                    <div class="form-group">
-                        <select name="txt_nilai" class="form-control">
-                            <option value="0" selected>GRADE</option>
-                            <option value="4">=> A</option>
-                            <option value="3">=> B</option>
-                            <option value="2">=> C</option>
-                            <option value="1">=> D</option>
-                        </select>
-                    </div>
-                    <button type="submit" name="addInterview" class="btn btn-sm btn-danger"><span class="fa fa-fw fa-plus"></span></button>
-                </form>
-                <br>
-                <table class="table table-striped">
-                    <thead>
-                    <th>nama kriteria</th>
-                    <th>grade</th>
-                    <th>#</th>
-                    </thead>
-                    <tbody>
-                    <?php
-                    $data = new Perusahaan;
-                    $qr = "SELECT * FROM tb_hasil_interview WHERE kd_interview = :kd";
-                    $soq = $data->runQuery($qr);
-                    $soq->execute(array(
-                        ':kd'   => $interview
-                    ));
-                    $data = array();
-                    $sum = 0;
-                    while ($row = $soq->fetch(PDO::FETCH_LAZY)){
-                        $n = $row['nilai'];
-                        $sum +=$n;
-                        $data[] = $row;
-                        ?>
-                        <tr>
-                            <td width="60%"><?php echo $row['nama_penilaian'];?></td>
-                            <td width="20%"><?php echo $row['nilai'];?></td>
-                            <td width="20%">
-                                <a href="php/delete-nilai-interview.php?kode=<?php echo $row['id'];?>&id=<?php echo $id;?>" onclick="return confirm('Are you sure you want to delete this item?');">
-                                    <button class="btn btn-xs btn-danger"><span class="fa fa-fw fa-trash"></span></button>
-                                </a>
-                            </td>
-                        </tr>
-                    <?php }
-                    $total = count($data);
-                    if($sum != "0" && $total != "0"){
-                    $hasil_interview = @($sum/$total);
-                    $total = @($sum/$total);
-                    if(empty($total)){$grade = "null";}
-                    if($total > 0 && $total < 2){
-                        $grade = "D";
-                    } elseif($total = 2 && $total < 3 ){
-                        $grade = "C";
-                    } elseif($total = 3 && $total < 4){
-                        $grade = "B";
-                    } elseif($total = 4){
-                        $grade = "A";
-                    }else{
-                        $grade = "null";
-                    }
-                    ?>
-                    <tr>
-                        <td>Total Nilai:</td>
-                        <td><?php echo $sum; ?></td>
-                        <td>GRADE: <?php echo $grade; ?></td>
-                    </tr>
-                    <?php  } ?>
-                    </tbody>
-                </table>
-            </div>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-psikolog">simpan nilai</button>
         </div>
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-psikolog">simpan nilai</button>
-    </div>
+    <?php } ?>
 </div>
 
 

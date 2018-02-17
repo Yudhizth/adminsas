@@ -1,47 +1,88 @@
 <?php
+
 $id = $_GET['id'];
 
-$query = 'SELECT tb_kerjasama_perusahan.id, tb_kerjasama_perusahan.nomor_kontrak, tb_kerjasama_perusahan.kode_perusahaan, tb_kerjasama_perusahan.kode_request, tb_kerjasama_perusahan.kode_plan, tb_kerjasama_perusahan.kode_list_karyawan, tb_kerjasama_perusahan.total_karyawan, tb_kerjasama_perusahan.deskripsi, tb_kerjasama_perusahan.tugas, tb_kerjasama_perusahan.tanggung_jwb, tb_kerjasama_perusahan.penempatan, tb_kerjasama_perusahan.kontrak_start, tb_kerjasama_perusahan.kontrak_end, tb_kerjasama_perusahan.nilai_kontrak, tb_kerjasama_perusahan.tgl_input, tb_perusahaan.nama_perusahaan, tb_perusahaan.bidang_perusahaan, tb_kategori_pekerjaan.nama_kategori, tb_temporary_perusahaan.kebutuhan, tb_temporary_perusahaan.kode_pekerjaan, tb_temporary_perusahaan.nama_project FROM tb_kerjasama_perusahan
+    $query = 'SELECT tb_kerjasama_perusahan.id, tb_kerjasama_perusahan.nomor_kontrak, tb_kerjasama_perusahan.kode_perusahaan, tb_kerjasama_perusahan.kode_request, tb_kerjasama_perusahan.kode_plan, tb_kerjasama_perusahan.kode_list_karyawan, tb_kerjasama_perusahan.total_karyawan, tb_kerjasama_perusahan.deskripsi, tb_kerjasama_perusahan.tugas, tb_kerjasama_perusahan.tanggung_jwb, tb_kerjasama_perusahan.penempatan, tb_kerjasama_perusahan.kontrak_start, tb_kerjasama_perusahan.kontrak_end, tb_kerjasama_perusahan.nilai_kontrak, tb_kerjasama_perusahan.tgl_input, tb_perusahaan.nama_perusahaan, tb_perusahaan.bidang_perusahaan, tb_kategori_pekerjaan.nama_kategori, tb_temporary_perusahaan.kebutuhan, tb_temporary_perusahaan.kode_pekerjaan, tb_temporary_perusahaan.nama_project FROM tb_kerjasama_perusahan
+    
+    LEFT JOIN tb_perusahaan ON tb_perusahaan.kode_perusahaan = tb_kerjasama_perusahan.kode_perusahaan
+    LEFT JOIN tb_temporary_perusahaan ON tb_temporary_perusahaan.no_pendaftaran=tb_kerjasama_perusahan.kode_request
+    LEFT JOIN tb_kategori_pekerjaan ON tb_kategori_pekerjaan.kode_kategori=tb_temporary_perusahaan.kebutuhan
+    
+    WHERE tb_kerjasama_perusahan.nomor_kontrak = :nomor ';
 
-LEFT JOIN tb_perusahaan ON tb_perusahaan.kode_perusahaan = tb_kerjasama_perusahan.kode_perusahaan
-LEFT JOIN tb_temporary_perusahaan ON tb_temporary_perusahaan.no_pendaftaran=tb_kerjasama_perusahan.kode_request
-LEFT JOIN tb_kategori_pekerjaan ON tb_kategori_pekerjaan.kode_kategori=tb_temporary_perusahaan.kebutuhan
+    $stmt = $config->runQuery($query);
+    $stmt->execute(array(':nomor' => $id));
 
-WHERE tb_kerjasama_perusahan.nomor_kontrak = :nomor ';
+    $data = $stmt->fetch(PDO::FETCH_LAZY);
 
-$stmt = $config->runQuery($query);
-$stmt->execute(array(':nomor' => $id));
+    $typeRequest = substr($data['kode_request'], 0, 3);
+    //echo "<pre>";
+    //print_r($data);
+    //echo "</pre>";
 
-$data = $stmt->fetch(PDO::FETCH_LAZY);
-//echo "<pre>";
-//print_r($data);
-//echo "</pre>";
+    $nilai = number_format($data['nilai_kontrak'], 0, ',', '.');
 
-$nilai = number_format($data['nilai_kontrak'], 0, ',', '.');
+    $tglStart0 = strtotime($data['kontrak_start']);
+    $tglStart = date("d/m/Y", $tglStart0);
+    $countStart = date("Ymd", $tglStart0);
 
-$tglStart0 = strtotime($data['kontrak_start']);
-$tglStart = date("d/m/Y", $tglStart0);
-$countStart = date("Ymd", $tglStart0);
+    $tglEnd0 = strtotime($data['kontrak_end']);
+    $tglEnd = date("d/m/Y", $tglEnd0);
+    $countEnd = date("Ymd", $tglEnd0);
 
-$tglEnd0 = strtotime($data['kontrak_end']);
-$tglEnd = date("d/m/Y", $tglEnd0);
-$countEnd = date("Ymd", $tglEnd0);
+    $total = $countEnd - $countStart;
 
-$total = $countEnd - $countStart;
+    $days = floor($total / (60 * 60 * 24));
 
-$days = floor($total / (60 * 60 * 24));
+    //show karyawan
 
-//show karyawan
+    $kodeListKaryawan = $data['kode_list_karyawan'];
 
-$kodeListKaryawan = $data['kode_list_karyawan'];
+//    form addJabatn karyawan
 
-$sql = "SELECT tb_list_karyawan.no_nip, tb_karyawan.nama_depan, tb_karyawan.nama_belakang FROM tb_list_karyawan 
-INNER JOIN tb_karyawan ON tb_karyawan.no_ktp=tb_list_karyawan.no_nip WHERE tb_list_karyawan.kode_list_karyawan = :kode ";
-$cek = $config->runQuery($sql);
-$cek->execute(array(
-        ':kode' => $kodeListKaryawan
-));
+//list jabatan
 
+    $bb = "SELECT * FROM tb_list_jabatan";
+    $jb = $config->runQuery($bb);
+    $jb->execute();
+
+
+//list kayrawan project
+    $kk = "SELECT tb_list_karyawan.id, tb_list_karyawan.kode_list_karyawan, tb_list_karyawan.no_nip, tb_karyawan.nama_depan, tb_karyawan.nama_belakang FROM tb_list_karyawan
+INNER  JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_list_karyawan.no_nip
+WHERE tb_list_karyawan.kode_list_karyawan = :kodelist";
+    $ls = $config->runQuery($kk);
+    $ls->execute(array(
+            ':kodelist' => $kodeListKaryawan
+    ));
+    //list jabatan karyawan project
+    $km = "SELECT tb_list_karyawan.kode_list_karyawan, tb_list_karyawan.no_nip, tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_list_jabatan.id, tb_list_jabatan.nama_jabatan
+    FROM tb_list_karyawan
+    INNER JOIN tb_karyawan ON tb_karyawan.no_ktp=tb_list_karyawan.no_nip
+    INNER JOIn tb_list_jabatan ON tb_list_jabatan.id = tb_list_karyawan.kode_jabatan
+    WHERE tb_list_karyawan.kode_list_karyawan = :kode";
+    $ky = $config->runQuery($km);
+    $ky->execute(array(
+            ':kode' => $kodeListKaryawan
+    ));
+
+    $sql = "SELECT tb_list_karyawan.id, tb_list_karyawan.kode_list_karyawan, tb_list_karyawan.no_nip, tb_list_karyawan.kode_jabatan, tb_list_karyawan.status_karyawan, tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_kerjasama_perusahan.nomor_kontrak 
+    FROM tb_list_karyawan 
+    INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_list_karyawan.no_nip 
+    INNER JOIN tb_kerjasama_perusahan ON tb_kerjasama_perusahan.kode_list_karyawan = tb_list_karyawan.kode_list_karyawan 
+    WHERE tb_list_karyawan.kode_list_karyawan = :kode ";
+    $cek = $config->runQuery($sql);
+    $cek->execute(array(
+            ':kode' => $kodeListKaryawan
+    ));
+    $aa = "SELECT tb_job.nomor_kontrak, tb_job.id, tb_job.kode_detail_job, tb_job.title, tb_job.type, tb_job.status, tb_jenis_pekerjaan.nama_pekerjaan
+    FROM tb_job 
+    LEFT JOIN tb_jenis_pekerjaan ON tb_jenis_pekerjaan.kd_pekerjaan=tb_job.title
+    WHERE tb_job.nomor_kontrak = :kode ";
+    $jobs = $config->runQuery($aa);
+    $jobs->execute(array(
+        ':kode' => $id
+    ));
 
 ?>
 
@@ -108,7 +149,7 @@ $cek->execute(array(
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2><i class="fa fa-align-left"></i> List Jobs Project</h2>
+                                    <h2><i class="fa fa-align-left"></i> Componen Project</h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
@@ -128,73 +169,247 @@ $cek->execute(array(
                                 </div>
                                 <div class="x_content">
 
-                                    <!-- start accordion -->
-                                    <div class="accordion" id="accordion1" role="tablist" aria-multiselectable="true">
-                                        <div class="panel">
-                                            <a class="panel-heading collapsed" role="tab" id="headingOne1" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1" aria-expanded="false" aria-controls="collapseOne">
-                                                <h4 class="panel-title">Collapsible Group Item #1</h4>
-                                            </a>
-                                            <div id="collapseOne1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
-                                                <div class="panel-body">
+                                    <div class="x_content">
+
+
+                                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                                <li role="presentation" class=""><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">List Karyawan</a>
+                                                </li>
+                                                <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">List Jobs</a>
+                                                </li>
+                                                <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Jabatan</a>
+                                                </li>
+                                            </ul>
+                                            <div id="myTabContent" class="tab-content">
+                                                <div role="tabpanel" class="tab-pane fade" id="tab_content1" aria-labelledby="home-tab">
+                                                    <a href="?p=karyawan-project&id=<?=$id?>" class="btn btn-sm btn-primary" style="text-transform: capitalize;">add and remove karyawan</a>
+                                                    <br>
                                                     <table class="table table-striped">
                                                         <thead>
                                                         <tr>
                                                             <th>#</th>
-                                                            <th>First Name</th>
-                                                            <th>Last Name</th>
-                                                            <th>Username</th>
+                                                            <th>Nomor NIP</th>
+                                                            <th>Nama Lengkap</th>
+                                                            <th>Jabatan</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
+                                                        <?php if($cek->rowCount() > 0){
+                                                            $i = 1;
+                                                        while ($col = $cek->fetch(PDO::FETCH_LAZY)){
+                                                            if(empty($col['kode_jabatan'])){
+                                                                $jabatan = '<span class="label label-default">unset</span>';
+                                                            }else{
+                                                                $jabatan = "";
+                                                            }
+                                                            ?>
                                                         <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td>@mdo</td>
+                                                            <th scope="row"><?=$i++?></th>
+                                                            <td><?=$col['no_nip']?></td>
+                                                            <td><?=$col['nama_depan']?> <?=$col['nama_belakang']?></td>
+                                                            <td><?=$jabatan?></td>
                                                         </tr>
+                                                       <?php } } else { ?>
+                                                            <tr>
+                                                                <td colspan="">
+
+                                                                </td>
+                                                            </tr>
+                                                        <?php }?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                                    <?php if ($typeRequest == 'MPO') { ?>
+                                                        <a href="?p=add-list-job&name=<?=$id?>" class="btn btn-sm btn-primary" style="text-transform: capitalize;">add and remove karyawan</a>
+                                                        <br>
+                                                        <?php while ($job = $jobs->fetch(PDO::FETCH_LAZY)) {
+                                                            if ($job['type'] == 'main') {
+                                                                $panel = "panel-success";
+                                                            } else {
+                                                                $panel = "panel-info";
+                                                            }
+                                                            ?>
+
+                                                            <div class="panel-group" role="tablist" id="listDetail">
+                                                                <div class="panel <?= $panel ?> ">
+
+                                                                    <div class="panel-heading" role="tab" id="collapseListGroupHeading1">
+                                                                        <a href="#<?= $job['kode_detail_job'] ?>" class="" role="button" data-toggle="collapse"
+                                                                           aria-expanded="true" aria-controls="collapseListGroup1">
+                                                                            <h4 class="panel-title">
+                                                                                <?= $job['nama_pekerjaan'] ?>
+                                                                            </h4>
+                                                                        </a>
+                                                                    </div>
+
+                                                                    <div class="panel-collapse collapse" role="tabpanel" id="<?= $job['kode_detail_job'] ?>"
+                                                                         aria-labelledby="collapseListGroupHeading1" aria-expanded="false" style="">
+                                                                        <br/>
+                                                                        <div class="x_content">
+                                                                        </div>
+
+                                                                        <br/>
+                                                                        <div class="x_content" style="padding-bottom: 2%; padding-left: 1%; padding-right: 1%;"
+                                                                             id="tableDetail">
+                                                                            <table class="table">
+                                                                                <thead>
+                                                                                <tr>
+                                                                                    <th width="30%">Kegiatan</th>
+                                                                                    <th width="40%">Deskripsi</th>
+                                                                                    <th width="40%">Keterangan</th>
+                                                                                </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                <?php
+                                                                                $detail = $job['kode_detail_job'];
+
+                                                                                $detaildata = "SELECT * FROM tb_list_job where kode_detail_job = :dd";
+                                                                                $sys = $config->runQuery($detaildata);
+                                                                                $sys->execute(array(':dd' => $detail));
+
+                                                                                $total = $sys->rowCount();
+                                                                                if ($total > 0) {
+                                                                                    while ($detailJobs = $sys->fetch(PDO::FETCH_LAZY)) {
+                                                                                        ?>
+                                                                                        <tr style="text-transform: capitalize;">
+                                                                                            <td><?= $detailJobs['nama_job'] ?></td>
+                                                                                            <td><?= $detailJobs['deskripsi_job'] ?></td>
+                                                                                            <td><?= $detailJobs['keterangan'] ?></td>
+
+                                                                                        </tr>
+                                                                                        <?php
+                                                                                    }
+                                                                                } else {
+                                                                                    ?>
+                                                                                    <tr>
+                                                                                        <td colspan="4">Kegiatan belum ada.</td>
+                                                                                    </tr>
+
+                                                                                <?php } ?>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+
+                                                                        <div class="panel-footer">Footer</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <?php } ?>
+
+                                                    <?php } else {  ?>
+                                                        <a href="?p=add-list-job&name=<?=$id?>" class="btn btn-sm btn-primary" style="text-transform: capitalize;">add and remove karyawan</a>
+                                                        <br>
+                                                        <?php  while ($job = $jobs->fetch(PDO::FETCH_LAZY)) {
+                                                            if ($job['type'] == 'main') {
+                                                                $panel = "panel-success";
+                                                            } else {
+                                                                $panel = "panel-info";
+                                                            }
+                                                            ?>
+
+
+                                                            <div class="panel-group" role="tablist" id="listDetail">
+                                                                <div class="panel <?= $panel ?> ">
+
+                                                                    <div class="panel-heading" role="tab" id="collapseListGroupHeading1">
+                                                                        <a href="#<?= $job['kode_detail_job'] ?>" class="" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="collapseListGroup1">
+                                                                            <h4 class="panel-title">
+                                                                                <?= $job['title'] ?>
+                                                                            </h4>
+                                                                        </a>
+
+                                                                    </div>
+
+                                                                    <div class="panel-collapse collapse" role="tabpanel" id="<?= $job['kode_detail_job'] ?>"
+                                                                         aria-labelledby="collapseListGroupHeading1" aria-expanded="false" style="">
+                                                                        <br/>
+                                                                        <div class="x_content">
+                                                                        </div>
+                                                                        <br/>
+                                                                        <div class="x_content" style="padding-bottom: 2%; padding-left: 1%; padding-right: 1%;"
+                                                                             id="tableDetail">
+                                                                            <table class="table">
+                                                                                <thead>
+                                                                                <tr>
+                                                                                    <th width="30%">Kegiatan</th>
+                                                                                    <th width="40%">Deskripsi</th>
+                                                                                    <th width="40%">Keterangan</th>
+                                                                                </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                <?php
+                                                                                $detail = $job['kode_detail_job'];
+
+                                                                                $detaildata = "SELECT * FROM tb_list_job where kode_detail_job = :dd";
+                                                                                $sys = $config->runQuery($detaildata);
+                                                                                $sys->execute(array(':dd' => $detail));
+
+                                                                                $total = $sys->rowCount();
+                                                                                if ($total > 0) {
+                                                                                    while ($detailJob = $sys->fetch(PDO::FETCH_LAZY)) {
+                                                                                        ?>
+                                                                                        <tr style="text-transform: capitalize;">
+                                                                                            <td><?= $detailJob['nama_job'] ?></td>
+                                                                                            <td><?= $detailJob['deskripsi_job'] ?></td>
+                                                                                            <td><?= $detailJob['keterangan'] ?></td>
+                                                                                            <td>
+                                                                                        </tr>
+                                                                                        <?php
+                                                                                    }
+                                                                                } else {
+                                                                                    ?>
+                                                                                    <tr>
+                                                                                        <td colspan="4">Kegiatan belum ada.</td>
+                                                                                    </tr>
+
+                                                                                <?php } ?>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+
+                                                                        <div class="panel-footer">Footer</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <?php } ?>
+
+                                                    <?php } ?>
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".tambahJabatanKaryawan">Assign Jabatan</button>
+                                                    <table class="table table-bordered tabel-hover">
+                                                        <thead>
+                                                        <th>NOMOR NIP</th>
+                                                        <th>Nama Karyawan</th>
+                                                        <th>Jabatan</th>
+                                                        <th>#</th>
+                                                        </thead>
+                                                        <tbody>
+                                                        <?php
+                                                        if($ky->rowCount() > 0){
+                                                        while ($mm = $ky->fetch(PDO::FETCH_LAZY)){ ?>
                                                         <tr>
-                                                            <th scope="row">2</th>
-                                                            <td>Jacob</td>
-                                                            <td>Thornton</td>
-                                                            <td>@fat</td>
+                                                            <td><?=$mm['no_nip']?></td>
+                                                            <td><?=$mm['nama_depan']?> <?=$mm['nama_belakang']?></td>
+                                                            <td><?=$mm['nama_jabatan']?></td>
+                                                            <td>action</td>
                                                         </tr>
+                                                        <?php }}else{ ?>
                                                         <tr>
-                                                            <th scope="row">3</th>
-                                                            <td>Larry</td>
-                                                            <td>the Bird</td>
-                                                            <td>@twitter</td>
+                                                            <td colspan="4">Jabatan Karyawan belum di tambah!</td>
                                                         </tr>
+                                                        <?php } ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="panel">
-                                            <a class="panel-heading" role="tab" id="headingTwo1" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1" aria-expanded="true" aria-controls="collapseTwo">
-                                                <h4 class="panel-title">Collapsible Group Item #2</h4>
-                                            </a>
-                                            <div id="collapseTwo1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="true" style="">
-                                                <div class="panel-body">
-                                                    <p><strong>Collapsible Item 2 data</strong>
-                                                    </p>
-                                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel">
-                                            <a class="panel-heading collapsed" role="tab" id="headingThree1" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree1" aria-expanded="false" aria-controls="collapseThree">
-                                                <h4 class="panel-title">Collapsible Group Item #3</h4>
-                                            </a>
-                                            <div id="collapseThree1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false" style="height: 0px;">
-                                                <div class="panel-body">
-                                                    <p><strong>Collapsible Item 3 data</strong>
-                                                    </p>
-                                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
-                                    <!-- end of accordion -->
 
 
                                 </div>
@@ -306,30 +521,6 @@ $cek->execute(array(
                                 <hr>
 
                             </div>
-
-                            <br>
-                            <div class="project_detail">
-                                <p class="title">Karyawan Project</p>
-                                <ul class="list-unstyled project_files">
-                                    <?php
-                                    if($cek->rowCount() > 0){
-                                        while ($col = $cek->fetch(PDO::FETCH_LAZY)){ ?>
-                                            <li><a href="?p=detail-karyawan&id=<?=$col['no_nip']?>"><i class="fa fa-user"></i> <?=$col['nama_depan']?> <?=$col['nama_belakang']?></a>
-                                            </li>
-                                        <?php } }else{ ?>
-                                        <li><label class="label label-danger">Karyawan Belum dipilih.</label>
-                                        </li>
-                                    <?php } ?>
-
-                                </ul>
-                            </div>
-
-                            <br>
-
-                            <div class="text-center mtop20">
-                                <a href="#" class="btn btn-sm btn-primary">Add files</a>
-                                <a href="#" class="btn btn-sm btn-warning">Report contact</a>
-                            </div>
                         </div>
 
                     </section>
@@ -338,6 +529,56 @@ $cek->execute(array(
                 <!-- end project-detail sidebar -->
 
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade tambahJabatanKaryawan"  tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">Assign Jabatan</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal form-label-left" id="tambahJabatanKaryawan" method="post" action="" data-parsley-validate="">
+
+            <input type="hidden" id="kodeListKaryawan" name="kodeListKaryawan" value="<?=$kodeListKaryawan?>">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <select class="form-control" name="listJabatan" id="listJabatan" required>
+                                <option value="">Choose Jabatan</option>
+                                <?php while ($listJabatan = $jb->fetch(PDO::FETCH_LAZY)){ ?>
+                                <option value="<?=$listJabatan['id']?>" style="text-transform: capitalize;"><?=$listJabatan['nama_jabatan']?></option>
+                                <?php } ?>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <select class="form-control" name="namaKaryawanPR" id="namaKaryawanPR" required>
+                                <option value="">Choose Karyawan</option>
+                                <?php while ($listKaryawan = $ls->fetch(PDO::FETCH_LAZY)){ ?>
+                                    <option value="<?=$listKaryawan['id']?>" style="text-transform: capitalize;"><?=$listKaryawan['nama_depan']?> <?=$listKaryawan['nama_belakang']?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <button type="submit" class="btn btn-block btn-success tambahJabatan" name="tambahJabatan">Submit</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
         </div>
     </div>
 </div>

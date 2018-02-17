@@ -29,6 +29,9 @@
     <!-- bootstrap-wysiwyg -->
     <link href="vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
 
+      <link href="vendors/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+      <link href="vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
+
     <!-- Custom Theme Style -->
     <link href="build/css/custom.css" rel="stylesheet">
   </head>

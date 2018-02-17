@@ -1,18 +1,18 @@
 <?php 
 
-  $sql = "SELECT * FROM tb_karyawan";
+  $sql = "SELECT tb_karyawan.id FROM tb_karyawan";
   $stmt = $config->runQuery($sql);
   $stmt->execute();
 
-  $sql2 = "SELECT * FROM tb_karyawan WHERE tb_karyawan.kd_status_karyawan IN ('KDKRY0003', 'KDKRY0013')";
+  $sql2 = "SELECT tb_karyawan.id FROM tb_karyawan WHERE tb_karyawan.kd_status_karyawan IN ('KDKRY0003', 'KDKRY0013')";
   $stmt2 = $config->runQuery($sql2);
   $stmt2->execute();
 
-  $sql3 = "SELECT * FROM tb_karyawan WHERE tb_karyawan.kd_status_karyawan IN ('KDKRY0005', 'KDKRY0014')";
+  $sql3 = "SELECT tb_karyawan.id FROM tb_karyawan WHERE tb_karyawan.kd_status_karyawan IN ('KDKRY0005', 'KDKRY0014')";
   $stmt3 = $config->runQuery($sql3);
   $stmt3->execute();
 
-  $sql4 = "SELECT * FROM tb_karyawan WHERE tb_karyawan.kd_status_karyawan IN ('KDKRY0008', 'KDKRY0009', 'KDKRY0010', 'KDKRY0012','KDKRY0015')";
+  $sql4 = "SELECT tb_karyawan.id FROM tb_karyawan WHERE tb_karyawan.kd_status_karyawan IN ('KDKRY0008', 'KDKRY0009', 'KDKRY0010', 'KDKRY0012','KDKRY0015')";
   $stmt4 = $config->runQuery($sql4);
   $stmt4->execute();
 
@@ -85,7 +85,7 @@
         </tr>
 
         <div class="col-md-2">
-          <select id="select" class="form-control">
+          <select id="selectKaryawan" class="form-control">
           <option>Choose Search</option>
           <option>Nomor KTP</option>
           <option>Nama Lengkap</option>

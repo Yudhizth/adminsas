@@ -24,11 +24,18 @@
       ));
 
   // endsidebar
-
     // readurl
     $url = "$_SERVER[REQUEST_URI]";
     $url = explode('/', $url);
-    $urltype = explode('=', $url[1]);
+    $urltype = explode('=', $url[2]);
+
+    if (isset($urltype[1])){
+        $footer = $urltype[1];
+    }else{
+        $footer = "";
+    }
+
+
 
     // endread
   include_once 'php/header.php';

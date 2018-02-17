@@ -1,103 +1,128 @@
+<?php
+
+$sql = "SELECT tb_info_interview.kd_interview, tb_info_interview.no_ktp, tb_info_interview.date_interview, tb_info_interview.detail, tb_info_interview.create_date, tb_info_interview.kd_admin, tb_info_interview.status AS statusKaryawan, tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_karyawan.foto, tb_karyawan.nilai, tb_karyawan.status FROM tb_info_interview
+INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_info_interview.no_ktp
+WHERE  tb_karyawan.nilai = ''";
+$stmt = $config->runQuery($sql);
+$stmt->execute();
+?>
 <div class="clearfix"></div>
 
 <div class="col-md-12 col-sm-12 col-xs-12">
-  <div class="x_panel">
-    <div class="x_title">
-      <h2>List Karyawan Interview </h2>
-      
-      <div class="clearfix"></div>
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>List Karyawan Interview </h2>
+
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="x_content" id="contentInterview">
+            <div id="formListInterview">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <form class="form-horizontal form-label-left" id="searchInterviewList" data-parsley-validate="">
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <select class="form-control" id="typeFilterInterview" required>
+                                        <option value="">Choose option</option>
+                                        <option value="no_ktp">Nomor KTP</option>
+                                        <option value="nama_depan">Nama Depan</option>
+                                        <option value="nama_belakang">Nama Belakang</option>
+                                        <option value="email">Email</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="txtInterviewFilter" required>
+                                        <span class="input-group-btn">
+                                              <button type="submit" class="btn btn-primary">Search..</button>
+                                          </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="divider-dashed"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="listInterview">
+
+            </div>
+            <div class="row" id="listUjianInterview">
+                <h3>List Interview Karyawan</h3>
+                <div class="divider-dashed"></div>
+                <?php if($stmt->rowCount() > 0){
+                    while ($row = $stmt->fetch(PDO::FETCH_LAZY)){
+                        if(empty($row['foto'])){
+                            $foto = "images/user.png";
+                        }else{
+                            $foto = $row['foto'];
+                        }
+                        if(empty($row['statusKaryawan'])){
+                            $status = "Calon Karyawan Belum Menentukan Pilihan untuk datang pada waktu yang telah ditentukan atau meminta schedule ulang.";
+                        }else{
+                            $status = "Calon Karyawan telah menentukan Pilihan. Yaitu: <br> <span class='label label-success' style='font-size: 14px;'>".$row['statusKaryawan']."</span>";
+                        }
+                        $tgl = explode('-', $row['date_interview']);
+                        ?>
+                        <div class="col-md-3 col-sm-3 col-xs-6 widget widget_tally_box">
+                            <div class="panel panel-default panel-body">
+                                <div class="x_content">
+
+                                    <div class="flex">
+                                        <ul class="list-inline widget_profile_box">
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-shield"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <img src="<?=$foto?>" alt="..." class="img-circle profile_img">
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <i class="fa fa-sun-o"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <h3 class="name" style="text-transform: capitalize; margin: 12% 10% !important;height: 40px !important;"><?=$row['nama_depan']?> <?=$row['nama_belakang']?></h3>
+
+                                    <div class="flex">
+                                        <ul class="list-inline count2">
+                                            <li>
+                                                <h3><?=$tgl[0]?></h3>
+                                                <span>Tanggal</span>
+                                            </li>
+                                            <li>
+                                                <h3><?=$tgl[1]?></h3>
+                                                <span>Bulan</span>
+                                            </li>
+                                            <li>
+                                                <h3><?=$tgl[2]?></h3>
+                                                <span>Tahun</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="jumbotron" style="padding-left: 4% !important; padding-right: 4% !important; padding-top: 4%!important; padding-bottom: 4%!important;">
+                                        <b>Detail:</b> <?=$row['detail']?>
+                                    </div>
+                                    <div class="divider-dashed">
+
+                                    </div>
+                                    <p style="height: 60px;">
+                                        <?=$status?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php  }
+                }else{} ?>
+
+            </div>
+        </div>
     </div>
-
-    <div class="x_content">
-
-
-      <div class="table-responsive">
-        <table class="table table-striped jambo_table bulk_action">
-          <thead>
-            <tr class="headings">
-
-              <th class="column-title">Nomor KTP </th>
-              <th class="column-title">Nama Lengkap </th>
-              <th class="column-title">Kode Interview</th>
-              <th class="column-title">Tanggal Interview </th>
-              <th class="column-title">Detail </th>
-                <th class="column-title">Status </th>
-                <th class="column-title">Kode Admin </th>
-              <th class="column-title no-link last"><span class="nobr">Action</span>
-              </th>
-              <th class="bulk-actions" colspan="7">
-                <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-              </th>
-            </tr>
-          </thead>
-          <?php
-          $calon = new Admin();
-          $records_per_page = 20;
-
-          $query = "SELECT tb_karyawan.no_ktp, tb_karyawan.no_NIK, tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_info_interview.kd_interview, tb_info_interview.date_interview, tb_info_interview.detail, tb_info_interview.status, tb_info_interview.kd_admin, tb_info_interview.create_date
-          FROM tb_karyawan
-          LEFT OUTER JOIN tb_info_interview ON tb_info_interview.no_ktp=tb_karyawan.no_ktp WHERE tb_karyawan.no_NIK ='' 
-          ORDER BY tb_karyawan.nama_depan ASC";
-          $sql = $calon->paging($query, $records_per_page);
-          $stmt = $calon->runQuery($sql);
-          $stmt->execute();
-
-
-          ?>
-          <tbody>
-          <?php
-          while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
-              # code...
-            $tgl = $row['date_interview'];
-            if ($tgl == '') {
-              # code...
-              $kode = '<button type="button" class="btn btn-primary btn-xs">
-                    <i class="fa fa-plus-square"> </i> Add Jadwal
-                  </button>';
-            } else {
-              $kode = '<button type="button" class="btn btn-warning btn-xs">
-                    <i class="fa fa-plus-square"> </i> Re-schedule
-                  </button>';
-            }
-             ?>
-            <tr class="even pointer">
-
-              <td class=" ">
-                <a href="?p=detail-karyawan&id=<?=$row['no_ktp']; ?>" data-toggle="tooltip" data-placement="left" title="Views Profile">
-                  <button type="button" class="btn btn-primary btn-xs">
-                     <?=$row['no_ktp']?> <i class="fa fa-chevron-circle-right"></i> 
-                  </button>
-                </a>
-              </td>
-              <td class=" "><?php echo $row['nama_depan']; ?> <?php echo $row['nama_belakang']; ?></td>
-              <td class=" "><?php echo $row['kd_interview']; ?></td>
-              <td class=" "><?php echo $row['date_interview']; ?></td>
-              <td class=" "><?php echo $row['detail']; ?></td>
-                <td class=" "><span class="label label-success"><?php echo $row['status']; ?></span></td>
-                <td class=" "><?php echo $row['kd_admin']; ?></td>
-
-              <td>
-                <a href="?p=add-jadwal-interview&id=<?php echo $row['no_ktp']; ?>">
-                  <?php echo $kode; ?>
-                </a>
-              </td>
-              </td>
-            </tr>
-            <?php } ?>
-          </tbody>
-        </table>
-        <?php
-        
-        $stmt = $calon->paginglink($query, $records_per_page);
-
-        
-        ?>
-      </div>
-      </div>
-      </div>
-      </div>
-      
-
-
-
-          
+</div>
+</div>

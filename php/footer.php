@@ -60,17 +60,34 @@
     <script src="vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
     <script src="vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
     <script src="vendors/google-code-prettify/src/prettify.js"></script>
-    <script src="vendors/parsleyjs/dist/parsley.js"></script>
+
 
 <script src="vendors/echarts/dist/echarts.min.js"></script>
 
-    <!-- Custom Theme Scripts --> 
+    <!-- Custom Theme Scripts -->
     <script src="build/js/custom.js"></script>
  <script src="build/js/crud.js"></script>
 <script src="build/js/crudDetailProject.js"></script>
 <script src="build/js/crudKaryawanProject.js"></script>
 <script src="build/js/crudLembur.js"></script>
 <script src="build/js/customOwn.js"></script>
+
+<!-- FullCalendar -->
+<script src="vendors/moment/min/moment.min.js"></script>
+<script src="vendors/fullcalendar/dist/fullcalendar.min.js"></script>
+<?php if($footer == 'absen'){ ?>
+<script src="build/js/absen.js"></script>
+<?php } ?>
+<script src="build/js/previllage.js"></script>
+<script src="build/js/complain-perusahaan.js"></script>
+<script src="build/js/schedule.js"></script>
+<script src="build/js/interview.js"></script>
+<script src="build/js/crudCuti.js"></script>
+<script src="build/js/complain-karyawan.js"></script>
+
+
+<script src="vendors/parsleyjs/dist/parsley.js"></script>
+
 
     <script type="text/javascript">
     $(document).on("click", ".tampilData", function(){
@@ -268,7 +285,7 @@
                 
                 
                 $('.dataTables_filter input').unbind().bind('keyup', function() {
-                  var colIndex = document.querySelector('#select').selectedIndex;
+                  var colIndex = document.querySelector('#selectKaryawan').selectedIndex;
                   table.column( colIndex).search( this.value ).draw();
                 });
                 

@@ -3,15 +3,16 @@
 $kode = $_POST['id'];
 $lulus = $_POST['st'];
 $kd_status = $_POST['kode'];
-
+$status = "1";
 include_once '../../config/api.php';
 
 $kelas = new Admin();
-$sql = "UPDATE tb_karyawan SET nilai = :lulus WHERE no_KTP = :ktp";
+$sql = "UPDATE tb_karyawan SET nilai = :lulus, status = :status WHERE no_KTP = :ktp";
 $stmt = $kelas->runQuery($sql);
 
 $stmt->execute(array(
     ':lulus'	=> $lulus,
+    ':status'   => $status,
     ':ktp'		=> $kode));
 
 if (!$stmt) {

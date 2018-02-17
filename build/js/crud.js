@@ -186,5 +186,55 @@ $(document).ready(function(){
         })
     });
 
+    $('#requestKebutuhanPerusahaanMPO').hide();
+    $('#listKebutuhanPerusahaanMPO').hide();
+    $('#tambahJabatanKaryawan').on('submit', function (e) {
+        e.preventDefault();
+
+       if($(this).parsley().validate()){
+
+           var kode = $('#kodeListKaryawan').val();
+           var idKtp = $('#namaKaryawanPR option:selected').val();
+           var idJabatan = $('#listJabatan option:selected').val();
+
+           $.ajax({
+               url : 'php/ajx/CRUD.php?type=addJabatan',
+               type: 'post',
+               data: 'kode='+kode+'&ktp='+idKtp+'&jabatan='+idJabatan,
+
+               success : function(msg){
+                   if(msg != ''){
+                       alert(msg);
+                       location.reload();
+                   }
+
+               }
+           })
+       }else{
+
+       }
+    });
+
+    $('#formRequestKebutuhan').on('submit', function (e) {
+        e.preventDefault();
+
+        var perusahaan = $('#listPerusahaan option:selected').val();
+        var kebutuhan = $('#listKebutuhan option:selected').val();
+
+        if($(this).parsley().validate()){
+
+            if(kebutuhan === 'MPO01'){
+                $('#txtPerusahaan').val(perusahaan);
+            }else{
+
+            }
+
+        }else{
+            var btn = $('.buttooom').html('try again');
+            btn.removeClass('btn-primary');
+            btn.addClass('btn-danger');
+        }
+    });
+
     
 })

@@ -6,4 +6,54 @@
         '1' => 'suggested',
         '2' => 'approved',
         '3' => 'Decline'
-    }
+    };
+
+2. INSERT DATA TABLE ABSEN
+
+    tambahAbsen('no_ktp','start','break','continue','finish','tanggal','keterangan');
+    format = {
+        'time'  => 'H:m',
+        'date'  => 'd-m-Y'
+    };
+
+3. REPLAY COMPLAIN CUSTOMER(CORPORATE)
+
+    replayComplainCustomer('kode_kupon', 'judul', 'message', 'kode');
+    judul = optional;
+    kode  = {
+        'email_perusahaan'
+    };
+
+4. REPLAY COMPLAIN KARYAWAN(PENDAFTARAN)
+
+    replayComplainKaryawan('kode_kupon', 'judul', 'message', 'kode');
+    judul = optional:
+    kode = {
+        'no_ktp'
+     };
+5. SHOW BTN LOGIN (CORPORATE)
+
+    showLogin(id);
+
+    id = '1';
+
+TRUNCATE tb_absen;
+TRUNCATE tb_complain_karyawan;
+TRUNCATE tb_complain_perusahaan;
+TRUNCATE tb_cuti;
+TRUNCATE tb_hasil_interview;
+TRUNCATE tb_hasil_test;
+TRUNCATE tb_job;
+TRUNCATE tb_karyawan_mobile;
+TRUNCATE tb_kerjasama_perusahan;
+TRUNCATE tb_lembur;
+TRUNCATE tb_list_job;
+TRUNCATE tb_list_karyawan;
+TRUNCATE tb_list_perkerjaan_perusahaan;
+TRUNCATE tb_login_perusahaan;
+TRUNCATE tb_perusahaan;
+TRUNCATE tb_rekomendasi_posisi;
+TRUNCATE tb_temporary_perusahaan;
+TRUNCATE tb_time_fleksible;
+TRUNCATE tb_info_interview;
+TRUNCATE tb_info_test;

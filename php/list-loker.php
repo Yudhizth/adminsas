@@ -24,7 +24,7 @@
                         <div role="tabpanel" class="tab-pane active fade in" id="tab_content1" aria-labelledby="home-tab">
 
                             <!-- start recent activity -->
-                            Fucking Helll
+                            input loker
                             <!-- end recent activity -->
 
                         </div>
@@ -32,7 +32,7 @@
 
                             <!-- start user projects -->
 
-                            fucking bitccht
+                           list loker
 
 
                             <!-- end user projects -->

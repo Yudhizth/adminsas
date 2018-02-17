@@ -5,10 +5,14 @@
   
   $idcat = $category['id_category'];
 
-  $querysub = "SELECT * FROM tb_subcategory INNER JOIN tb_category ON tb_category.id_category = tb_subcategory.id_category WHERE tb_category.id_category = :id";
+  $querysub = "SELECT tb_category.id_category, tb_category.name, tb_subcategory.id_subcategory, tb_subcategory.name_sub, tb_subcategory.link, tb_subcategory.icon, tb_previllage.id_admin FROM tb_subcategory
+INNER JOIN tb_category ON tb_category.id_category = tb_subcategory.id_category
+INNER JOIN tb_previllage ON tb_previllage.id_subcategory = tb_subcategory.id_subcategory
+WHERE tb_category.id_category = :id AND tb_previllage.id_admin = :admin";
   $sub = $config->runQuery($querysub);
   $sub->execute(array(
-    ':id' => $idcat
+    ':id' => $idcat,
+      ':admin' => $rowAdmin['id']
   ));
   ?>
   <div class="menu_section">
@@ -16,19 +20,6 @@
 
     <ul class="nav side-menu">
       <?php while ( $subcat = $sub->fetch(PDO::FETCH_LAZY)) {
-
-        $data = $subcat['id_subcategory'];
-        if ($category['id_roles'] == '5' && in_array($subcat['id_subcategory'], ['2', '7', '13'])) {
-          # code...
-          $label = " display: block; ";
-        }
-        elseif($category['id_roles'] != '5')
-        {
-          $label = " display: block; ";
-        }
-        else{
-          $label = "display: none;";
-        }
 
         if (!empty($urltype[1]) ) {
           if ($urltype[1] == $subcat['link']) {
@@ -42,7 +33,7 @@
           $active = "";
         }
         ?>
-      <li class="<?=$active?>" style="text-transform: capitalize; <?=$label?>" >
+      <li class="<?=$active?>" style="text-transform: capitalize;" >
         <a href="?p=<?=$subcat['link']?>" ><i class="fa <?=$subcat['icon']?>"></i> <?=$subcat['name_sub']?> </a>
       </li>
       <?php } ?>

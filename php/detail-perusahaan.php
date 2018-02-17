@@ -1,4 +1,53 @@
 <?php
+if(isset($_POST['updatePerusahaan'])){
+    $kodePerusahaan = $_POST['txt_kode'];
+    $a = $_POST['txt_nama'];
+    $b = $_POST['txt_bidang'];
+    $c = $_POST['txt_npwp'];
+    $d = $_POST['txt_siup'];
+    $e = $_POST['txt_telp'];
+    $f = $_POST['txt_hp'];
+    $g = $_POST['txt_fax'];
+    $h = $_POST['txt_email'];
+    $i = $_POST['txt_website'];
+    $j = $_POST['txt_cp'];
+    $k = $_POST['txt_alamat'];
+    $l = $_POST['txt_kelurahan'];
+    $m = $_POST['txt_kecamatan'];
+    $n = $_POST['txt_kota'];
+
+//    $a = array($kodePerusahaan, $nama, $bidang, $npwp, $siup, $telp, $hp, $fax, $email, $web, $cp, $alamat, $kel, $kec, $kota);
+//    // echo "<pre>";
+//    // print_r($a);
+//    // echo "</pre>";
+//    $new_kode = explode('-', $kodePerusahaan);
+//    $new_kode = implode($new_kode);
+
+    $query = "UPDATE tb_perusahaan SET nama_perusahaan = :a, bidang_perusahaan = :b, nomor_NPWP = :c, nomor_SIUP = :d, nomor_telp = :e, nomor_hp = :f, nomor_fax = :g, email = :h, website = :i, contact_person = :j, alamat = :k, kelurahan = :l, kecamatan = :m, kota = :n  WHERE kode_perusahaan = :kode";
+    $input = $config->runQuery($query);
+    $input->execute(array(
+        ':a'    => $a,
+        ':b'    => $b,
+        ':c'    => $c,
+        ':d'    => $d,
+        ':e'    => $e,
+        ':f'    => $f,
+        ':g'    => $g,
+        ':h'    => $h,
+        ':i'    => $i,
+        ':j'    => $j,
+        ':k'    => $k,
+        ':l'    => $l,
+        ':m'    => $m,
+        ':n'    => $n,
+        ':kode' =>$kodePerusahaan
+    ));
+    if (!$input) {
+        # code...
+        echo "Tidak Berhasil di update";
+    }else{
+    }
+}
 $id = $_GET['name'];
 
 $cek = new Perusahaan();
@@ -124,7 +173,7 @@ $cek = new Perusahaan();
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Kelurahan <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" value="<?php echo $row['kelurahan']; ?>" type="text" required>
+                            <input id="name" class="form-control col-md-7 col-xs-12" name="txt_kelurahan" data-validate-length-range="6" data-validate-words="2" value="<?php echo $row['kelurahan']; ?>" type="text" required>
                         </div>
                     </div>
 
@@ -140,7 +189,7 @@ $cek = new Perusahaan();
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Kota <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" name="txt_kota" type="text" value="<?php echo $row['kota']; ?>" required>
+                            <input id="name" class="form-control col-md-7 col-xs-12" dirname="txt_kota" data-validate-length-range="6" data-validate-words="2" name="txt_kota" type="text" value="<?php echo $row['kota']; ?>" required>
                         </div>
                     </div>
 
@@ -148,8 +197,7 @@ $cek = new Perusahaan();
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
-                            <button type="submit" class="btn btn-primary">Cancel</button>
-                            <button id="send" type="submit" name="newCompany" class="btn btn-success">Submit</button>
+                            <button  type="submit" name="updatePerusahaan" class="btn btn-success">update</button>
                         </div>
                     </div>
                 </form>

@@ -277,6 +277,23 @@ class Admin
 
   		return $new_code;
 	}
+	public function getDate($format)
+    {
+        date_default_timezone_set("Asia/Jakarta");
+
+        $tanggal = date($format);
+
+        return $tanggal;
+    }
+
+    public function getTime($format)
+    {
+        date_default_timezone_set("Asia/Jakarta");
+
+        $waktu = date($format);
+
+        return $waktu;
+    }
 
 	// public function getID($new_kode, $subject, $admin, $kepada, $isi)
 	// {
@@ -300,6 +317,11 @@ class Admin
 	// 	}
 
 	// }
+    function generateRandomString($length = 10)
+    {
+
+        return substr(str_shuffle(str_repeat($x='!@#$%^&*()0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+    }
 
 }
 class Perusahaan

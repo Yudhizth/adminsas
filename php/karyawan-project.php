@@ -16,14 +16,27 @@ $type = $dataSPK['kode_request'];
 $kebutuhan = substr($type, 0, 3);
 
 $kodeListKaryawan = $dataSPK['kode_list_karyawan'];
+echo $kodeListKaryawan;
 
-$totKar = "SELECT id FROM tb_list_karyawan WHERE kode_list_karyawan = :kode";
+$totKar = "SELECT tb_list_karyawan.id, tb_karyawan.nama_depan, tb_karyawan.nama_belakang 
+FROM tb_list_karyawan 
+INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_list_karyawan.no_nip
+WHERE kode_list_karyawan = :kode";
 $totalKary = $config->runQuery($totKar);
 $totalKary->execute(array(
     ':kode' => $kodeListKaryawan
 ));
 
 $totalKaryawanSelected = $totalKary->rowCount();
+
+//list karyawan _remove this project
+
+$sql2 = "SELECT tb_temp_remove_karyawan.no_ktp, tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_karyawan.jenis_kelamin FROM tb_temp_remove_karyawan
+INNER JOIN tb_karyawan ON tb_karyawan.no_ktp=tb_temp_remove_karyawan.no_ktp
+WHERE tb_temp_remove_karyawan.kode_list_karyawan = :kodenya";
+
+$listRemove = $config->runQuery($sql2);
+$listRemove->execute(array(':kodenya' => $kodeListKaryawan));
 
 if (empty($dataSPK['kode_list_karyawan'])) {
 
@@ -42,6 +55,8 @@ if (empty($dataSPK['kode_list_karyawan'])) {
         </div> ';
 
 } else {
+
+
     switch ($kebutuhan) {
         case "BPO":
             $typeKebutuhan = "BPO01";
@@ -51,7 +66,9 @@ if (empty($dataSPK['kode_list_karyawan'])) {
 FROM tb_karyawan
 INNER JOIN tb_kode_status_karyawan ON tb_kode_status_karyawan.kd_id = tb_karyawan.kd_status_karyawan
 where kd_status_karyawan IN ('KDKRY0006', 'KDKRY0008', 'KDKRY0009', 'KDKRY0010', 'KDKRY0015')
-AND tb_karyawan.no_ktp NOT IN (SELECT tb_list_karyawan.no_nip FROM tb_list_karyawan INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_list_karyawan.no_nip)";
+AND tb_karyawan.no_ktp NOT IN (SELECT tb_list_karyawan.no_nip FROM tb_list_karyawan INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_list_karyawan.no_nip)
+AND tb_karyawan.no_ktp NOT IN (SELECT tb_temp_remove_karyawan.no_ktp FROM tb_temp_remove_karyawan INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_temp_remove_karyawan.no_ktp
+WHERE tb_temp_remove_karyawan.kode_list_karyawan = '".$kodeListKaryawan."')";
             $sql = $config->paging($dt, $records_per_page);
             $listKaryawan = $config->runQuery($sql);
             $listKaryawan->execute();
@@ -84,7 +101,9 @@ AND tb_karyawan.no_ktp NOT IN (SELECT tb_list_karyawan.no_nip FROM tb_list_karya
 FROM tb_karyawan
 INNER JOIN tb_kode_status_karyawan ON tb_kode_status_karyawan.kd_id = tb_karyawan.kd_status_karyawan
 where kd_status_karyawan IN ('KDKRY0006', 'KDKRY0008', 'KDKRY0009', 'KDKRY0010', 'KDKRY0015')
-AND tb_karyawan.no_ktp NOT IN (SELECT tb_list_karyawan.no_nip FROM tb_list_karyawan INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_list_karyawan.no_nip)";
+AND tb_karyawan.no_ktp NOT IN (SELECT tb_list_karyawan.no_nip FROM tb_list_karyawan INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_list_karyawan.no_nip)
+AND tb_karyawan.no_ktp NOT IN (SELECT tb_temp_remove_karyawan.no_ktp FROM tb_temp_remove_karyawan INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_temp_remove_karyawan.no_ktp
+WHERE tb_temp_remove_karyawan.kode_list_karyawan = '".$kodeListKaryawan."')";
             $sql = $config->paging($dt, $records_per_page);
             $listKaryawan = $config->runQuery($sql);
             $listKaryawan->execute();
@@ -97,7 +116,9 @@ AND tb_karyawan.no_ktp NOT IN (SELECT tb_list_karyawan.no_nip FROM tb_list_karya
 FROM tb_karyawan
 INNER JOIN tb_kode_status_karyawan ON tb_kode_status_karyawan.kd_id = tb_karyawan.kd_status_karyawan
 where tb_karyawan.kd_status_karyawan IN ('KDKRY0006', 'KDKRY0008', 'KDKRY0009', 'KDKRY0010', 'KDKRY0015')
-AND tb_karyawan.no_ktp NOT IN (SELECT tb_list_karyawan.no_nip FROM tb_list_karyawan INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_list_karyawan.no_nip)";
+AND tb_karyawan.no_ktp NOT IN (SELECT tb_list_karyawan.no_nip FROM tb_list_karyawan INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_list_karyawan.no_nip)
+AND tb_karyawan.no_ktp NOT IN (SELECT tb_temp_remove_karyawan.no_ktp FROM tb_temp_remove_karyawan INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_temp_remove_karyawan.no_ktp
+WHERE tb_temp_remove_karyawan.kode_list_karyawan = '".$kodeListKaryawan."')";
             $sql = $config->paging($dt, $records_per_page);
             $listKaryawan = $config->runQuery($sql);
             $listKaryawan->execute();
@@ -288,6 +309,51 @@ WHERE tb_kerjasama_perusahan.kode_list_karyawan = :nomor";
 
 
     <?php } ?>
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-6 col-sm-offset-6">
+            <div class="x_panel">
+                <div class="x_content">
+                    <h3>List Karyawan Removed by Customer</h3>
+                    <hr>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped jambo_table bulk_action">
+                            <thead>
+                            <tr class="headings">
+                                <th class="column-title">#</th>
+                                <th class="column-title">Nama Lengkap</th>
+                                <th class="column-title">Jenis Kelamin</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            $i = 1;
+                            if ($listRemove->rowCount() > 0) {
+                                while ($row = $listRemove->fetch(PDO::FETCH_LAZY)) { ?>
+                                    <tr class="even pointer">
+                                        <td class=" "><?= $i++; ?></td>
+                                        <td class=" ">
+                                            <a href="?p=detail-karyawan&id=<?= $row['no_ktp']; ?>"
+                                               data-toggle="tooltip" data-placement="right" title="Detail!">
+                                                <?= $row['nama_depan']; ?> <?= $row['nama_belakang'] ?>
+                                            </a>
+                                        </td>
+                                        <td class=" "><?= $row['jenis_kelamin']; ?></td>
+                                    </tr>
+                                    <?php
+                                }
+
+                            } else {
+                                echo "<td colspan='7' style='font-size=18px; font-wight=500;'>Karyawan Belum Ada!</td>";
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!--    end content select karyawan-->

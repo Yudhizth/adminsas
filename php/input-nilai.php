@@ -2,6 +2,17 @@
 $id = $_GET['id'];
 $data = new Admin();
 
+$sql ="SELECT tb_info_test.no_ktp, tb_info_test.kode_test, tb_info_interview.kd_interview FROM tb_info_test
+LEFT JOIN tb_info_interview ON tb_info_interview.no_ktp = tb_info_test.no_ktp WHERE tb_info_test.no_ktp = :id";
+$stmt = $data->runQuery($sql);
+$stmt->execute(array(
+    ':id'   => $id
+));
+
+$info = $stmt->fetch(PDO::FETCH_LAZY);
+$test = $info['kode_test'];
+$interview = $info['kd_interview'];
+
 
     if (isset($_POST['addTest']))
     {
@@ -31,7 +42,8 @@ $data = new Admin();
 
             }
         }
-    }elseif (isset($_POST['addInterview'])){
+    }
+    if (isset($_POST['addInterview'])){
         $kode = $_POST['txt_kode'];
         $admin = $_POST['txt_admin'];
         $nama = $_POST['txt_nama'];
@@ -75,17 +87,6 @@ $data = new Admin();
         </script>";
         }
     }
-
-    $sql ="SELECT tb_info_test.no_ktp, tb_info_test.kode_test, tb_info_interview.kd_interview FROM tb_info_test
-            INNER JOIN tb_info_interview ON tb_info_interview.no_ktp = tb_info_test.no_ktp WHERE tb_info_test.no_ktp = :id";
-    $stmt = $data->runQuery($sql);
-    $stmt->execute(array(
-        ':id'   => $id
-    ));
-
-    $info = $stmt->fetch(PDO::FETCH_LAZY);
-    $test = $info['kode_test'];
-    $interview = $info['kd_interview'];
 ?>
 
 <div class="x_panel">
@@ -279,7 +280,7 @@ $data = new Admin();
             </div>
             <button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal-psikolog">simpan nilai</button>
         </div>
-    <?php } ?>
+    <?php }else{} ?>
 </div>
 
 

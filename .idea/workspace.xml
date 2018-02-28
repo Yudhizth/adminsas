@@ -1,46 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/php/karyawan-project.php" line="20" mnemonic="4" />
-    <bookmark url="file://$PROJECT_DIR$/php/karyawan-project.php" line="127" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/php/karyawan-project.php" line="24" mnemonic="4" />
+    <bookmark url="file://$PROJECT_DIR$/php/karyawan-project.php" line="148" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e8e3a59a-a3c2-463e-bc45-c6c3f127241f" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/FUNCTION.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/build/js/crudKaryawanProject.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/build/js/crudLembur.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/build/js/customOwn.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/php/ajx/CRUD.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/php/ajx/addDetailJobs.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/php/ajx/crudKaryawanProject.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/php/ajx/crudLembur.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/php/ajx/selectMPO.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/php/karyawan-project.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/php/list-lembur.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/php/list-project.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/php/project.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/php/selectedKaryawan.php" />
+    <list default="true" id="e8e3a59a-a3c2-463e-bc45-c6c3f127241f" name="Default" comment="prubahabahan banyak sekalih ini mah">
+      <change beforePath="" afterPath="$PROJECT_DIR$/php/invoice.php" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/build/css/custom.css" afterPath="$PROJECT_DIR$/build/css/custom.css" />
-      <change beforePath="$PROJECT_DIR$/build/js/crud.js" afterPath="$PROJECT_DIR$/build/js/crud.js" />
+      <change beforePath="$PROJECT_DIR$/127_0_0_1.sql" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/FUNCTION.txt" afterPath="$PROJECT_DIR$/FUNCTION.txt" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change beforePath="$PROJECT_DIR$/build/js/crudDetailProject.js" afterPath="$PROJECT_DIR$/build/js/crudDetailProject.js" />
-      <change beforePath="$PROJECT_DIR$/config/api.php" afterPath="$PROJECT_DIR$/config/api.php" />
+      <change beforePath="$PROJECT_DIR$/build/js/custom.js" afterPath="$PROJECT_DIR$/build/js/custom.js" />
+      <change beforePath="$PROJECT_DIR$/build/js/previllage.js" afterPath="$PROJECT_DIR$/build/js/previllage.js" />
+      <change beforePath="$PROJECT_DIR$/build/js/schedule.js" afterPath="$PROJECT_DIR$/build/js/schedule.js" />
+      <change beforePath="$PROJECT_DIR$/images/AAS.jpg" afterPath="" />
       <change beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change beforePath="$PROJECT_DIR$/php/absen.php" afterPath="$PROJECT_DIR$/php/absen.php" />
-      <change beforePath="$PROJECT_DIR$/php/add-list-job.php" afterPath="$PROJECT_DIR$/php/add-list-job.php" />
-      <change beforePath="$PROJECT_DIR$/php/addKaryawan.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/php/ajx/crudJob.php" afterPath="$PROJECT_DIR$/php/ajx/crudJob.php" />
+      <change beforePath="$PROJECT_DIR$/php/admin.php" afterPath="$PROJECT_DIR$/php/admin.php" />
+      <change beforePath="$PROJECT_DIR$/php/ajx/crudKaryawanProject.php" afterPath="$PROJECT_DIR$/php/ajx/crudKaryawanProject.php" />
+      <change beforePath="$PROJECT_DIR$/php/ajx/detailPrevillage.php" afterPath="$PROJECT_DIR$/php/ajx/detailPrevillage.php" />
       <change beforePath="$PROJECT_DIR$/php/data-entry.php" afterPath="$PROJECT_DIR$/php/data-entry.php" />
-      <change beforePath="$PROJECT_DIR$/php/deleteKaryawanSuggest.php" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/php/detail-entry.php" afterPath="$PROJECT_DIR$/php/detail-entry.php" />
+      <change beforePath="$PROJECT_DIR$/php/detail-karyawan.php" afterPath="$PROJECT_DIR$/php/detail-karyawan.php" />
+      <change beforePath="$PROJECT_DIR$/php/detail-perusahaan.php" afterPath="$PROJECT_DIR$/php/detail-perusahaan.php" />
       <change beforePath="$PROJECT_DIR$/php/detailProject.php" afterPath="$PROJECT_DIR$/php/detailProject.php" />
-      <change beforePath="$PROJECT_DIR$/php/entry-data.php" afterPath="$PROJECT_DIR$/php/entry-data.php" />
       <change beforePath="$PROJECT_DIR$/php/entrydata.php" afterPath="$PROJECT_DIR$/php/entrydata.php" />
       <change beforePath="$PROJECT_DIR$/php/footer.php" afterPath="$PROJECT_DIR$/php/footer.php" />
       <change beforePath="$PROJECT_DIR$/php/header.php" afterPath="$PROJECT_DIR$/php/header.php" />
-      <change beforePath="$PROJECT_DIR$/php/list-customer.php" afterPath="$PROJECT_DIR$/php/list-customer.php" />
-      <change beforePath="$PROJECT_DIR$/php/list-job.php" afterPath="$PROJECT_DIR$/php/list-job.php" />
-      <change beforePath="$PROJECT_DIR$/php/list-karyawan.php" afterPath="$PROJECT_DIR$/php/list-karyawan.php" />
-      <change beforePath="$PROJECT_DIR$/php/select-karyawan.php" afterPath="$PROJECT_DIR$/php/select-karyawan.php" />
+      <change beforePath="$PROJECT_DIR$/php/input-nilai.php" afterPath="$PROJECT_DIR$/php/input-nilai.php" />
+      <change beforePath="$PROJECT_DIR$/php/karyawan-project.php" afterPath="$PROJECT_DIR$/php/karyawan-project.php" />
+      <change beforePath="$PROJECT_DIR$/php/previllage.php" afterPath="$PROJECT_DIR$/php/previllage.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,112 +52,7 @@
     <favorites_list name="admin" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="karyawan-project.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/php/karyawan-project.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="187" column="57" lean-forward="true" selection-start-line="180" selection-start-column="48" selection-end-line="187" selection-end-column="57" />
-              <folding>
-                <element signature="e#1304#2089#0#PHP" expanded="false" />
-                <element signature="e#3166#3952#0#PHP" expanded="false" />
-                <marker date="1517764619292" expanded="true" signature="152:223" ph="SELECT * FRO... tb_kerjasama_perusahan" />
-                <marker date="1517764619292" expanded="true" signature="485:507" ph="SELECT id FR... tb_list" />
-                <marker date="1517764619292" expanded="true" signature="485:549" ph="SELECT id FR... tb_list_karyawan" />
-                <marker date="1517764619292" expanded="true" signature="964:1255" ph="..." />
-                <marker date="1517764619292" expanded="true" signature="995:1240" ph="..." />
-                <marker date="1517764619292" expanded="true" signature="1015:1016" ph="..." />
-                <marker date="1517764619292" expanded="true" signature="1015:1044" ph="..." />
-                <marker date="1517764619292" expanded="true" signature="1015:1045" ph="..." />
-                <marker date="1517764619292" expanded="true" signature="1015:1077" ph="..." />
-                <marker date="1517764619292" expanded="true" signature="1015:1106" ph="..." />
-                <marker date="1517764619292" expanded="true" signature="1015:1107" ph="..." />
-                <marker date="1517764619292" expanded="true" signature="1015:1221" ph="..." />
-                <marker date="1517764619292" expanded="true" signature="2171:2823" ph="SELECT tb_ke... tb_kerjasama_perusahan" />
-                <marker date="1517764619292" expanded="true" signature="2171:2835" ph="SELECT tb_ke... tb_kerjasama_perusahan" />
-                <marker date="1517764619292" expanded="true" signature="4029:4548" ph="SELECT tb_ka... tb_karyawan" />
-                <marker date="1517764619292" expanded="true" signature="4424:4547" ph="SELECT tb_li... tb_list_karyawan" />
-                <marker date="1517764619292" expanded="true" signature="4865:5607" ph="SELECT tb_li... tb_list_karyawan" />
-                <marker date="1517764619292" expanded="true" signature="10018:10049" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="crud.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/js/crud.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list-karyawan.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/php/list-karyawan.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="15" lean-forward="false" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
-              <folding>
-                <marker date="1517850032943" expanded="true" signature="17:400" ph="SELECT tb_ka... tb_karyawan" />
-                <marker date="1517850032943" expanded="true" signature="608:1722" ph="SELECT tb_li... tb_list_karyawan" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="absen.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/php/absen.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3899">
-              <caret line="377" column="38" lean-forward="false" selection-start-line="377" selection-start-column="38" selection-end-line="377" selection-end-column="38" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#5;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customOwn.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build/js/customOwn.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CRUD.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/php/ajx/CRUD.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="24" column="22" lean-forward="false" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-              <folding>
-                <marker date="1517849810700" expanded="true" signature="224:280" ph="UPDATE tb_karyawan... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="footer.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/php/footer.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="72" column="31" lean-forward="false" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -178,40 +63,46 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$kode</find>
-      <find>Next</find>
-      <find>actionBar</find>
-      <find>datepsikotes</find>
-      <find>single_cal1</find>
-      <find>txt_plan</find>
-      <find>txt_pekerjaan</find>
-      <find>B9161D</find>
-      <find>$row</find>
-      <find>nomor spk</find>
-      <find>KDKRY0002</find>
-      <find>tooltip</find>
-      <find>$id</find>
-      <find>formJudul1</find>
-      <find>listPanel</find>
-      <find>detailJoblistDetail</find>
-      <find>detailJob</find>
-      <find>removeTitle</find>
-      <find>addJudul</find>
-      <find>switch</find>
-      <find>$cek</find>
-      <find>list_pelamar</find>
-      <find>$selectedKaryawan</find>
-      <find>pa</find>
-      <find>paginglinkURL</find>
-      <find>Generate</find>
-      <find>addDetail</find>
-      <find>listKaryawan</find>
-      <find>$karyawanProject</find>
+      <find>listPerusahaan</find>
+      <find>listKebutuhan</find>
+      <find>paging</find>
+      <find>Psikotes</find>
+      <find>tb_info_interview.nilai</find>
+      <find>add</find>
+      <find>modal-psikolog</find>
+      <find>.lulus</find>
+      <find>.modal-psikolog</find>
+      <find>new-request</find>
+      <find>requestKebutuhanPerusahaanMPO</find>
+      <find>listKebutuhanPerusahaanMPO</find>
+      <find>requestKebutuhanPerusahaan</find>
+      <find>buttooom</find>
+      <find>formRequestKebutuhan</find>
+      <find>removeKaryawanProject</find>
+      <find>crudKaryawanProject.php</find>
+      <find>remove</find>
+      <find>crudKaryawanProject</find>
+      <find>complain</find>
+      <find>typeTime</find>
+      <find>searchPsikotesList</find>
+      <find>$info</find>
+      <find>$interview</find>
+      <find>prettyPrint</find>
+      <find>$time_select</find>
+      <find>exampleInputPassword1</find>
+      <find>Upload/</find>
+      <find>tb_complain_perusahaan</find>
+      <find>Tanggung Jawab</find>
     </findStrings>
     <replaceStrings>
       <replace>B9161D</replace>
       <replace>$data</replace>
+      <replace>Interview</replace>
+      <replace>tb_hasil_interview.nilai</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>C:\xampp\htdocs\admin\php</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -230,52 +121,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/php/soal-psikolog.php" />
+        <option value="$PROJECT_DIR$/php/calon-karyawan.php" />
+        <option value="$PROJECT_DIR$/php/detailCuti.php" />
+        <option value="$PROJECT_DIR$/php/list-customer.php" />
+        <option value="$PROJECT_DIR$/php/list-cuti.php" />
+        <option value="$PROJECT_DIR$/build/js/crudCuti.js" />
+        <option value="$PROJECT_DIR$/php/ajx/detailCuti.php" />
+        <option value="$PROJECT_DIR$/php/komplain-karyawan.php" />
+        <option value="$PROJECT_DIR$/php/ajx/formKomplainKaryawan.php" />
+        <option value="$PROJECT_DIR$/php/ajx/complainKaryawan.php" />
+        <option value="$PROJECT_DIR$/build/js/complain-perusahaan.js" />
+        <option value="$PROJECT_DIR$/build/js/complain-karyawan.js" />
+        <option value="$PROJECT_DIR$/build/js/crudLembur.js" />
+        <option value="$PROJECT_DIR$/php/side-navbar.php" />
+        <option value="$PROJECT_DIR$/build/css/custom.css" />
+        <option value="$PROJECT_DIR$/php/ajx/CRUD.php" />
+        <option value="$PROJECT_DIR$/php/default.php" />
+        <option value="$PROJECT_DIR$/php/list-loker.php" />
+        <option value="$PROJECT_DIR$/php/new-request.php" />
+        <option value="$PROJECT_DIR$/config/api.php" />
+        <option value="$PROJECT_DIR$/php/ajx/listPsikotes.php" />
+        <option value="$PROJECT_DIR$/build/js/listInterview.js" />
+        <option value="$PROJECT_DIR$/build/js/interview.js" />
+        <option value="$PROJECT_DIR$/php/ajx/listInteview.php" />
+        <option value="$PROJECT_DIR$/php/ajx/listInterview.php" />
         <option value="$PROJECT_DIR$/php/ajx/add-nilai.php" />
-        <option value="$PROJECT_DIR$/php/delete-addJob.php" />
-        <option value="$PROJECT_DIR$/php/ajx/insertKode.php" />
-        <option value="$PROJECT_DIR$/php/ajx/add-karyawan.php" />
-        <option value="$PROJECT_DIR$/php/detail-list.php" />
-        <option value="$PROJECT_DIR$/php/add-jadwal-test.php" />
         <option value="$PROJECT_DIR$/php/schedule-test.php" />
         <option value="$PROJECT_DIR$/php/schedule-interview.php" />
-        <option value="$PROJECT_DIR$/php/add-jadwal-interview.php" />
-        <option value="$PROJECT_DIR$/php/default.php" />
-        <option value="$PROJECT_DIR$/php/top-navbar.php" />
-        <option value="$PROJECT_DIR$/build/js/crudDetailProject.js" />
-        <option value="$PROJECT_DIR$/php/entrydata.php" />
-        <option value="$PROJECT_DIR$/php/data-entry.php" />
-        <option value="$PROJECT_DIR$/php/addKaryawan.php" />
-        <option value="$PROJECT_DIR$/build/js/custom.js" />
-        <option value="$PROJECT_DIR$/php/select-karyawan.php" />
-        <option value="$PROJECT_DIR$/FUNCTION.txt" />
-        <option value="$PROJECT_DIR$/php/list-job.php" />
-        <option value="$PROJECT_DIR$/php/list-customer.php" />
-        <option value="$PROJECT_DIR$/php/entry-data.php" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/php/ajx/crudKaryawanProject.php" />
+        <option value="$PROJECT_DIR$/php/karyawan-project.php" />
+        <option value="$PROJECT_DIR$/php/detail-entry.php" />
+        <option value="$PROJECT_DIR$/php/detail-perusahaan.php" />
         <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/php/ajx/crudJob.php" />
+        <option value="$PROJECT_DIR$/build/js/schedule.js" />
+        <option value="$PROJECT_DIR$/php/input-nilai.php" />
+        <option value="$PROJECT_DIR$/build/js/custom.js" />
+        <option value="$PROJECT_DIR$/php/footer.php" />
         <option value="$PROJECT_DIR$/php/header.php" />
-        <option value="$PROJECT_DIR$/build/css/custom.css" />
-        <option value="$PROJECT_DIR$/config/api.php" />
-        <option value="$PROJECT_DIR$/build/js/crudKaryawanProject.js" />
-        <option value="$PROJECT_DIR$/php/selectedKaryawan.php" />
-        <option value="$PROJECT_DIR$/php/ajx/selectMPO.php" />
-        <option value="$PROJECT_DIR$/php/ajx/addDetailJobs.php" />
-        <option value="$PROJECT_DIR$/php/add-list-job.php" />
+        <option value="$PROJECT_DIR$/php/data-entry.php" />
+        <option value="$PROJECT_DIR$/build/js/crudDetailProject.js" />
+        <option value="$PROJECT_DIR$/build/js/previllage.js" />
+        <option value="$PROJECT_DIR$/php/ajx/detailPrevillage.php" />
+        <option value="$PROJECT_DIR$/php/admin.php" />
+        <option value="$PROJECT_DIR$/php/previllage.php" />
+        <option value="$PROJECT_DIR$/php/detail-karyawan.php" />
+        <option value="$PROJECT_DIR$/php/ajx/complainPerusahaan.php" />
+        <option value="$PROJECT_DIR$/php/entrydata.php" />
         <option value="$PROJECT_DIR$/build/js/crud.js" />
         <option value="$PROJECT_DIR$/php/detailProject.php" />
-        <option value="$PROJECT_DIR$/php/karyawan-project.php" />
-        <option value="$PROJECT_DIR$/php/list-project.php" />
-        <option value="$PROJECT_DIR$/php/ajx/crudKaryawanProject.php" />
-        <option value="$PROJECT_DIR$/php/calon-karyawan.php" />
-        <option value="$PROJECT_DIR$/php/ajx/crudLembur.php" />
-        <option value="$PROJECT_DIR$/php/list-lembur.php" />
-        <option value="$PROJECT_DIR$/build/js/crudLembur.js" />
-        <option value="$PROJECT_DIR$/php/footer.php" />
-        <option value="$PROJECT_DIR$/build/js/customOwn.js" />
-        <option value="$PROJECT_DIR$/php/ajx/CRUD.php" />
-        <option value="$PROJECT_DIR$/php/list-karyawan.php" />
-        <option value="$PROJECT_DIR$/php/absen.php" />
+        <option value="$PROJECT_DIR$/php/invoice.php" />
+        <option value="$PROJECT_DIR$/FUNCTION.txt" />
       </list>
     </option>
   </component>
@@ -287,10 +183,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="608" />
+    <option name="y" value="28" />
+    <option name="width" value="814" />
+    <option name="height" value="867" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -307,6 +203,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -317,49 +215,12 @@
             <path>
               <item name="admin" type="b2602c69:ProjectViewProjectNode" />
               <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="build" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="build" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="build" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="build" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="custom.js" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="ajx" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -367,6 +228,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../pendaftaran" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\admin\php\ajx" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -480,7 +346,24 @@
       <workItem from="1517281303715" duration="9298000" />
       <workItem from="1517370700137" duration="20878000" />
       <workItem from="1517472414144" duration="816000" />
-      <workItem from="1517640225719" duration="65110000" />
+      <workItem from="1517640225719" duration="86839000" />
+      <workItem from="1517912280322" duration="263000" />
+      <workItem from="1517925177779" duration="93000" />
+      <workItem from="1517933599638" duration="19120000" />
+      <workItem from="1517983603345" duration="1003000" />
+      <workItem from="1518030177559" duration="686000" />
+      <workItem from="1518066277513" duration="21361000" />
+      <workItem from="1518147450546" duration="8249000" />
+      <workItem from="1518163705278" duration="1456000" />
+      <workItem from="1518175417513" duration="5742000" />
+      <workItem from="1518326111685" duration="8101000" />
+      <workItem from="1518891510225" duration="813000" />
+      <workItem from="1519030347567" duration="3516000" />
+      <workItem from="1519276224685" duration="6440000" />
+      <workItem from="1519405646953" duration="12811000" />
+      <workItem from="1519556292462" duration="3851000" />
+      <workItem from="1519633471818" duration="634000" />
+      <workItem from="1519705537380" duration="9303000" />
     </task>
     <task id="LOCAL-00001" summary="perbaikan modul admin-sales&#10;perubahan database:&#10;- tb_kerjasama_perusahan&#10;kode_admin set (60)&#10;total_karyawan(varchar[4])&#10;- tb_list_job&#10;remove start_at, finish_at&#10;-tb_job&#10;remove no_nip&#10;-tb_list_karyawan&#10;change AI on id">
       <created>1496675481386</created>
@@ -503,11 +386,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497135411186</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="prubahabahan banyak sekalih ini mah">
+      <created>1518891699983</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1518891699983</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142914000" />
+    <option name="totallyTimeSpent" value="268085000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -520,14 +410,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.205625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.205625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861635" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -539,28 +427,9 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32684824" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32861635" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.205625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -572,14 +441,15 @@
     <MESSAGE value="perbaikan modul admin-sales&#10;perubahan database:&#10;- tb_kerjasama_perusahan&#10;kode_admin set (60)&#10;total_karyawan(varchar[4])&#10;- tb_list_job&#10;remove start_at, finish_at&#10;-tb_job&#10;remove no_nip&#10;-tb_list_karyawan&#10;change AI on id" />
     <MESSAGE value="perbaikan halaman select karyawan untuk pemilihan calon kategori system integrator dan konsultan" />
     <MESSAGE value="perbaikan bugs&#10;penambahan details" />
-    <option name="LAST_COMMIT_MESSAGE" value="perbaikan bugs&#10;penambahan details" />
+    <MESSAGE value="prubahabahan banyak sekalih ini mah" />
+    <option name="LAST_COMMIT_MESSAGE" value="prubahabahan banyak sekalih ini mah" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/php/karyawan-project.php</url>
-          <line>161</line>
+          <line>182</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -588,592 +458,484 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/php/addJabatan.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1122">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/images/american-express.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-306">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/images/inbox.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/kode-status-karyawan.php">
+    <entry file="file://$PROJECT_DIR$/php/add-menu.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1020">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/add-job.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3723">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1516806798803" expanded="true" signature="209:308" ph="INSERT INTO tb_subcategory... " />
+            <marker date="1516806798803" expanded="true" signature="551:662" ph="..." />
+            <marker date="1516806798803" expanded="true" signature="696:801" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/list-loker.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+        <state relative-caret-position="578">
+          <caret line="34" column="37" lean-forward="false" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/list-menu.php">
+    <entry file="file://$PROJECT_DIR$/php/ajx/CRUD.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-816">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="4845">
+          <caret line="290" column="21" lean-forward="false" selection-start-line="290" selection-start-column="21" selection-end-line="290" selection-end-column="21" />
+          <folding>
+            <marker date="1518158256621" expanded="true" signature="224:280" ph="UPDATE tb_karyawan... " />
+            <marker date="1518158256621" expanded="true" signature="757:896" ph="INSERT INTO tb_absen... " />
+            <marker date="1518158256621" expanded="true" signature="1408:1464" ph="SELECT * FRO... tb_complain_perusahaan" />
+            <marker date="1518158256621" expanded="true" signature="1657:1744" ph="INSERT INTO tb_complain_perusahaan... " />
+            <marker date="1518158256621" expanded="true" signature="2105:2183" ph="UPDATE tb_complain_perusahaan... " />
+            <marker date="1518158256621" expanded="true" signature="2377:2464" ph="INSERT INTO tb_complain_perusahaan... " />
+            <marker date="1518158256621" expanded="true" signature="3027:3081" ph="SELECT * FRO... tb_complain_karyawan" />
+            <marker date="1518158256621" expanded="true" signature="3274:3366" ph="INSERT INTO tb_complain_karyawan... " />
+            <marker date="1518158256621" expanded="true" signature="3727:3803" ph="UPDATE tb_complain_karyawan... " />
+            <marker date="1518158256621" expanded="true" signature="3997:4089" ph="INSERT INTO tb_complain_karyawan... " />
+            <marker date="1518158256621" expanded="true" signature="4641:4728" ph="INSERT INTO tb_complain_perusahaan... " />
+            <marker date="1518158256621" expanded="true" signature="5131:5223" ph="INSERT INTO tb_complain_karyawan... " />
+            <marker date="1518158256621" expanded="true" signature="5629:5719" ph="UPDATE tb_cuti... " />
+            <marker date="1518158256621" expanded="true" signature="6046:6136" ph="UPDATE tb_cuti... " />
+            <marker date="1518158256621" expanded="true" signature="6560:6628" ph="INSERT INTO tb_previllage... " />
+            <marker date="1518158256621" expanded="true" signature="6965:7024" ph="UPDATE tb_list_karyawan... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/ajx/complainKaryawan.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="10" column="22" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="10" selection-end-column="22" />
+          <folding>
+            <marker date="1518077095532" expanded="true" signature="248:310" ph="SELECT * FRO... tb_complain_karyawan" />
+            <marker date="1518077095532" expanded="true" signature="443:541" ph="SELECT * FRO... tb_complain_perusahaan" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="94" column="26" lean-forward="false" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="26" />
+          <folding>
+            <marker date="1518206649066" expanded="true" signature="309:353" ph="SELECT * FRO... tb_admin" />
+            <marker date="1518206649066" expanded="true" signature="9538:9647" ph="INSERT INTO tb_info_test... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/js/interview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="81" lean-forward="false" selection-start-line="9" selection-start-column="72" selection-end-line="9" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/ajx/listInterview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="43">
+          <caret line="54" column="16" lean-forward="false" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="16" />
+          <folding>
+            <marker date="1518330098436" expanded="true" signature="295:401" ph="SELECT tb_ka... tb_karyawan" />
+            <marker date="1518330098436" expanded="true" signature="295:412" ph="SELECT tb_ka... tb_karyawan" />
+            <marker date="1518330098436" expanded="true" signature="295:767" ph="SELECT tb_ka... tb_karyawan" />
+            <marker date="1518330098436" expanded="true" signature="2166:2260" ph="..." />
+            <marker date="1518330098436" expanded="true" signature="2377:2472" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/schedule-interview.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="64" column="173" lean-forward="false" selection-start-line="64" selection-start-column="173" selection-end-line="64" selection-end-column="173" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/pekerjaan.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1479">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/inputMPO.php">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/inputBPO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/images/picture.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/img.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/new-request.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="425">
+          <caret line="25" column="46" lean-forward="false" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/addKaryawan.php">
+    <entry file="file://$PROJECT_DIR$/php/default.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="34" selection-end-column="15" />
-          <folding />
+        <state relative-caret-position="357">
+          <caret line="21" column="96" lean-forward="false" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="96" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/entrydata.php">
+    <entry file="file://$PROJECT_DIR$/build/js/crudKaryawanProject.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="121" column="37" lean-forward="true" selection-start-line="118" selection-start-column="20" selection-end-line="121" selection-end-column="37" />
+        <state relative-caret-position="196">
+          <caret line="59" column="38" lean-forward="true" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/detail-karyawan.php">
+    <entry file="file://$PROJECT_DIR$/php/ajx/crudKaryawanProject.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1632">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="532">
+          <caret line="126" column="30" lean-forward="false" selection-start-line="126" selection-start-column="30" selection-end-line="126" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/selectedKaryawan.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="46" column="95" lean-forward="false" selection-start-line="46" selection-start-column="74" selection-end-line="46" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/karyawan-project.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
           <folding>
-            <marker date="1516806798889" expanded="true" signature="212:306" ph="INSERT INTO tb_rekomendasi_posisi... " />
-            <marker date="1516806798889" expanded="true" signature="624:778" ph="..." />
-            <marker date="1516806798889" expanded="true" signature="831:975" ph="SELECT * FRO... tb_karyawan" />
-            <marker date="1516806798889" expanded="true" signature="1040:1197" ph="SELECT * FRO... tb_rekomendasi_posisi" />
-            <marker date="1516806798889" expanded="true" signature="4770:4823" ph="SELECT * FRO... tb_info_keahlian" />
-            <marker date="1516806798889" expanded="true" signature="8328:8383" ph="SELECT * FRO... tb_info_pendidikan" />
-            <marker date="1516806798889" expanded="true" signature="9702:9753" ph="SELECT * FRO... tb_info_bahasa" />
-            <marker date="1516806798889" expanded="true" signature="12259:12310" ph="SELECT * FRO... tb_info_kursus" />
-            <marker date="1516806798889" expanded="true" signature="13769:13825" ph="SELECT * FRO... tb_info_penghargaan" />
-            <marker date="1516806798889" expanded="true" signature="15144:15197" ph="SELECT * FRO... tb_info_penyakit" />
-            <marker date="1516806798889" expanded="true" signature="16592:16871" ph="SELECT tb_in... tb_info_test" />
-            <marker date="1516806798889" expanded="true" signature="20598:20943" ph="SELECT tb_in... tb_info_interview" />
-            <marker date="1516806798889" expanded="true" signature="26114:26167" ph="SELECT * FRO... tb_info_keluarga" />
-            <marker date="1516806798889" expanded="true" signature="28611:28665" ph="SELECT * FRO... tb_info_pekerjaan" />
-            <marker date="1516806798889" expanded="true" signature="30841:30895" ph="SELECT * FRO... tb_info_referensi" />
-            <marker date="1516806798889" expanded="true" signature="32791:32850" ph="SELECT * FRO... tb_uploadfile_karyawan" />
-            <marker date="1516806798889" expanded="true" signature="34368:34412" ph="SELECT * FRO... tb_karyawan" />
-            <marker date="1516806798889" expanded="true" signature="37608:37640" ph="SELECT * FRO... tb_jenis_pekerjaan" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/deleteKaryawanSuggest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="5" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="23" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/add-admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="29" lean-forward="false" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="29" />
-          <folding>
-            <marker date="1516806798800" expanded="true" signature="299:432" ph="INSERT INTO tb_admin... " />
-            <marker date="1516806798800" expanded="true" signature="727:835" ph="..." />
-            <marker date="1516806798800" expanded="true" signature="869:971" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/project.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FUNCTION.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/add-jadwal-test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1109">
-          <caret line="229" column="20" lean-forward="true" selection-start-line="229" selection-start-column="20" selection-end-line="229" selection-end-column="20" />
-          <folding>
-            <marker date="1516806798801" expanded="true" signature="383:503" ph="INSERT INTO tb_info_test... " />
-            <marker date="1516806798801" expanded="true" signature="793:869" ph="UPDATE tb_karyawan... " />
-            <marker date="1516806798801" expanded="true" signature="1028:1121" ph="..." />
-            <marker date="1516806798801" expanded="true" signature="1158:1203" ph="SELECT * FRO... tb_info_test" />
-            <marker date="1516806798801" expanded="true" signature="1295:1339" ph="SELECT * FRO... tb_karyawan" />
-            <marker date="1516806798801" expanded="true" signature="5443:5711" ph="SELECT tb_ka... tb_info_test" />
-            <marker date="1516806798801" expanded="true" signature="6194:6307" ph="UPDATE tb_info_test... " />
-            <marker date="1516806798801" expanded="true" signature="6575:6651" ph="UPDATE tb_karyawan... " />
-            <marker date="1516806798801" expanded="true" signature="6816:6911" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/delete-addJob.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="27" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="27" />
-          <folding>
-            <marker date="1516806798816" expanded="true" signature="212:250" ph="DELETE FROM tb_list_job... " />
-            <marker date="1516806798816" expanded="true" signature="384:499" ph="..." />
-            <marker date="1516806798816" expanded="true" signature="535:648" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/list-job.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/list-customer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="53" column="40" lean-forward="false" selection-start-line="53" selection-start-column="40" selection-end-line="53" selection-end-column="40" />
-          <folding>
-            <marker date="1517659388409" expanded="true" signature="794:821" ph="SELECT * FRO... tb_perusahaan" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="30" column="34" lean-forward="false" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
-          <folding>
-            <marker date="1517660062306" expanded="true" signature="271:317" ph="SELECT * FRO... tb_admin" />
-            <marker date="1517660062306" expanded="true" signature="487:618" ph="SELECT * FRO... tb_category" />
+            <marker date="1519279932820" expanded="true" signature="152:223" ph="SELECT * FRO... tb_kerjasama_perusahan" />
+            <marker date="1519279932820" expanded="true" signature="509:714" ph="SELECT id FR... tb_list_karyawan" />
+            <marker date="1519279932820" expanded="true" signature="920:1124" ph="SELECT tb_te... tb_temp_remove_karyawan" />
+            <marker date="1519279932820" expanded="true" signature="920:1149" ph="SELECT tb_te... tb_temp_remove_karyawan" />
+            <marker date="1519279932820" expanded="true" signature="920:1171" ph="SELECT tb_te... tb_temp_remove_karyawan" />
+            <marker date="1519279932820" expanded="true" signature="920:1200" ph="SELECT tb_te... tb_temp_remove_karyawan" />
+            <marker date="1519279932820" expanded="true" signature="1563:1854" ph="..." />
+            <marker date="1519279932820" expanded="true" signature="1594:1839" ph="..." />
+            <marker date="1519279932820" expanded="true" signature="1614:1820" ph="..." />
+            <marker date="1519279932820" expanded="true" signature="2011:2770" ph="SELECT tb_ka... tb_karyawan" />
+            <marker date="1519279932820" expanded="true" signature="2394:2517" ph="SELECT tb_li... tb_list_karyawan" />
+            <marker date="1519279932820" expanded="true" signature="2550:2694" ph="SELECT tb_te... tb_temp_remove_karyawan" />
+            <marker date="1519279932820" expanded="true" signature="2550:2720" ph="SELECT tb_te... tb_temp_remove_karyawan" />
+            <marker date="1519279932820" expanded="true" signature="2550:2769" ph="SELECT tb_te... tb_temp_remove_karyawan" />
+            <marker date="1519279932820" expanded="true" signature="3024:3688" ph="SELECT tb_ke... tb_kerjasama_perusahan" />
+            <marker date="1519279932820" expanded="true" signature="4125:4884" ph="SELECT tb_ka... tb_karyawan" />
+            <marker date="1519279932820" expanded="true" signature="4508:4631" ph="SELECT tb_li... tb_list_karyawan" />
+            <marker date="1519279932820" expanded="true" signature="4664:4883" ph="SELECT tb_te... tb_temp_remove_karyawan" />
+            <marker date="1519279932820" expanded="true" signature="5134:5905" ph="SELECT tb_ka... tb_karyawan" />
+            <marker date="1519279932820" expanded="true" signature="5529:5652" ph="SELECT tb_li... tb_list_karyawan" />
+            <marker date="1519279932820" expanded="true" signature="5685:5904" ph="SELECT tb_te... tb_temp_remove_karyawan" />
+            <marker date="1519279932820" expanded="true" signature="6222:6964" ph="SELECT tb_li... tb_list_karyawan" />
+            <marker date="1519279932820" expanded="true" signature="11375:11406" ph="..." />
+            <marker date="1519279932820" expanded="true" signature="17343:17374" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/entry-data.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="93" column="56" lean-forward="false" selection-start-line="93" selection-start-column="56" selection-end-line="93" selection-end-column="56" />
-          <caret line="94" column="56" lean-forward="false" selection-start-line="94" selection-start-column="56" selection-end-line="94" selection-end-column="56" />
-          <caret line="92" column="56" lean-forward="false" selection-start-line="92" selection-start-column="56" selection-end-line="92" selection-end-column="56" />
-          <caret line="91" column="56" lean-forward="false" selection-start-line="91" selection-start-column="56" selection-end-line="91" selection-end-column="56" />
-          <caret line="90" column="56" lean-forward="false" selection-start-line="90" selection-start-column="56" selection-end-line="90" selection-end-column="56" />
+        <state relative-caret-position="-2295">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/detail-entry.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="79" column="71" lean-forward="true" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/detail-perusahaan.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="100" column="75" lean-forward="false" selection-start-line="100" selection-start-column="75" selection-end-line="100" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="36" column="34" lean-forward="false" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
           <folding>
-            <element signature="n#style#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
-            <marker date="1517659923663" expanded="true" signature="61:125" ph="SELECT * FRO... tb_temporary_perusahaan" />
-            <marker date="1517659923663" expanded="true" signature="2367:2966" ph="SELECT tb_te... tb_temporary_perusahaan" />
-            <marker date="1517659923663" expanded="true" signature="2367:3060" ph="SELECT tb_te... tb_temporary_perusahaan" />
-            <marker date="1517659923663" expanded="true" signature="8526:9422" ph="SELECT tb_te... tb_temporary_perusahaan" />
+            <marker date="1519406428760" expanded="true" signature="271:317" ph="SELECT * FRO... tb_admin" />
+            <marker date="1519406428760" expanded="true" signature="487:618" ph="SELECT * FRO... tb_category" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/data-entry.php">
+    <entry file="file://$PROJECT_DIR$/php/schedule-test.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
-          <caret line="1" column="1" lean-forward="false" selection-start-line="1" selection-start-column="1" selection-end-line="2" selection-end-column="20" />
+        <state relative-caret-position="-544">
+          <caret line="13" column="29" lean-forward="false" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/ajx/listPsikotes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="119" lean-forward="false" selection-start-line="16" selection-start-column="14" selection-end-line="18" selection-end-column="119" />
           <folding>
-            <marker date="1517382088139" expanded="true" signature="257:1355" ph="SELECT tb_te... tb_temporary_perusahaan" />
-            <marker date="1517382088139" expanded="true" signature="257:1360" ph="SELECT tb_te... tb_temporary_perusahaan" />
-            <marker date="1517382088139" expanded="true" signature="1839:2121" ph="SELECT * FRO... tb_list_pekerjaan_perusahaan" />
+            <marker date="1518329111023" expanded="true" signature="293:724" ph="SELECT tb_ka... tb_karyawan" />
+            <marker date="1518329111023" expanded="true" signature="2118:2212" ph="..." />
+            <marker date="1518329111023" expanded="true" signature="2329:2424" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/js/schedule.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/input-nilai.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="117" column="43" lean-forward="false" selection-start-line="117" selection-start-column="43" selection-end-line="117" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build/js/custom.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="192" column="12" lean-forward="false" selection-start-line="192" selection-start-column="12" selection-end-line="192" selection-end-column="12" />
-          <folding />
+        <state relative-caret-position="247">
+          <caret line="1111" column="25" lean-forward="true" selection-start-line="1110" selection-start-column="7" selection-end-line="1111" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/css/custom.css">
+    <entry file="file://$PROJECT_DIR$/php/footer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="655">
-          <caret line="4245" column="24" lean-forward="false" selection-start-line="4245" selection-start-column="24" selection-end-line="4245" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/ajx/add-karyawan.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="36" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="36" />
-          <folding>
-            <marker date="1516806798806" expanded="true" signature="159:224" ph="SELECT * FRO... tb_kerjasama_perusahan" />
-            <marker date="1516806798806" expanded="true" signature="404:552" ph="..." />
-            <marker date="1516806798806" expanded="true" signature="588:665" ph="INSERT INTO tb_list_karyawan... " />
-            <marker date="1516806798806" expanded="true" signature="947:1003" ph="UPDATE tb_karyawan... " />
-            <marker date="1516806798806" expanded="true" signature="1219:1299" ph="SELECT kode_... tb_list_karyawan" />
-            <marker date="1516806798806" expanded="true" signature="1515:1598" ph="UPDATE tb_temporary_perusahaan... " />
-            <marker date="1516806798806" expanded="true" signature="1814:2004" ph="..." />
-            <marker date="1516806798806" expanded="true" signature="2064:2254" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/js/crudDetailProject.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/ajx/selectMPO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="28" lean-forward="true" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/ajx/addDetailJobs.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="13" column="78" lean-forward="false" selection-start-line="13" selection-start-column="69" selection-end-line="13" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/add-list-job.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="270" column="18" lean-forward="false" selection-start-line="270" selection-start-column="18" selection-end-line="270" selection-end-column="18" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <marker date="1517748637045" expanded="true" signature="133:200" ph="SELECT * FRO... tb_kerjasama_perusahan" />
-            <marker date="1517748637045" expanded="true" signature="768:1032" ph="SELECT * FRO... tb_job" />
-            <marker date="1517748637045" expanded="false" signature="1425:1781" ph="SELECT * FRO... tb_list_perkerjaan_perusahaan" />
-            <marker date="1517748637045" expanded="true" signature="8899:9587" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="8957:9587" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="9005:9105" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="9005:9437" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="9050:9105" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="9485:9583" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="9485:9587" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="9664:9717" ph="SELECT * FRO... tb_list_job" />
-            <marker date="1517748637045" expanded="true" signature="10234:10301" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="10556:10660" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="11445:11584" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="12253:12609" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="12287:12384" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="12510:12609" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="12878:13088" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="12937:13088" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="13036:13088" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="13274:13324" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="13496:13608" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="14778:15466" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="14836:15466" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="14884:15316" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="14929:15267" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="15364:15466" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="15543:15596" ph="SELECT * FRO... tb_list_job" />
-            <marker date="1517748637045" expanded="true" signature="16113:16180" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="16435:16539" ph="..." />
-            <marker date="1517748637045" expanded="true" signature="17324:17463" ph="..." />
-          </folding>
+        <state relative-caret-position="550">
+          <caret line="61" column="71" lean-forward="true" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="71" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="26" column="38" lean-forward="true" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+        <state relative-caret-position="306">
+          <caret line="33" column="80" lean-forward="false" selection-start-line="33" selection-start-column="80" selection-end-line="33" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/js/crudDetailProject.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="39" lean-forward="false" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/data-entry.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="162" column="63" lean-forward="false" selection-start-line="162" selection-start-column="59" selection-end-line="162" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1683">
+          <caret line="99" column="59" lean-forward="false" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/ajx/add-nilai.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="27" lean-forward="false" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/ajx/detailPrevillage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="2" lean-forward="false" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
+          <folding>
+            <marker date="1519418515147" expanded="true" signature="221:246" ph="SELECT * FRO... tb_category" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/ajx/add-karyawan.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="23" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="21" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/previllage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="24" column="34" lean-forward="false" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/detail-karyawan.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14195">
+          <caret line="835" column="0" lean-forward="false" selection-start-line="835" selection-start-column="0" selection-end-line="835" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="34">
+            <caret line="2" column="23" lean-forward="true" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/ajx/complainPerusahaan.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1666">
+          <caret line="103" column="0" lean-forward="false" selection-start-line="102" selection-start-column="18" selection-end-line="103" selection-end-column="0" />
+          <folding>
+            <marker date="1519556900826" expanded="true" signature="248:312" ph="SELECT * FRO... tb_complain_perusahaan" />
+            <marker date="1519556900826" expanded="true" signature="445:527" ph="SELECT * FRO... tb_complain_perusahaan" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/js/complain-perusahaan.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/list-komplain.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="50" lean-forward="false" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
+          <folding>
+            <marker date="1517950570063" expanded="true" signature="20:541" ph="SELECT tb_co... tb_complain_perusahaan" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/add-list-job.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="38" column="28" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="38" selection-end-column="28" />
+          <folding>
+            <marker date="1517748637045" expanded="true" signature="768:1032" ph="SELECT tb_jo... tb_job" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/soal-psikolog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="37" column="118" lean-forward="false" selection-start-line="32" selection-start-column="46" selection-end-line="37" selection-end-column="118" />
+          <folding>
+            <marker date="1516806799430" expanded="true" signature="1407:2053" ph="SELECT tb_ka... tb_karyawan" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/js/crud.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="236" column="7" lean-forward="true" selection-start-line="236" selection-start-column="7" selection-end-line="236" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/selectedKaryawan.php">
+    <entry file="file://$PROJECT_DIR$/php/invoice.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="82" column="36" lean-forward="false" selection-start-line="82" selection-start-column="19" selection-end-line="82" selection-end-column="36" />
+        <state relative-caret-position="51">
+          <caret line="3" column="22" lean-forward="true" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
           <folding>
-            <marker date="1517733933161" expanded="true" signature="2671:2702" ph="..." />
-            <marker date="1517733933161" expanded="true" signature="5691:5722" ph="..." />
+            <element signature="n#style#0;n#div#1;n#div#1;n#section#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#div#3;n#section#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#3;n#section#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <marker date="1519806164944" expanded="true" signature="337:1352" ph="SELECT tb_ke... tb_kerjasama_perusahan" />
+            <marker date="1519806164944" expanded="true" signature="1610:2206" ph="SELECT tb_ke... tb_kerjasama_perusahan" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/detailProject.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1536">
-          <caret line="110" column="90" lean-forward="false" selection-start-line="110" selection-start-column="90" selection-end-line="110" selection-end-column="90" />
+        <state relative-caret-position="3477">
+          <caret line="566" column="65" lean-forward="false" selection-start-line="566" selection-start-column="65" selection-end-line="566" selection-end-column="65" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <marker date="1517758908713" expanded="true" signature="36:1192" ph="SELECT tb_ke... tb_kerjasama_perusahan" />
-            <marker date="1517758908713" expanded="true" signature="1819:1976" ph="SELECT tb_li... tb_list_karyawan" />
-            <marker date="1517758908713" expanded="true" signature="1819:1992" ph="SELECT tb_li... tb_list_karyawan" />
-            <marker date="1517758908713" expanded="true" signature="1819:2042" ph="SELECT tb_li... tb_list_karyawan" />
+            <marker date="1519710146992" expanded="true" signature="41:1255" ph="SELECT tb_ke... tb_kerjasama_perusahan" />
+            <marker date="1519710146992" expanded="true" signature="2057:2086" ph="SELECT * FRO... tb_list_jabatan" />
+            <marker date="1519710146992" expanded="true" signature="2180:2467" ph="SELECT tb_li... tb_list_karyawan" />
+            <marker date="1519710146992" expanded="true" signature="2628:3034" ph="SELECT tb_li... tb_list_karyawan" />
+            <marker date="1519710146992" expanded="true" signature="3157:3679" ph="SELECT tb_li... tb_list_karyawan" />
+            <marker date="1519710146992" expanded="true" signature="3804:4080" ph="SELECT tb_jo... tb_job" />
+            <marker date="1519710146992" expanded="true" signature="4236:4289" ph="SELECT * FRO... tb_time_fix" />
+            <marker date="1519710146992" expanded="true" signature="4430:4489" ph="SELECT * FRO... tb_time_fleksible" />
+            <marker date="1519710146992" expanded="true" signature="18392:18445" ph="SELECT * FRO... tb_list_job" />
+            <marker date="1519710146992" expanded="true" signature="25221:25274" ph="SELECT * FRO... tb_list_job" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/list-project.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="119" column="41" lean-forward="false" selection-start-line="119" selection-start-column="41" selection-end-line="119" selection-end-column="41" />
-          <folding>
-            <marker date="1517764676348" expanded="true" signature="140:1001" ph="SELECT tb_pe... tb_perusahaan" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/calon-karyawan.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="84" column="13" lean-forward="true" selection-start-line="65" selection-start-column="8" selection-end-line="84" selection-end-column="13" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <marker date="1517819143496" expanded="true" signature="18:43" ph="SELECT * FRO... tb_karyawan" />
-            <marker date="1517819143496" expanded="true" signature="113:205" ph="SELECT * FRO... tb_karyawan" />
-            <marker date="1517819143496" expanded="true" signature="278:370" ph="SELECT * FRO... tb_karyawan" />
-            <marker date="1517819143496" expanded="true" signature="443:573" ph="SELECT * FRO... tb_karyawan" />
-            <marker date="1517819143496" expanded="true" signature="4670:5542" ph="SELECT year(... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/js/crudKaryawanProject.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="11" lean-forward="true" selection-start-line="22" selection-start-column="8" selection-end-line="34" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="107" column="31" lean-forward="false" selection-start-line="107" selection-start-column="21" selection-end-line="107" selection-end-column="31" />
-          <folding>
-            <marker date="1517731241317" expanded="true" signature="309:353" ph="SELECT * FRO... tb_admin" />
-            <marker date="1517731241317" expanded="true" signature="8997:9106" ph="INSERT INTO tb_info_test... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/ajx/crudLembur.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="9" column="7" lean-forward="false" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-          <folding>
-            <marker date="1517821530817" expanded="true" signature="272:353" ph="UPDATE tb_lembur... " />
-            <marker date="1517821530817" expanded="true" signature="730:811" ph="UPDATE tb_lembur... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/select-karyawan.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="83" column="61" lean-forward="true" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="61" />
-          <folding>
-            <marker date="1517643988391" expanded="true" signature="144:240" ph="SELECT * FRO... tb_kerjasama_perusahan" />
-            <marker date="1517643988391" expanded="true" signature="673:762" ph="UPDATE tb_kerjasama_perusahan... " />
-            <marker date="1517643988391" expanded="true" signature="982:1104" ph="..." />
-            <marker date="1517643988391" expanded="true" signature="1484:1580" ph="SELECT * FRO... tb_kerjasama_perusahan" />
-            <marker date="1517643988391" expanded="true" signature="2459:2968" ph="SELECT tb_ka... tb_karyawan" />
-            <marker date="1517643988391" expanded="true" signature="2844:2967" ph="SELECT tb_li... tb_list_karyawan" />
-            <marker date="1517643988391" expanded="true" signature="5829:6401" ph="SELECT tb_li... tb_list_karyawan" />
-            <marker date="1517643988391" expanded="true" signature="9515:9546" ph="..." />
-            <marker date="1517643988391" expanded="true" signature="9785:9856" ph="SELECT * FRO... tb_kerjasama_perusahan" />
-            <marker date="1517643988391" expanded="true" signature="10408:11259" ph="SELECT tb_ke... tb_kerjasama_perusahan" />
-            <marker date="1517643988391" expanded="true" signature="11638:11718" ph="SELECT kode_... tb_list_karyawan" />
-            <marker date="1517643988391" expanded="true" signature="12914:13640" ph="SELECT tb_ka... tb_karyawan" />
-            <marker date="1517643988391" expanded="true" signature="15842:16604" ph="SELECT tb_ka... tb_karyawan" />
-            <marker date="1517643988391" expanded="true" signature="19406:19737" ph="SELECT tb_ka... tb_karyawan" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/list-lembur.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="38" />
-          <folding>
-            <marker date="1517822362910" expanded="true" signature="38:299" ph="SELECT * FRO... tb_lembur" />
-            <marker date="1517822362910" expanded="true" signature="3826:3859" ph="..." />
-            <marker date="1517822362910" expanded="true" signature="3826:3909" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/karyawan-project.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="187" column="57" lean-forward="true" selection-start-line="180" selection-start-column="48" selection-end-line="187" selection-end-column="57" />
-          <folding>
-            <element signature="e#1304#2089#0#PHP" expanded="false" />
-            <element signature="e#3166#3952#0#PHP" expanded="false" />
-            <marker date="1517764619292" expanded="true" signature="152:223" ph="SELECT * FRO... tb_kerjasama_perusahan" />
-            <marker date="1517764619292" expanded="true" signature="485:507" ph="SELECT id FR... tb_list" />
-            <marker date="1517764619292" expanded="true" signature="485:549" ph="SELECT id FR... tb_list_karyawan" />
-            <marker date="1517764619292" expanded="true" signature="964:1255" ph="..." />
-            <marker date="1517764619292" expanded="true" signature="995:1240" ph="..." />
-            <marker date="1517764619292" expanded="true" signature="1015:1016" ph="..." />
-            <marker date="1517764619292" expanded="true" signature="1015:1044" ph="..." />
-            <marker date="1517764619292" expanded="true" signature="1015:1045" ph="..." />
-            <marker date="1517764619292" expanded="true" signature="1015:1077" ph="..." />
-            <marker date="1517764619292" expanded="true" signature="1015:1106" ph="..." />
-            <marker date="1517764619292" expanded="true" signature="1015:1107" ph="..." />
-            <marker date="1517764619292" expanded="true" signature="1015:1221" ph="..." />
-            <marker date="1517764619292" expanded="true" signature="2171:2823" ph="SELECT tb_ke... tb_kerjasama_perusahan" />
-            <marker date="1517764619292" expanded="true" signature="2171:2835" ph="SELECT tb_ke... tb_kerjasama_perusahan" />
-            <marker date="1517764619292" expanded="true" signature="4029:4548" ph="SELECT tb_ka... tb_karyawan" />
-            <marker date="1517764619292" expanded="true" signature="4424:4547" ph="SELECT tb_li... tb_list_karyawan" />
-            <marker date="1517764619292" expanded="true" signature="4865:5607" ph="SELECT tb_li... tb_list_karyawan" />
-            <marker date="1517764619292" expanded="true" signature="10018:10049" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/ajx/crudJob.php">
+    <entry file="file://$PROJECT_DIR$/php/export.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="21" />
-          <folding />
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="28" />
+          <folding>
+            <marker date="1516806799407" expanded="true" signature="123:557" ph="SELECT year(... " />
+            <marker date="1516806799407" expanded="true" signature="4618:4668" ph="SELECT * FRO... tb_info_keluarga" />
+            <marker date="1516806799407" expanded="true" signature="5794:5846" ph="SELECT * FRO... tb_info_pendidikan" />
+            <marker date="1516806799407" expanded="true" signature="6891:6942" ph="SELECT * FRO... tb_info_pekerjaan" />
+            <marker date="1516806799407" expanded="true" signature="8047:8098" ph="SELECT * FRO... tb_info_referensi" />
+            <marker date="1516806799407" expanded="true" signature="9038:9086" ph="SELECT * FRO... tb_info_bahasa" />
+            <marker date="1516806799407" expanded="true" signature="10093:10143" ph="SELECT * FRO... tb_info_keahlian" />
+            <marker date="1516806799407" expanded="true" signature="11013:11066" ph="SELECT * FRO... tb_info_penghargaan" />
+            <marker date="1516806799407" expanded="true" signature="12051:12099" ph="SELECT * FRO... tb_info_kursus" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/footer.php">
+    <entry file="file://$PROJECT_DIR$/build/js/previllage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="72" column="31" lean-forward="false" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
+        <state relative-caret-position="255">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/ajx/crudKaryawanProject.php">
+    <entry file="file://$PROJECT_DIR$/php/entrydata.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="21" />
+          <caret line="3" column="46" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="46" />
           <folding>
-            <marker date="1517809706062" expanded="true" signature="261:350" ph="UPDATE tb_kerjasama_perusahan... " />
-            <marker date="1517809706062" expanded="true" signature="755:858" ph="INSERT INTO tb_list_karyawan... " />
-            <marker date="1517809706062" expanded="true" signature="1107:1179" ph="UPDATE tb_karyawan... " />
-            <marker date="1517809706062" expanded="true" signature="1675:1806" ph="INSERT INTO tb_list_karyawan... " />
-            <marker date="1517809706062" expanded="true" signature="2076:2148" ph="UPDATE tb_karyawan... " />
-            <marker date="1517809706062" expanded="true" signature="2562:2636" ph="DELETE FROM tb_list_karyawan... " />
-            <marker date="1517809706062" expanded="true" signature="2911:2983" ph="UPDATE tb_karyawan... " />
-            <marker date="1517809706062" expanded="true" signature="3284:3576" ph="SELECT tb_ke... tb_kerjasama_perusahan" />
-            <marker date="1517809706062" expanded="true" signature="3830:3894" ph="SELECT id FR... tb_list_karyawan" />
-            <marker date="1517809706062" expanded="true" signature="4234:4308" ph="UPDATE tb_temporary_perusahaan... " />
-            <marker date="1517809706062" expanded="true" signature="4595:4669" ph="UPDATE tb_list_karyawan... " />
-            <marker date="1517809706062" expanded="true" signature="4928:4998" ph="UPDATE tb_karyawan... " />
-            <marker date="1517809706062" expanded="true" signature="5387:5457" ph="UPDATE tb_karyawan... " />
-            <marker date="1517809706062" expanded="true" signature="5827:5897" ph="UPDATE tb_karyawan... " />
+            <marker date="1519707803906" expanded="true" signature="2971:3129" ph="INSERT INTO tb_time_fix... " />
+            <marker date="1519707803906" expanded="true" signature="3567:3731" ph="INSERT INTO tb_time_fleksible... " />
+            <marker date="1519707803906" expanded="true" signature="4157:4497" ph="INSERT INTO tb_kerjasama_perusahan... " />
+            <marker date="1519707803906" expanded="true" signature="5264:5362" ph="UPDATE tb_temporary_perusahaan... " />
+            <marker date="1519707803906" expanded="true" signature="5658:5830" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/js/crudLembur.js">
+    <entry file="file://$PROJECT_DIR$/FUNCTION.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="31" lean-forward="true" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+        <state relative-caret-position="998">
+          <caret line="60" column="49" lean-forward="false" selection-start-line="60" selection-start-column="49" selection-end-line="60" selection-end-column="49" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/ajx/CRUD.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="24" column="22" lean-forward="false" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-          <folding>
-            <marker date="1517849810700" expanded="true" signature="224:280" ph="UPDATE tb_karyawan... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/js/customOwn.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build/js/crud.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/list-karyawan.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="15" lean-forward="false" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
-          <folding>
-            <marker date="1517850032943" expanded="true" signature="17:400" ph="SELECT tb_ka... tb_karyawan" />
-            <marker date="1517850032943" expanded="true" signature="608:1722" ph="SELECT tb_li... tb_list_karyawan" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/absen.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3899">
-          <caret line="377" column="38" lean-forward="false" selection-start-line="377" selection-start-column="38" selection-end-line="377" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#5;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

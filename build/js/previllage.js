@@ -15,7 +15,7 @@ function getPrevillage(id, admin) {
 }
 $(document).ready(function () {
 
-    var list = $('#showPrevillage').hide();
+    var list = $('#showPrevillage').show();
     $('#contentPrevillage').on('click', '.showUserPrevillage', function () {
         var username = $(this).data('username');
         var id = $(this).data('roles');

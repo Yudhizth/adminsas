@@ -57,3 +57,5 @@ TRUNCATE tb_temporary_perusahaan;
 TRUNCATE tb_time_fleksible;
 TRUNCATE tb_info_interview;
 TRUNCATE tb_info_test;
+TRUNCATE tb_temp_remove_karyawan;
+TRUNCATE tb_time_fix;TRUNCATE tb_activity_project;

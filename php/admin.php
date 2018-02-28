@@ -45,9 +45,11 @@
                 </div>
                 <div class="col-xs-12 col-sm-6 emphasis">
                   
-                  <button type="button" class="btn btn-primary btn-xs">
-                    <i class="fa fa-user"> </i> View Profile
-                  </button>
+                  <a href="?p=previllage&user=<?=$row['id']?>">
+                      <button type="button" class="btn btn-primary btn-xs">
+                          <i class="fa fa-user"> </i> Previlage
+                      </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -87,15 +89,15 @@
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Username</label>
-    <input name="txt_email" type="email" class="form-control" id="exampleInputPassword1" placeholder="examples@domain.com" required>
+    <input name="txt_email" type="email" class="form-control" placeholder="examples@domain.com" required>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input name="txt_password" type="password" class="form-control" id="exampleInputPassword1" minlength="3" placeholder="password" required>
+    <input name="txt_password" type="password" class="form-control" minlength="3" placeholder="password" required>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Nama Admin</label>
-    <input name="txt_nama" type="text" class="form-control" id="exampleInputPassword1" minlength="3" placeholder="nama lengkap" required>
+    <input name="txt_nama" type="text" class="form-control" minlength="3" placeholder="nama lengkap" required>
   </div>
   <div class="form-group">
     <select name="jabatan" class="form-control">

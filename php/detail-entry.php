@@ -79,11 +79,12 @@ $kd = $_GET['name'];
                 //will be generate password and usualy like 'admin123'
                 $new_pass = password_hash($new_kode, PASSWORD_DEFAULT);
 
-                $key = "INSERT INTO tb_login_perusahaan (kd_perusahaan, password) VALUES (:idPerusahaan, :pwd)";
+                $key = "INSERT INTO tb_login_perusahaan (kd_perusahaan, password, kode_password) VALUES (:idPerusahaan, :pwd, :kode)";
                 $pwd = $cek->runQuery($key);
                 $pwd->execute(array(
                     ':idPerusahaan' => $kodePerusahaan,
-                    ':pwd'          => $new_pass
+                    ':pwd'          => $new_pass,
+                    ':kode'         => $new_kode
                     ));
                 if (!$pwd) {
                     # code...

@@ -30,7 +30,12 @@
     $urltype = explode('=', $url[2]);
 
     if (isset($urltype[1])){
-        $footer = $urltype[1];
+        $root = explode('&', $urltype[1]);
+        if($root == true){
+            $footer = $root[0];
+        }else{
+            $footer = $urltype[1];
+        }
     }else{
         $footer = "";
     }
@@ -46,6 +51,7 @@
         <!-- page content -->
         <div class="right_col" role="main">
           <?php
+          echo $footer;
             include_once 'php/page.php';
           ?>
 

@@ -6,6 +6,7 @@ $(document).ready(function () {
 
         var type = $('#typeFilterPsikotes option:selected').val();
         var text = $('#txtPsikotesFilter').val();
+
         $('#listUjianPsikotes').hide().fadeOut(1000);
         $('#listPsikotes').hide().load('php/ajx/listPsikotes.php?type=psikotes&tipe='+type+'&filter='+text).fadeIn(800);
     })

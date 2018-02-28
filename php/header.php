@@ -31,6 +31,7 @@
 
       <link href="vendors/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
       <link href="vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
+      <link href="vendors/timepicker/jquery.timepicker.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="build/css/custom.css" rel="stylesheet">

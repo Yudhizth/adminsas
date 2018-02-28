@@ -16,42 +16,7 @@ $a = $config->runQuery($a);
 $a->execute();
 
 ?>
-<style type="text/css">
-    .panel-primary{
-        border-color: rgba(52,152,219,.88)!important;
-    }
 
-    .panel-primary>.panel-heading{
-        background-color: rgba(52,152,219,.88) !important;
-        color: #fff !important;
-        border-color: rgba(52,152,219,.88) !important;
-    }
-
-    .panel-warning{
-        border-color: rgba(243,156,18,.88) !important;
-    }
-
-    .panel-warning>.panel-heading{
-        background-color: rgba(243,156,18,.88) !important;
-        color: #fff !important;
-        border-color: rgba(243,156,18,.88) !important;
-    }
-    .panel-danger{
-        border-color: rgba(231,76,60,.88) !important;
-    }
-
-    .panel-danger>.panel-heading{
-        background-color: rgba(231,76,60,.88) !important;
-        color: #fff !important;
-        border-color: rgba(231,76,60,.88) !important;
-    }
-    ul.to_do p{
-        color: #fff;
-        text-transform: capitalize;
-        font-size: 14px;
-        padding: 0.1% 4% !important;
-    }
-</style>
 
 <div id="contentISI">
     <div class="x_title">

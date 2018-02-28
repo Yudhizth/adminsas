@@ -1108,8 +1108,8 @@ if (typeof NProgress != 'undefined') {
 		});
  
 		
-        window.prettyPrint;
-        prettyPrint();
+        // window.prettyPrint;
+        // prettyPrint();
 	
     };
 	  

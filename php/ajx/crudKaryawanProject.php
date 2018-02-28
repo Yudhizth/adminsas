@@ -117,6 +117,16 @@ elseif (@$_GET['type'] == 'removeKaryawan'){
             ':status'   => $karyawanStatus,
             ':data'     => $ktp
         ));
+
+
+        //insert into tb_temp_remove karyawan
+        $sql = "INSERT INTO tb_temp_remove_karyawan (kode_list_karyawan, no_ktp) VALUES (:kode, :ktp)";
+
+        $insert = $admin->runQuery($sql);
+        $insert->execute(array(
+            ':kode'   => $kode,
+            ':ktp'     => $ktp
+        ));
     }
 }
 elseif (@$_GET['type'] == 'finishAdd'){

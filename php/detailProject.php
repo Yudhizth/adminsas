@@ -2,7 +2,7 @@
 
 $id = $_GET['id'];
 
-    $query = 'SELECT tb_kerjasama_perusahan.id, tb_kerjasama_perusahan.nomor_kontrak, tb_kerjasama_perusahan.kode_perusahaan, tb_kerjasama_perusahan.kode_request, tb_kerjasama_perusahan.kode_plan, tb_kerjasama_perusahan.kode_list_karyawan, tb_kerjasama_perusahan.total_karyawan, tb_kerjasama_perusahan.deskripsi, tb_kerjasama_perusahan.tugas, tb_kerjasama_perusahan.tanggung_jwb, tb_kerjasama_perusahan.penempatan, tb_kerjasama_perusahan.kontrak_start, tb_kerjasama_perusahan.kontrak_end, tb_kerjasama_perusahan.nilai_kontrak, tb_kerjasama_perusahan.tgl_input, tb_perusahaan.nama_perusahaan, tb_perusahaan.bidang_perusahaan, tb_kategori_pekerjaan.nama_kategori, tb_temporary_perusahaan.kebutuhan, tb_temporary_perusahaan.kode_pekerjaan, tb_temporary_perusahaan.nama_project FROM tb_kerjasama_perusahan
+    $query = 'SELECT tb_kerjasama_perusahan.id, tb_kerjasama_perusahan.nomor_kontrak, tb_kerjasama_perusahan.kode_perusahaan, tb_kerjasama_perusahan.kode_request, tb_kerjasama_perusahan.kode_plan, tb_kerjasama_perusahan.kode_list_karyawan, tb_kerjasama_perusahan.total_karyawan, tb_kerjasama_perusahan.type_time, tb_kerjasama_perusahan.deskripsi, tb_kerjasama_perusahan.tugas, tb_kerjasama_perusahan.tanggung_jwb, tb_kerjasama_perusahan.penempatan, tb_kerjasama_perusahan.kontrak_start, tb_kerjasama_perusahan.kontrak_end, tb_kerjasama_perusahan.nilai_kontrak, tb_kerjasama_perusahan.tgl_input, tb_perusahaan.nama_perusahaan, tb_perusahaan.bidang_perusahaan, tb_kategori_pekerjaan.nama_kategori, tb_temporary_perusahaan.kebutuhan, tb_temporary_perusahaan.kode_pekerjaan, tb_temporary_perusahaan.nama_project FROM tb_kerjasama_perusahan
     
     LEFT JOIN tb_perusahaan ON tb_perusahaan.kode_perusahaan = tb_kerjasama_perusahan.kode_perusahaan
     LEFT JOIN tb_temporary_perusahaan ON tb_temporary_perusahaan.no_pendaftaran=tb_kerjasama_perusahan.kode_request
@@ -83,6 +83,18 @@ WHERE tb_list_karyawan.kode_list_karyawan = :kodelist";
     $jobs->execute(array(
         ':kode' => $id
     ));
+
+    if($data['type_time'] == 'fix'){
+        $typeTime = "SELECT * FROM tb_time_fix WHERE nomor_spk = :spknomor";
+        $typeTime = $config->runQuery($typeTime);
+        $typeTime->execute(array(':spknomor'  => $id));
+    }else{
+        $typeTime = "SELECT * FROM tb_time_fleksible WHERE nomor_spk = :spknomor";
+        $typeTime = $config->runQuery($typeTime);
+        $typeTime->execute(array(':spknomor'  => $id));
+    }
+
+
 
 ?>
 
@@ -180,6 +192,8 @@ WHERE tb_list_karyawan.kode_list_karyawan = :kodelist";
                                                 </li>
                                                 <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Jabatan</a>
                                                 </li>
+                                                <li role="presentation" class=""><a href="#tab_content4" role="tab" id="absen-tab2" data-toggle="tab" aria-expanded="false">Waktu Absen</a>
+                                                </li>
                                             </ul>
                                             <div id="myTabContent" class="tab-content">
                                                 <div role="tabpanel" class="tab-pane fade" id="tab_content1" aria-labelledby="home-tab">
@@ -222,7 +236,7 @@ WHERE tb_list_karyawan.kode_list_karyawan = :kodelist";
                                                 </div>
                                                 <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                                                     <?php if ($typeRequest == 'MPO') { ?>
-                                                        <a href="?p=add-list-job&name=<?=$id?>" class="btn btn-sm btn-primary" style="text-transform: capitalize;">add and remove karyawan</a>
+                                                        <a href="?p=add-list-job&name=<?=$id?>" class="btn btn-sm btn-primary" style="text-transform: capitalize;">add and remove Jobs</a>
                                                         <br>
                                                         <?php while ($job = $jobs->fetch(PDO::FETCH_LAZY)) {
                                                             if ($job['type'] == 'main') {
@@ -300,7 +314,7 @@ WHERE tb_list_karyawan.kode_list_karyawan = :kodelist";
                                                         <?php } ?>
 
                                                     <?php } else {  ?>
-                                                        <a href="?p=add-list-job&name=<?=$id?>" class="btn btn-sm btn-primary" style="text-transform: capitalize;">add and remove karyawan</a>
+                                                        <a href="?p=add-list-job&name=<?=$id?>" class="btn btn-sm btn-primary" style="text-transform: capitalize;">add and remove jobs</a>
                                                         <br>
                                                         <?php  while ($job = $jobs->fetch(PDO::FETCH_LAZY)) {
                                                             if ($job['type'] == 'main') {
@@ -402,6 +416,35 @@ WHERE tb_list_karyawan.kode_list_karyawan = :kodelist";
                                                         <tr>
                                                             <td colspan="4">Jabatan Karyawan belum di tambah!</td>
                                                         </tr>
+                                                        <?php } ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="absen-tab">
+                                                    Waktu Absen : <?=$data['type_time']?>
+                                                    <table class="table table-bordered tabel-hover">
+                                                        <thead>
+                                                        <th>Minggu</th>
+                                                        <th>Senin</th>
+                                                        <th>Selasa</th>
+                                                        <th>Rabu</th>
+                                                        <th>Kamis</th>
+                                                        <th>Jumat</th>
+                                                        <th>Sabtu</th>
+                                                        <th>#</th>
+                                                        </thead>
+                                                        <tbody>
+                                                        <?php while ($row = $typeTime->fetch(PDO::FETCH_LAZY)){ ?>
+                                                            <tr>
+                                                                <td><?=$row['minggu']?></td>
+                                                                <td><?=$row['senin']?></td>
+                                                                <td><?=$row['selasa']?></td>
+                                                                <td><?=$row['rabu']?></td>
+                                                                <td><?=$row['kamis']?></td>
+                                                                <td><?=$row['jumat']?></td>
+                                                                <td><?=$row['sabtu']?></td>
+                                                                <td></td>
+                                                            </tr>
                                                         <?php } ?>
                                                         </tbody>
                                                     </table>
@@ -519,7 +562,11 @@ WHERE tb_list_karyawan.kode_list_karyawan = :kodelist";
                                 <p class="title">Tanggung Jawab</p>
                                 <p><?=$data['tanggung_jwb']?></p>
                                 <hr>
-
+                                <p>
+                                    <a href="php/invoice.php?kode=<?=$id?>" target="_blank">
+                                        <button class="btn btn-xs btn-primary">GENERATE INVOICE</button>
+                                    </a>
+                                </p>
                             </div>
                         </div>
 

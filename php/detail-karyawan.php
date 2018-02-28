@@ -827,7 +827,7 @@ if (empty($row['nama_kode'])) {
                                             <tr class="even pointer">
 
                                                 <td class=" " style="text-transform: uppercase;"><a
-                                                            href="../Pendaftaran/Upload/<?= $row['nama_file']; ?>"
+                                                            href="http://pendaftaran.sinergiadhikarya.co.id/Upload/<?= $row['nama_file']; ?>"
                                                             target="_blank"><?= $row['nama_file']; ?></a></td>
                                                 <td class=" "><?php echo $row['type_file']; ?></td>
                                                 <td class=" "><?php echo $row['paths']; ?></td>

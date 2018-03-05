@@ -299,6 +299,31 @@ elseif (@$_GET['type'] == 'addJabatan'){
     }
 }
 
+elseif (@$_GET['type'] == 'saveMap'){
+    $a = $_POST['spk'];
+    $b = $_POST['label'];
+    $c = $_POST['lat'];
+    $d = $_POST['lng'];
+    $e = $_POST['location'];
+
+    $sql = "INSERT INTO tb_koordinat_perusahaan (nomor_kontrak, label, lat, lng, location) VALUES (:a, :b, :c, :d, :e)";
+
+    $stmt = $config->runQuery($sql);
+    $stmt->execute(array(
+        ':a'    => $a,
+        ':b'    => $b,
+        ':c'    => $c,
+        ':d'    => $d,
+        ':e'    => $e
+    ));
+
+    if($stmt){
+        echo "1";
+    }else{
+        echo "error";
+    }
+}
+
 
 
 

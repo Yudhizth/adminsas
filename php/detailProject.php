@@ -47,6 +47,12 @@ $id = $_GET['id'];
     $jb->execute();
 
 
+    //maps
+
+    $maps = "SELECT * FROM tb_koordinat_perusahaan WHERE nomor_kontrak = :nomorKontrak";
+    $maps = $config->runQuery($maps);
+    $maps->execute(array(':nomorKontrak' => $id));
+
 //list kayrawan project
     $kk = "SELECT tb_list_karyawan.id, tb_list_karyawan.kode_list_karyawan, tb_list_karyawan.no_nip, tb_karyawan.nama_depan, tb_karyawan.nama_belakang FROM tb_list_karyawan
 INNER  JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_list_karyawan.no_nip
@@ -567,6 +573,28 @@ WHERE tb_list_karyawan.kode_list_karyawan = :kodelist";
                                         <button class="btn btn-xs btn-primary">GENERATE INVOICE</button>
                                     </a>
                                 </p>
+                                <?php if($maps->rowCount() > 0){
+                                    while ($map = $maps->fetch(PDO::FETCH_LAZY)){
+                                    ?>
+                                  <br>
+                                    <h5>Koordinat</h5>
+                                    <ul class="list-unstyled project_files">
+                                        <li><i class="fa fa-tags"></i> <?=$map['label']?>
+                                        </li>
+                                        <li><i class="fa fa-map"></i> <?=$map['lat']?> || <?=$map['lng']?>
+                                        </li>
+                                        <li><i class="fa fa-map-marker"></i> <?=$map['location']?>
+                                        </li>
+
+                                    </ul>
+                                    <br>
+                                <?php } } else { ?>
+                                    <p>
+                                        <a href="php/new_map.php?spk=<?=$id?>" target="_blank">
+                                            <button class="btn btn-xs btn-success">ADD MAP</button>
+                                        </a>
+                                    </p>
+                                <?php } ?>
                             </div>
                         </div>
 

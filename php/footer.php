@@ -66,7 +66,7 @@
     <script src="build/js/custom.js"></script>
  <script src="build/js/crud.js"></script>
 
-<?php if($footer == 'data-entry'){ ?>
+<?php if($footer == 'data-entry' OR $footer == 'map'){ ?>
     <script src="build/js/crudDetailProject.js"></script>
 <?php } ?>
 <script src="build/js/crudKaryawanProject.js"></script>

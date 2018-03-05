@@ -80,6 +80,9 @@ $stmt->execute();
               <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a><?=$row['kd_id']?></a>
+                </li>
               <li>
                 <a onClick="return confirm('Yakin Kode akan dihapus?')" href="php/delete-kode-status-karyawan.php?id=<?=$row['kd_id']?>">Delete</a>
               </li>

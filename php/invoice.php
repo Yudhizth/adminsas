@@ -30,7 +30,11 @@ $IDSpk = substr($spk, 4, 5);
 
 
     if($kodeRequest == 'MPO'){
-
+        $sql = "SELECT tb_kerjasama_perusahan.nomor_kontrak, tb_kerjasama_perusahan.kode_perusahaan, tb_kerjasama_perusahan.kode_request, tb_kerjasama_perusahan.kode_plan,  tb_kerjasama_perusahan.total_karyawan, tb_kerjasama_perusahan.type_time, tb_kerjasama_perusahan.tugas, tb_kerjasama_perusahan.tanggung_jwb, tb_kerjasama_perusahan.deskripsi, tb_kerjasama_perusahan.penempatan, tb_temporary_perusahaan.kebutuhan, tb_temporary_perusahaan.nama_project FROM tb_kerjasama_perusahan
+INNER JOIN tb_temporary_perusahaan ON tb_temporary_perusahaan.no_pendaftaran = tb_kerjasama_perusahan.kode_request
+WHERE tb_kerjasama_perusahan.nomor_kontrak = :kode";
+        $BPO = $config->runQuery($sql);
+        $BPO->execute(array(':kode' => $spk));
     }else{
         $sql = "SELECT tb_kerjasama_perusahan.nomor_kontrak, tb_kerjasama_perusahan.kode_perusahaan, tb_kerjasama_perusahan.kode_request, tb_kerjasama_perusahan.total_karyawan, tb_kerjasama_perusahan.type_time, tb_kerjasama_perusahan.tugas, tb_kerjasama_perusahan.tanggung_jwb, tb_kerjasama_perusahan.deskripsi, tb_kerjasama_perusahan.penempatan, tb_temporary_perusahaan.kebutuhan, tb_temporary_perusahaan.nama_project FROM tb_kerjasama_perusahan
 INNER JOIN tb_temporary_perusahaan ON tb_temporary_perusahaan.no_pendaftaran = tb_kerjasama_perusahan.kode_request
@@ -55,7 +59,7 @@ WHERE tb_kerjasama_perusahan.nomor_kontrak = :kode";
 </style>
 
 
-<body onload="window.print()" >
+<body onload="window.print()">
 <div class="row" id="printArea" >
     <div class="col-md-12">
         <div class="x_panel">
@@ -112,7 +116,54 @@ WHERE tb_kerjasama_perusahan.nomor_kontrak = :kode";
                     <!-- /.row -->
 
                     <!-- Table row -->
-                    <?php if($kodeRequest == 'MPO'){}else{ ?>
+                    <?php if($kodeRequest == 'MPO'){ ?>
+                        <div class="row">
+                            <div class="col-xs-12 table">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th width="20%">List Kebutuhan</th>
+                                        <th width="20%">Description</th>
+                                        <th width="20%">Tugas</th>
+                                        <th width="20%">Tanggung Jawab</th>
+                                        <th width="20%">Penempatan</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php while ($row = $BPO->fetch(PDO::FETCH_LAZY)){
+
+                                        $list = $row['kode_plan'];
+                                        $query = "SELECT tb_list_perkerjaan_perusahaan.code, tb_list_perkerjaan_perusahaan.name_list, tb_list_perkerjaan_perusahaan.total, tb_jenis_pekerjaan.nama_pekerjaan FROM tb_list_perkerjaan_perusahaan
+                                                  INNER JOIN tb_jenis_pekerjaan ON tb_jenis_pekerjaan.kd_pekerjaan = tb_list_perkerjaan_perusahaan.name_list 
+                                                  WHERE tb_list_perkerjaan_perusahaan.code = :kode";
+                                        $stmt = $config->runQuery($query);
+                                        $stmt->execute(array(':kode' => $list));
+                                        ?>
+                                        <tr>
+                                            <td>
+                                               <table class="table table-striped">
+                                                   <tbody>
+                                                   <?php while($col = $stmt->fetch(PDO::FETCH_LAZY)){ ?>
+                                                   <tr>
+                                                       <td><?=$col['nama_pekerjaan']?></td>
+                                                   </tr>
+                                                    <?php } ?>
+                                                   </tbody>
+                                               </table>
+                                            </td>
+                                            <td><?=$row['deskripsi']?></td>
+                                            <td><?=$row['tugas']?></td>
+                                            <td><?=$row['tanggung_jwb']?></td>
+                                            <td><?=$row['penempatan']?></td>
+                                        </tr>
+                                    <?php } ?>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    <?php }else{ ?>
 
                         <div class="row">
                             <div class="col-xs-12 table">
@@ -149,13 +200,16 @@ WHERE tb_kerjasama_perusahan.nomor_kontrak = :kode";
                     <div class="row">
                         <!-- accepted payments column -->
                         <div class="col-xs-6">
-                            <p class="lead">Payment Methods:</p>
+                            <p class="lead">Payment Methods: <small style="font-size: 14px; color: #3238b9;"><b>TRANSFER</b></small></p>
 <!--                            <img src="images/visa.png" alt="Visa">-->
 <!--                            <img src="images/mastercard.png" alt="Mastercard">-->
 <!--                            <img src="images/american-express.png" alt="American Express">-->
 <!--                            <img src="images/paypal.png" alt="Paypal">-->
                             <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-                                Transfer melalui Bank yang telah di tentukan. Dan akan segera di konfirmasikan setelah INVOICE ini diterima.
+                               <span style="font-weight: 600; color: #4c1710;">Bank CIMB Niaga 8000-7359-8700 a.n PT. SINERGI ADHIKARYA SEMESTA</span>
+                                <br>
+                                <span style="font-weight: 600; color: #4c0f1b;">Bank Mandiri 1030-0067-11846 a.n SINERGI ADHIKARYA SEMESTA</span>
+
                             </p>
                         </div>
                         <!-- /.col -->

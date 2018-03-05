@@ -69,7 +69,7 @@ $stmt->execute();
 
 
                                             <td class="col-md-2"
-                                                style="text-transform: uppercase;"><?= $data['no_NIK'] ?></td>
+                                                style="text-transform: uppercase;"><?= $data['no_ktp'] ?></td>
                                             <td class="col-md-2"><?= $data['nama_depan'] ?> <?= $data['nama_belakang'] ?></td>
                                             <td><?= $data['jenis_kelamin'] ?></td>
                                             <td class="col-md-2">

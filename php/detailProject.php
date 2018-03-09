@@ -72,11 +72,23 @@ WHERE tb_list_karyawan.kode_list_karyawan = :kodelist";
             ':kode' => $kodeListKaryawan
     ));
 
-    $sql = "SELECT tb_list_karyawan.id, tb_list_karyawan.kode_list_karyawan, tb_list_karyawan.no_nip, tb_list_karyawan.kode_jabatan, tb_list_karyawan.status_karyawan, tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_kerjasama_perusahan.nomor_kontrak 
+
+    if($typeRequest == 'MPO'){
+        $sql = "SELECT tb_list_karyawan.kode_list_karyawan, tb_list_karyawan.no_nip, tb_list_karyawan.kode_jabatan, tb_list_karyawan.status_karyawan, tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_karyawan.jenis_kelamin, tb_karyawan.email, tb_kerjasama_perusahan.nomor_kontrak, tb_kerjasama_perusahan.kode_list_karyawan, tb_list_karyawan.kode_pekerjaan, tb_jenis_pekerjaan.nama_pekerjaan
+FROM tb_list_karyawan INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_list_karyawan.no_nip
+LEFT JOIN tb_kerjasama_perusahan ON tb_kerjasama_perusahan.kode_list_karyawan = tb_list_karyawan.kode_list_karyawan
+LEFT JOIN tb_jenis_pekerjaan ON tb_jenis_pekerjaan.kd_pekerjaan = tb_list_karyawan.kode_pekerjaan
+WHERE tb_kerjasama_perusahan.kode_list_karyawan = :kode";
+    }else{
+        $sql = "SELECT tb_list_karyawan.id, tb_list_karyawan.kode_list_karyawan, tb_list_karyawan.no_nip, tb_list_karyawan.kode_jabatan, tb_list_jabatan.nama_jabatan, tb_list_karyawan.status_karyawan, 
+tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_kerjasama_perusahan.nomor_kontrak 
     FROM tb_list_karyawan 
+    LEFT JOIN tb_list_jabatan ON tb_list_jabatan.id = tb_list_karyawan.kode_jabatan
     INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_list_karyawan.no_nip 
     INNER JOIN tb_kerjasama_perusahan ON tb_kerjasama_perusahan.kode_list_karyawan = tb_list_karyawan.kode_list_karyawan 
     WHERE tb_list_karyawan.kode_list_karyawan = :kode ";
+    }
+
     $cek = $config->runQuery($sql);
     $cek->execute(array(
             ':kode' => $kodeListKaryawan
@@ -99,6 +111,21 @@ WHERE tb_list_karyawan.kode_list_karyawan = :kodelist";
         $typeTime = $config->runQuery($typeTime);
         $typeTime->execute(array(':spknomor'  => $id));
     }
+
+    // report jobs
+
+    $o = "SELECT tb_report_job.id, tb_report_job.no_NIP, tb_report_job.kode_report, tb_report_job.report, tb_report_job.report_date, tb_report_job.rating, tb_list_job.kode_detail_job, tb_list_job.nama_job, tb_job.title, tb_job.status, tb_job.nomor_kontrak, tb_karyawan.nama_depan, tb_karyawan.nama_belakang
+    FROM tb_report_job 
+    INNER JOIN tb_list_job ON tb_list_job.id = tb_report_job.kode_detail_job
+    INNER JOIN tb_job ON tb_job.kode_detail_job = tb_list_job.kode_detail_job
+    INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_report_job.no_NIP
+    WHERE tb_job.nomor_kontrak = :nomor 
+    ";
+
+    $report = $config->runQuery($o);
+    $report->execute(array(
+            ':nomor'    => $id
+    ));
 
 
 
@@ -164,7 +191,7 @@ WHERE tb_list_karyawan.kode_list_karyawan = :kodelist";
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-12 col-sm-12 col-xs-12" id="componenProject">
                             <div class="x_panel">
                                 <div class="x_title">
                                     <h2><i class="fa fa-align-left"></i> Componen Project</h2>
@@ -200,6 +227,8 @@ WHERE tb_list_karyawan.kode_list_karyawan = :kodelist";
                                                 </li>
                                                 <li role="presentation" class=""><a href="#tab_content4" role="tab" id="absen-tab2" data-toggle="tab" aria-expanded="false">Waktu Absen</a>
                                                 </li>
+                                                <li role="presentation" class=""><a href="#tab_content5" role="tab" id="report-tab2" data-toggle="tab" aria-expanded="false">Report Jobs</a>
+                                                </li>
                                             </ul>
                                             <div id="myTabContent" class="tab-content">
                                                 <div role="tabpanel" class="tab-pane fade" id="tab_content1" aria-labelledby="home-tab">
@@ -215,10 +244,20 @@ WHERE tb_list_karyawan.kode_list_karyawan = :kodelist";
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php if($cek->rowCount() > 0){
+                                                        <?php if($typeRequest == 'MPO'){
+                                                            $i = 1;
+                                                            while($col = $cek->fetch(PDO::FETCH_LAZY)){ ?>
+                                                                <tr>
+                                                                    <th scope="row"><?=$i++?></th>
+                                                                    <td><?=$col['no_nip']?></td>
+                                                                    <td><?=$col['nama_depan']?> <?=$col['nama_belakang']?></td>
+                                                                    <td><?=$col['nama_pekerjaan']?></td>
+                                                                </tr>
+                                                            <?php }
+                                                        }else{ if($cek->rowCount() > 0){
                                                             $i = 1;
                                                         while ($col = $cek->fetch(PDO::FETCH_LAZY)){
-                                                            if(empty($col['kode_jabatan'])){
+                                                            if(empty($col['nama_jabatan'])){
                                                                 $jabatan = '<span class="label label-default">unset</span>';
                                                             }else{
                                                                 $jabatan = "";
@@ -236,7 +275,7 @@ WHERE tb_list_karyawan.kode_list_karyawan = :kodelist";
 
                                                                 </td>
                                                             </tr>
-                                                        <?php }?>
+                                                        <?php }}?>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -455,6 +494,60 @@ WHERE tb_list_karyawan.kode_list_karyawan = :kodelist";
                                                         </tbody>
                                                     </table>
                                                 </div>
+                                                <div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="report-tab">
+                                                    <a href="?p=karyawan-project&id=<?=$id?>" class="btn btn-sm btn-primary" style="text-transform: capitalize;">Views Report</a>
+                                                    <br>
+                                                    <table class="table table-bordered tabel-hover">
+                                                        <thead>
+                                                        <th>Nama Karyawan</th>
+                                                        <th>Jobs</th>
+                                                        <th>Report</th>
+                                                        <th>Rating</th>
+                                                        <th>Report Date</th>
+                                                        <th>Action</th>
+                                                        </thead>
+                                                        <tbody style="text-transform: capitalize;">
+                                                        <?php while ($row = $report->fetch(PDO::FETCH_LAZY)){
+                                                            if(!empty($row['rating'])){
+                                                                switch ($row['rating']){
+                                                                    case "5":
+                                                                    $rating = "<span class='fa fa-star'></span> <span class='fa fa-star'></span> <span class='fa fa-star'></span>
+                                                                                <span class='fa fa-star'></span> <span class='fa fa-star'></span>";
+                                                                    break;
+                                                                    case "4":
+                                                                        $rating = "<span class='fa fa-star'></span> <span class='fa fa-star'></span> <span class='fa fa-star'></span>
+                                                                                <span class='fa fa-star'></span> ";
+                                                                        break;
+                                                                    case "3":
+                                                                        $rating = "<span class='fa fa-star'></span> <span class='fa fa-star'></span> <span class='fa fa-star'></span>
+                                                                                ";
+                                                                        break;
+                                                                    case "2":
+                                                                        $rating = "<span class='fa fa-star'></span> <span class='fa fa-star'></span>";
+                                                                        break;
+                                                                    default:
+                                                                        $rating = "<span class='fa fa-star'></span>";
+                                                                        break;
+                                                                }
+
+                                                            }else{
+                                                                $rating = '<label class="label label-default">unset</label>';
+                                                            }
+                                                            ?>
+                                                            <tr>
+                                                                <td><?=$row['nama_depan']?> <?=$row['nama_belakang']?></td>
+                                                                <td><?=$row['nama_job']?></td>
+                                                                <td><?=$row['report']?></td>
+                                                                <td <?= $row['rating'] > 0 ? "style='color: #ea8d15;'" : "";?>><?=$rating?></td>
+                                                                <td><?=$row['report_date']?></td>
+                                                                <td>
+                                                                    <button class="btn btn-xs btn-primary addRating" data-toggle="modal" data-target=".tambahRatingJobs" data-kode="<?=$row['id']?>"><span class="fa fa-plus"> </span> Add Rating</button>
+                                                                </td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -639,6 +732,51 @@ WHERE tb_list_karyawan.kode_list_karyawan = :kodelist";
                                 <?php while ($listKaryawan = $ls->fetch(PDO::FETCH_LAZY)){ ?>
                                     <option value="<?=$listKaryawan['id']?>" style="text-transform: capitalize;"><?=$listKaryawan['nama_depan']?> <?=$listKaryawan['nama_belakang']?></option>
                                 <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <button type="submit" class="btn btn-block btn-success tambahJabatan" name="tambahJabatan">Submit</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade tambahRatingJobs"  tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">Add Rating Jobs</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal form-label-left" id="tambahRatingKaryawan" method="post" action="" data-parsley-validate="">
+
+                    <input type="hidden" id="idReportJobs" name="kodeListKaryawan" value="">
+                    <input type="hidden" id="idAdminJobs" name="kodeListKaryawan" value="<?=$admin_id?>">
+
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <select class="form-control" name="namaKaryawanPR" id="starJobs" required>
+                                <option value="">RATING</option>
+                                <option value="1">&#xf015; </option>
+                                <option value="2">&#xf015; &#xf015; </option>
+                                <option value="3">&#xf015; &#xf015; &#xf015;</option>
+                                <option value="4">&#xf015; &#xf015; &#xf015; &#xf015;</option>
+                                <option value="5">&#xf015; &#xf015; &#xf015; &#xf015; &#xf015;</option>
+
                             </select>
                         </div>
                     </div>

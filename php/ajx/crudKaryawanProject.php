@@ -172,6 +172,25 @@ elseif (@$_GET['type'] == 'finishAdd'){
 
 
 }
+elseif(@$_GET['type'] == 'addRating'){
+    $id = $_POST['id'];
+    $star = $_POST['star'];
+    $spv = $_POST['admin'];
+
+    $sql = "UPDATE tb_report_job SET rating = :rating, spv_id = :admin WHERE id = :id";
+    $stmt = $admin->runQuery($sql);
+    $stmt->execute(array(
+        ':rating' => $star,
+        ':admin'  => $spv,
+        ':id'     => $id
+    ));
+
+    if($stmt){
+        echo "Jobs Telah di update";
+    }else{
+        echo "Gagal!";
+    }
+}
 elseif(@$_GET['type'] == 'changeStatus'){
     $ktp = $_POST['ktp'];
     $status = $_POST['st'];

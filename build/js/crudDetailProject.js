@@ -34,5 +34,11 @@ $(document).ready(function(){
         scrollbar: true
     });
 
+    $('#kontrakStart').daterangepicker({
+        locale: {
+            format: 'DD/MM/YYYY'
+        }
+    });
+
 
 })

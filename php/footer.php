@@ -99,6 +99,10 @@
     <script src="build/js/complain-karyawan.js"></script>
 <?php } ?>
 
+<?php if($footer == 'gaji'){ ?>
+    <script src="build/js/gaji.js"></script>
+<?php } ?>
+
 
 <script src="vendors/parsleyjs/dist/parsley.js"></script>
 

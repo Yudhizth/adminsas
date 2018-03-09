@@ -127,6 +127,41 @@ $(document).ready(function(){
        $('#listMPO').load('php/ajx/selectMPO.php?kode='+kode+'&id='+isi+'&generate='+kodeList);
    })
 
+    $('#componenProject').on('click', '.addRating', function () {
+       var id = $(this).data('kode');
+       console.log(id);
+
+       $('#idReportJobs').val(id);
+    });
+
+
+    $('#tambahRatingKaryawan').on('submit', function (e) {
+        e.preventDefault();
+
+        if($(this).parsley().validate()){
+
+            var id = $('#idReportJobs').val();
+            var star = $('#starJobs option:selected').val();
+            var admin = $('#idAdminJobs').val();
+
+            $.ajax({
+                url : 'php/ajx/crudKaryawanProject.php?type=addRating',
+                type: 'post',
+                data: 'id='+id+'&star='+star+'&admin='+admin,
+
+                success : function(msg){
+                    if(msg != ''){
+                        alert(msg);
+                        location.reload();
+                    }
+
+                }
+            })
+        }else{
+
+        }
+    });
+
 
 
 })

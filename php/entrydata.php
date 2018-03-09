@@ -15,8 +15,8 @@ $cek = new Admin();
         $total = $_POST['txt_nilai'];
         $req = $_POST['txt_req'];
         $admin = $_POST['txt_admin'];
-        $start = $_POST['txt_start'];
-        $ends = $_POST['txt_ends'];
+        $dateProject = $_POST['txt_start'];
+        $totalDates = $_POST['txt_ends'];
         $time_select = $_POST['typeTime'];
         $sun1 = $_POST['txt_minggu_start'];
         $sun2 = $_POST['txt_minggu_end'];
@@ -39,6 +39,10 @@ $cek = new Admin();
         $kamis = $_POST['txt_kamis'];
         $jumat = $_POST['txt_jumat'];
         $sabtu = $_POST['txt_sabtu'];
+
+        $dateProject = explode('-', $dateProject);
+        $start = str_replace(' ', '', $dateProject[0]);
+        $ends = str_replace(' ', '', $dateProject[1]);
 
         if(empty($sun1)){
             $sun = "Libur";
@@ -116,7 +120,7 @@ $cek = new Admin();
             ));
         }else{}
 
-        $query = "INSERT INTO tb_kerjasama_perusahan (nomor_kontrak, kode_perusahaan, kode_request, kode_plan, total_karyawan, type_time, deskripsi, tugas, tanggung_jwb, penempatan, kontrak_start, kontrak_end, nilai_kontrak, kode_admin) VALUES (:kontrak, :kode, :plan, :req, :total, :type_time, :deskripsi, :tgs, :tgjwb, :tmpt, :start, :ends, :nilai, :admin)";
+        $query = "INSERT INTO tb_kerjasama_perusahan (nomor_kontrak, kode_perusahaan, kode_request, kode_plan, total_karyawan, type_time, deskripsi, tugas, tanggung_jwb, penempatan, kontrak_start, kontrak_end, total, nilai_kontrak, kode_admin) VALUES (:kontrak, :kode, :plan, :req, :total, :type_time, :deskripsi, :tgs, :tgjwb, :tmpt, :start, :ends, :totalDate, :nilai, :admin)";
 
         $stmt = $cek->runQuery($query);
         $stmt->execute(array(
@@ -132,6 +136,7 @@ $cek = new Admin();
           ':tmpt'     =>$penempatan,
           ':start'    =>$start,
           ':ends'     =>$ends,
+          ':totalDate'    =>$totalDates,
           ':nilai'    =>$total,
           ':admin'    =>$admin));
         if (!$stmt) {

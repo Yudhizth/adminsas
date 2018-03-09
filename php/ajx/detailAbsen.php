@@ -40,7 +40,13 @@ $stmt->execute(array(
     <div class="x_panel">
         <div class="x_title">
             <h2>Rekap Karyawan</small></h2>
-
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="php/export/xls.php?ktp=<?=$ktp?>&dari=<?=$dari?>&sampai=<?=$sampai?>" target="_blank">
+                        <button type="button" id="exportXls" class="selectBank btn btn-sm btn-default">Export Xls</button>
+                    </a>
+                </li>
+            </ul>
             <div class="clearfix"></div>
         </div>
         <div class="x_content">

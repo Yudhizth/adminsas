@@ -138,16 +138,16 @@ FROM tb_temporary_perusahaan
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Kontrak Start</label>
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <input type="text" name="txt_start" class="form-control has-feedback-left" id="single_cal1" aria-describedby="inputSuccess2Status4">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <input type="text" name="txt_start" class="form-control has-feedback-left" id="kontrakStart" aria-describedby="inputSuccess2Status4">
                                     <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                 </div>
-                                <label class="control-label col-md-2 col-sm-2 col-xs-12">Kontrak Ends</label>
-                                <div class="col-md-4 col-sm-3 col-xs-12">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12">Total Hari</label>
+                                <div class="col-md-2 col-sm-2 col-xs-12">
 
 
-                                    <input class="form-control has-feedback-left" id="single_cal2" placeholder="First Name" name="txt_ends" aria-describedby="inputSuccess2Status" type="text">
-                                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                    <input class="form-control has-feedback-left" placeholder="First Name" name="txt_ends" data-parsley-type="number" aria-describedby="inputSuccess2Status" type="text" required>
+                                    <span class="fa fa-plus form-control-feedback left" aria-hidden="true"></span>
                                     <span id="inputSuccess2Status" class="sr-only">(success)</span>
 
 

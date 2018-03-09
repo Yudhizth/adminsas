@@ -2,7 +2,6 @@
 
 $no_ktp = $_GET['id'];
 
-$detail = new Karyawan();
 
 if (isset($_POST['addRekomendasi'])) {
     # code...
@@ -10,7 +9,7 @@ if (isset($_POST['addRekomendasi'])) {
     $lokerr = $_POST['txt_loker'];
 
     $query2 = "INSERT INTO tb_rekomendasi_posisi (no_ktp, kd_pekerjaan, kd_admin) VALUES (:kd, :nama, :admin)";
-    $dd = $detail->runQuery($query2);
+    $dd = $config->runQuery($query2);
     $dd->execute(array(
         ':kd' => $ktpp,
         ':nama' => $lokerr,
@@ -27,12 +26,12 @@ if (isset($_POST['addRekomendasi'])) {
 }
 
 
-$stmt = $detail->runQuery("SELECT * FROM tb_karyawan LEFT JOIN tb_kode_status_karyawan ON tb_kode_status_karyawan.kd_id = tb_karyawan.kd_status_karyawan WHERE no_ktp = :id");
+$stmt = $config->runQuery("SELECT * FROM tb_karyawan LEFT JOIN tb_kode_status_karyawan ON tb_kode_status_karyawan.kd_id = tb_karyawan.kd_status_karyawan WHERE no_ktp = :id");
 $stmt->bindParam(':id', $no_ktp);
 $stmt->execute();
 
 $sql = "SELECT * FROM tb_rekomendasi_posisi INNER JOIN tb_jenis_pekerjaan ON tb_jenis_pekerjaan.kd_pekerjaan = tb_rekomendasi_posisi.kd_pekerjaan WHERE no_ktp = :ktp";
-$cek = $detail->runQuery($sql);
+$cek = $config->runQuery($sql);
 $cek->execute(array(
     ':ktp' => $no_ktp
 ));
@@ -78,6 +77,74 @@ if (empty($row['nama_kode'])) {
 } else {
     $labelKaryawan = $row['nama_kode'];
 }
+
+$widget = $config->runQuery("SELECT * FROM tb_info_keahlian where no_ktp = :no_ktp");
+$widget->bindParam(':no_ktp', $no_ktp);
+$widget->execute();
+
+$calon = $config->runQuery("SELECT * FROM tb_info_pendidikan where no_ktp = :no_ktp");
+$calon->bindParam(':no_ktp', $no_ktp);
+$calon->execute();
+
+
+$bahasa = $config->runQuery("SELECT * FROM tb_info_bahasa where no_ktp = :no_ktp");
+$bahasa->bindParam(':no_ktp', $no_ktp);
+$bahasa->execute();
+
+$kursus = $config->runQuery("SELECT * FROM tb_info_kursus where no_ktp = :no_ktp");
+$kursus->bindParam(':no_ktp', $no_ktp);
+$kursus->execute();
+
+
+$penghargaan = $config->runQuery("SELECT * FROM tb_info_penghargaan where no_ktp = :no_ktp");
+$penghargaan->bindParam(':no_ktp', $no_ktp);
+$penghargaan->execute();
+
+
+$penyakit = $config->runQuery("SELECT * FROM tb_info_penyakit where no_ktp = :no_ktp");
+$penyakit->bindParam(':no_ktp', $no_ktp);
+$penyakit->execute();
+
+$test = $config->runQuery("SELECT tb_info_test.kode_test, tb_info_test.no_ktp, tb_hasil_test.nama_penilaian, tb_hasil_test.nilai, tb_hasil_test.tgl_input, tb_hasil_test.kd_admin FROM tb_info_test INNER JOIN tb_hasil_test ON tb_hasil_test.kd_test = tb_info_test.kode_test WHERE tb_info_test.no_ktp = :no_ktp");
+$test->bindParam(':no_ktp', $no_ktp);
+$test->execute();
+
+$interview = $config->runQuery("SELECT tb_info_interview.kd_interview, tb_info_interview.no_ktp, tb_hasil_interview.nama_penilaian, tb_hasil_interview.nilai, tb_hasil_interview.tgl_input, tb_hasil_interview.kd_admin FROM tb_info_interview INNER JOIN tb_hasil_interview ON tb_hasil_interview.kd_interview = tb_info_interview.kd_interview WHERE tb_info_interview.no_ktp = :no_ktp");
+$interview->bindParam(':no_ktp', $no_ktp);
+$interview->execute();
+
+
+$kel = $config->runQuery("SELECT * FROM tb_info_keluarga where no_ktp = :no_ktp");
+$kel->bindParam(':no_ktp', $no_ktp);
+$kel->execute();
+
+
+$kerja = $config->runQuery("SELECT * FROM tb_info_pekerjaan where no_ktp = :no_ktp");
+$kerja->bindParam(':no_ktp', $no_ktp);
+$kerja->execute();
+
+
+$referensi = $config->runQuery("SELECT * FROM tb_info_referensi where no_ktp = :no_ktp");
+$referensi->bindParam(':no_ktp', $no_ktp);
+$referensi->execute();
+
+
+$file = $config->runQuery("SELECT * FROM tb_uploadfile_karyawan where no_ktp = :no_ktp");
+$file->bindParam(':no_ktp', $no_ktp);
+$file->execute();
+
+$pekerjaan = $config->runQuery("SELECT tb_list_karyawan.kode_list_karyawan, tb_list_karyawan.no_nip, tb_list_karyawan.kode_jabatan, tb_list_karyawan.kode_pekerjaan, tb_list_karyawan.status_karyawan, tb_kerjasama_perusahan.nomor_kontrak, tb_kerjasama_perusahan.kode_perusahaan, tb_kerjasama_perusahan.kode_request, tb_kerjasama_perusahan.kontrak_start, tb_kerjasama_perusahan.kontrak_end, tb_kerjasama_perusahan.penempatan, tb_perusahaan.nama_perusahaan, tb_temporary_perusahaan.kebutuhan, tb_temporary_perusahaan.kode_pekerjaan, tb_temporary_perusahaan.nama_project, tb_jenis_pekerjaan.nama_pekerjaan, tb_list_jabatan.nama_jabatan FROM tb_list_karyawan
+
+INNER JOIN tb_kerjasama_perusahan ON tb_kerjasama_perusahan.kode_list_karyawan=tb_list_karyawan.kode_list_karyawan
+INNER JOIN tb_perusahaan ON tb_perusahaan.kode_perusahaan=tb_kerjasama_perusahan.kode_perusahaan
+INNER JOIN tb_temporary_perusahaan ON tb_temporary_perusahaan.no_pendaftaran=tb_kerjasama_perusahan.kode_request
+LEFT JOIN tb_jenis_pekerjaan ON tb_jenis_pekerjaan.kd_pekerjaan=tb_list_karyawan.kode_pekerjaan
+LEFT JOIN tb_list_jabatan ON tb_list_jabatan.id = tb_list_karyawan.kode_jabatan
+WHERE tb_list_karyawan.no_nip = :karyawan");
+
+$pekerjaan->execute(array(
+        ':karyawan' =>$no_ktp
+));
 ?>
 
 
@@ -139,13 +206,7 @@ if (empty($row['nama_kode'])) {
             <h4 class="text-success"><strong>Keahlian</strong></h4>
             <ul class="list-unstyled user_data">
                 <?php
-                $widget = new Karyawan();
-
-                $stmt = $widget->runQuery("SELECT * FROM tb_info_keahlian where no_ktp = :no_ktp");
-                $stmt->bindParam(':no_ktp', $no_ktp);
-                $stmt->execute();
-
-                while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
+                while ($row = $widget->fetch(PDO::FETCH_LAZY)) {
                     # code...
 
                     ?>
@@ -230,15 +291,9 @@ if (empty($row['nama_kode'])) {
                                             </th>
                                         </tr>
                                         </thead>
-                                        <?php
-                                        $calon = new Karyawan();
-                                        $stmt = $calon->runQuery("SELECT * FROM tb_info_pendidikan where no_ktp = :no_ktp");
-                                        $stmt->bindParam(':no_ktp', $no_ktp);
-                                        $stmt->execute();
-                                        ?>
                                         <tbody>
                                         <?php
-                                        while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
+                                        while ($row = $calon->fetch(PDO::FETCH_LAZY)) {
                                             # code...
                                             ?>
                                             <tr class="even pointer">
@@ -263,13 +318,9 @@ if (empty($row['nama_kode'])) {
 
                             <!-- start user projects -->
                             <?php
-                            $widget = new Karyawan();
 
-                            $stmt = $widget->runQuery("SELECT * FROM tb_info_bahasa where no_ktp = :no_ktp");
-                            $stmt->bindParam(':no_ktp', $no_ktp);
-                            $stmt->execute();
 
-                            while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
+                            while ($row = $bahasa->fetch(PDO::FETCH_LAZY)) {
                                 # code...
 
                                 ?>
@@ -324,15 +375,9 @@ if (empty($row['nama_kode'])) {
                                         <th class="column-title">Tahun Lulus</th>
                                     </tr>
                                     </thead>
-                                    <?php
-                                    $calon = new Karyawan();
-                                    $stmt = $calon->runQuery("SELECT * FROM tb_info_kursus where no_ktp = :no_ktp");
-                                    $stmt->bindParam(':no_ktp', $no_ktp);
-                                    $stmt->execute();
-                                    ?>
                                     <tbody>
                                     <?php
-                                    while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
+                                    while ($row = $kursus->fetch(PDO::FETCH_LAZY)) {
                                         # code...
                                         ?>
                                         <tr class="even pointer">
@@ -359,15 +404,9 @@ if (empty($row['nama_kode'])) {
                                         <th class="column-title">Keterangan</th>
                                     </tr>
                                     </thead>
-                                    <?php
-                                    $calon = new Karyawan();
-                                    $stmt = $calon->runQuery("SELECT * FROM tb_info_penghargaan where no_ktp = :no_ktp");
-                                    $stmt->bindParam(':no_ktp', $no_ktp);
-                                    $stmt->execute();
-                                    ?>
                                     <tbody>
                                     <?php
-                                    while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
+                                    while ($row = $penghargaan->fetch(PDO::FETCH_LAZY)) {
                                         # code...
                                         ?>
                                         <tr class="even pointer">
@@ -392,15 +431,9 @@ if (empty($row['nama_kode'])) {
                                         <th class="column-title">Status Diagnosis Terakhir</th>
                                     </tr>
                                     </thead>
-                                    <?php
-                                    $calon = new Karyawan();
-                                    $stmt = $calon->runQuery("SELECT * FROM tb_info_penyakit where no_ktp = :no_ktp");
-                                    $stmt->bindParam(':no_ktp', $no_ktp);
-                                    $stmt->execute();
-                                    ?>
                                     <tbody>
                                     <?php
-                                    while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
+                                    while ($row = $penyakit->fetch(PDO::FETCH_LAZY)) {
                                         # code...
                                         ?>
                                         <tr class="even pointer">
@@ -428,17 +461,12 @@ if (empty($row['nama_kode'])) {
                                     </tr>
                                     </thead>
                                     <?php
-                                    $calon = new Karyawan();
-                                    $stmt = $calon->runQuery("SELECT tb_info_test.kode_test, tb_info_test.no_ktp, tb_hasil_test.nama_penilaian, tb_hasil_test.nilai, tb_hasil_test.tgl_input, tb_hasil_test.kd_admin FROM tb_info_test INNER JOIN tb_hasil_test ON tb_hasil_test.kd_test = tb_info_test.kode_test WHERE tb_info_test.no_ktp = :no_ktp");
-                                    $stmt->bindParam(':no_ktp', $no_ktp);
-                                    $stmt->execute();
-
-                                    if ($stmt->rowCount() >= 1) { ?>
+                                    if ($test->rowCount() >= 1) { ?>
                                         <tbody>
                                         <?php
                                         $data = array();
                                         $sum = 0;
-                                        while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
+                                        while ($row = $test->fetch(PDO::FETCH_LAZY)) {
                                             # code...
                                             $n = $row['nilai'];
                                             $sum += $n;
@@ -517,17 +545,12 @@ if (empty($row['nama_kode'])) {
                                     </tr>
                                     </thead>
                                     <?php
-                                    $calon = new Karyawan();
-                                    $stmt = $calon->runQuery("SELECT tb_info_interview.kd_interview, tb_info_interview.no_ktp, tb_hasil_interview.nama_penilaian, tb_hasil_interview.nilai, tb_hasil_interview.tgl_input, tb_hasil_interview.kd_admin FROM tb_info_interview INNER JOIN tb_hasil_interview ON tb_hasil_interview.kd_interview = tb_info_interview.kd_interview WHERE tb_info_interview.no_ktp = :no_ktp");
-                                    $stmt->bindParam(':no_ktp', $no_ktp);
-                                    $stmt->execute();
-
-                                    if ($stmt->rowCount() >= 1) { ?>
+                                    if ($interview->rowCount() >= 1) { ?>
                                         <tbody>
                                         <?php
                                         $data = array();
                                         $sum = 0;
-                                        while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
+                                        while ($row = $interview->fetch(PDO::FETCH_LAZY)) {
                                             # code...
                                             $n = $row['nilai'];
                                             $sum += $n;
@@ -649,16 +672,8 @@ if (empty($row['nama_kode'])) {
                                         </tr>
                                         </thead>
                                         <tbody>
-
                                         <?php
-                                        $calon = new Karyawan();
-                                        $stmt = $calon->runQuery("SELECT * FROM tb_info_keluarga where no_ktp = :no_ktp");
-                                        $stmt->bindParam(':no_ktp', $no_ktp);
-                                        $stmt->execute();
-                                        ?>
-                                        <tbody>
-                                        <?php
-                                        while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
+                                        while ($row = $kel->fetch(PDO::FETCH_LAZY)) {
                                             # code...
                                             $stat = $row['hub_urgent'];
                                             if ($stat == '1') {
@@ -708,16 +723,8 @@ if (empty($row['nama_kode'])) {
                                     </tr>
                                     </thead>
                                     <tbody>
-
                                     <?php
-                                    $calon = new Karyawan();
-                                    $stmt = $calon->runQuery("SELECT * FROM tb_info_pekerjaan where no_ktp = :no_ktp");
-                                    $stmt->bindParam(':no_ktp', $no_ktp);
-                                    $stmt->execute();
-                                    ?>
-                                    <tbody>
-                                    <?php
-                                    while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
+                                    while ($row = $kerja->fetch(PDO::FETCH_LAZY)) {
                                         # code...
                                         $stat = $row['hub_urgent'];
                                         if ($stat == '1') {
@@ -760,16 +767,8 @@ if (empty($row['nama_kode'])) {
                                         </tr>
                                         </thead>
                                         <tbody>
-
                                         <?php
-                                        $calon = new Karyawan();
-                                        $stmt = $calon->runQuery("SELECT * FROM tb_info_referensi where no_ktp = :no_ktp");
-                                        $stmt->bindParam(':no_ktp', $no_ktp);
-                                        $stmt->execute();
-                                        ?>
-                                        <tbody>
-                                        <?php
-                                        while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
+                                        while ($row = $referensi->fetch(PDO::FETCH_LAZY)) {
                                             # code...
                                             $stat = $row['hub_urgent'];
                                             if ($stat == '1') {
@@ -807,16 +806,8 @@ if (empty($row['nama_kode'])) {
                                         </tr>
                                         </thead>
                                         <tbody>
-
                                         <?php
-                                        $calon = new Karyawan();
-                                        $stmt = $calon->runQuery("SELECT * FROM tb_uploadfile_karyawan where no_ktp = :no_ktp");
-                                        $stmt->bindParam(':no_ktp', $no_ktp);
-                                        $stmt->execute();
-                                        ?>
-                                        <tbody>
-                                        <?php
-                                        while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
+                                        while ($row = $file->fetch(PDO::FETCH_LAZY)) {
                                             # code...
                                             $stat = $row['hub_urgent'];
                                             if ($stat == '1') {
@@ -855,9 +846,7 @@ if (empty($row['nama_kode'])) {
                     </div>
                     <div class="col-md-6">
                         <?php
-                        $detail = new Karyawan();
-
-                        $conn = $detail->runQuery("SELECT * FROM tb_karyawan WHERE no_ktp = :id");
+                        $conn = $config->runQuery("SELECT * FROM tb_karyawan WHERE no_ktp = :id");
                         $conn->bindParam(':id', $no_ktp);
                         $conn->execute();
 
@@ -927,6 +916,89 @@ if (empty($row['nama_kode'])) {
 
             </div>
 
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="profile_title">
+                        <div class="col-md-6">
+                            <h2>Informasi Pekerjaan</h2>
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                <tr class="headings">
+                                    <th class="column-title">Nama Perusahaan</th>
+                                    <th class="column-title">Nama Project</th>
+                                    <th class="column-title">Periode</th>
+                                    <th class="column-title">Penempatan</th>
+                                    <th class="column-title">Jabatan</th>
+                                    <th class="column-title">Nama Pekerjaan</th>
+                                    <th class="column-title">Status</th>
+
+                                    <th class="column-title">Keterangan</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                    while ($row = $pekerjaan->fetch(PDO::FETCH_LAZY)){
+                                        if(!empty($row['jabatan'])){
+                                            $jabatan = $row['jabatan'];
+                                        }else{
+                                            $jabatan = 'General';
+                                        }
+                                        if(!empty($row['nama_pekerjaan'])){
+                                            $namaPekerjaan = $row['nama_pekerjaan'];
+                                        }else{
+                                            $namaPekerjaan = 'General';
+                                        }
+                                        if($row['nama_project'] != 'NULL'){
+                                            $project = $row['nama_project'];
+                                        }else{
+                                            $project = 'General (<small>'.$row['kebutuhan'].'</small>)';
+                                        }
+
+                                        if($row['status_karyawan'] == '1'){
+                                            $status = "<span class='label label-info'>Suggested</span>";
+                                        }elseif($row['status_karyawan'] == '2'){
+                                            $status = "<span class='label label-success'>In Project</span>";
+                                        }elseif($row['status_karyawan'] == '3'){
+                                            $status = "<span class='label label-danger'>Removed</span>";
+                                        }elseif($row['status_karyawan'] == '4'){
+                                            $status = "<span class='label label-Primary'>Done</span>";
+                                        }else{
+                                            $status = "<span class='label label-default'>unset</span>";
+                                        }
+                                ?>
+                                <tr>
+                                    <td><?=$row['nama_perusahaan']?></td>
+                                    <td><?=$project?></td>
+                                    <td><?=$row['kontrak_start']?> ~ <?=$row['kontrak_end']?></td>
+                                    <td><?=$row['penempatan']?></td>
+                                    <td><?=$jabatan?></td>
+                                    <td><?=$namaPekerjaan?></td>
+                                    <td><?=$status ?></td>
+                                    <td>
+                                        <a href="">
+                                            <button class="btn btn-xs btn-primary">Views</button>
+                                        </a>
+
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
 
@@ -956,9 +1028,7 @@ if (empty($row['nama_kode'])) {
                                 loker --
                             </option>
                             <?php
-                            $admin = new Admin();
-
-                            $stmt = $admin->runQuery("SELECT * FROM tb_jenis_pekerjaan");
+                            $stmt = $config->runQuery("SELECT * FROM tb_jenis_pekerjaan");
                             $stmt->execute();
                             while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
                                 # code...

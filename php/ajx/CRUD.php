@@ -61,6 +61,8 @@ elseif (@$_GET['type'] == 'replayCP'){
     $c = $_POST['isi'];
     $d = $_POST['admin'];
     $e = '1';
+    $f = $_POST['id_reff'];
+
 
     $sql = "SELECT * FROM tb_complain_perusahaan WHERE id_reff = :id";
     $cek = $config->runQuery($sql);
@@ -79,7 +81,18 @@ elseif (@$_GET['type'] == 'replayCP'){
             ':d'    => $d
         ));
         if ($stmt){
-            echo "1";
+            $change = "UPDATE tb_complain_perusahaan SET status = :status WHERE id = :id";
+            $change = $config->runQuery($change);
+            $change->execute(array(
+                ':status'   => $e,
+                ':id'       => $f
+            ));
+
+            if($change){
+                echo "1";
+            }else{
+                echo "0";
+            }
         }else{
             echo "0";
         }
@@ -103,7 +116,18 @@ elseif (@$_GET['type'] == 'replayCP'){
                 ':d'    => $d
             ));
             if ($stmt){
-                echo "1";
+                $change = "UPDATE tb_complain_perusahaan SET status = :status WHERE id = :id";
+                $change = $config->runQuery($change);
+                $change->execute(array(
+                    ':status'   => $e,
+                    ':id'       => $f
+                ));
+
+                if($change){
+                    echo "1";
+                }else{
+                    echo "0";
+                }
             }else{
                 echo "0";
             }

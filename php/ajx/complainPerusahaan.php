@@ -28,6 +28,19 @@ $cek->execute(array(
     ':kode' => $kupon2
 ));
 
+
+$replay = "SELECT tb_complain_perusahaan.id, tb_complain_perusahaan.id_reff, tb_complain_perusahaan.admin FROM tb_complain_perusahaan
+WHERE tb_complain_perusahaan.admin = :kodePerusahaan AND tb_complain_perusahaan.id_reff = :kodeKomplain AND tb_complain_perusahaan.status = '' 
+ORDER BY tb_complain_perusahaan.update_on DESC";
+$id = $config->runQuery($replay);
+$id->execute(array(
+        ':kodePerusahaan'   => $isi['kode_perusahaan'],
+        ':kodeKomplain'     => $kupon2
+));
+
+$id = $id->fetch(PDO::FETCH_LAZY);
+echo $id['id'];
+
 ?>
 
 <div id="contentComplain">
@@ -90,7 +103,7 @@ $cek->execute(array(
                             <br>
 
                         <?php }
-                        echo '<button type="button" class="btn btn-primary formBalasComplain" data-kupon="'.$kupon.'" data-admin='.$admin_id.'" data-toggle="modal" data-target=".balasComplain"><span class="fa fa-reply"></span> Kirim Balasan</button>
+                        echo '<button type="button" class="btn btn-primary formBalasComplain" data-kupon="'.$kupon.'" data-id="'.$id['id'].'" data-admin='.$admin_id.'"  data-toggle="modal" data-target=".balasComplain"><span class="fa fa-reply"></span> Kirim Balasan</button>
 ';
                     }else{ ?>
                         <li>
@@ -98,7 +111,7 @@ $cek->execute(array(
                                 <p> Belum Ada Activity!</p>
                             </div>
                         </li>
-                        <button type="button" class="btn btn-primary formBalasComplain" data-kupon="<?=$kupon?>" data-admin="<?=$admin_id?>" data-toggle="modal" data-target=".balasComplain"><span class="fa fa-reply"></span> Kirim Balasan</button>
+                        <button type="button" class="btn btn-primary formBalasComplain" data-kupon="<?=$kupon?>" data-admin="<?=$admin_id?>" data-id="<?=$id['id']?>" data-toggle="modal" data-target=".balasComplain"><span class="fa fa-reply"></span> Kirim Balasan</button>
 
                     <?php }
 

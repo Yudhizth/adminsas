@@ -59,9 +59,10 @@ $(document).ready(function() {
     $('#showDetailComplain').on('click', '.formBalasComplain', function () {
         var id = $(this).data('kupon');
         var admin = $(this).data('admin');
+        var id_reff = $(this).data('id');
 
         $('#showDetailComplain').hide();
-        $('#formBalasComplainPerusahaan').load('php/ajx/modal.php?kupon='+id+'&admin='+admin);
+        $('#formBalasComplainPerusahaan').load('php/ajx/modal.php?kupon='+id+'&admin='+admin+'&idReff='+id_reff);
 
     });
 
@@ -74,13 +75,14 @@ $(document).ready(function() {
             var kupon = $('#reffComplain').val();
             var admin = $('#adminComplainID').val();
             var isi = $('#isiComplainPerusahaan').val();
+            var id = $('#id_reff').val();
 
             // alert(title+ ' : ' +kupon+ ' : '+isi);
 
             $.ajax({
                 url : 'php/ajx/CRUD.php?type=replayCP',
                 type: 'post',
-                data: 'kupon='+kupon+'&title='+title+'&isi='+isi+'&admin='+admin,
+                data: 'kupon='+kupon+'&title='+title+'&isi='+isi+'&admin='+admin+'&id_reff='+id,
 
                 success : function(msg){
                     if(msg === '1'){

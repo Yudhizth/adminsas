@@ -1,9 +1,17 @@
 <?php
-    $cek = new Perusahaan();
-    $st = $cek->runQuery("SELECT * FROM tb_temporary_perusahaan WHERE kode_perusahaan = ''");
+
+    $st = $config->runQuery("SELECT * FROM tb_temporary_perusahaan WHERE kode_perusahaan = ''");
     $st->execute();
 
     $data  = $st->rowCount();
+
+    $stmt = $config->runQuery("SELECT tb_temporary_perusahaan.no_pendaftaran, tb_temporary_perusahaan.kode_perusahaan, tb_temporary_perusahaan.kebutuhan, tb_temporary_perusahaan.nama_project, tb_temporary_perusahaan.status,tb_kategori_pekerjaan.nama_kategori, tb_perusahaan.nama_perusahaan, tb_kerjasama_perusahan.nomor_kontrak 
+    FROM tb_temporary_perusahaan
+    INNER JOIN tb_kategori_pekerjaan ON tb_kategori_pekerjaan.kode_kategori = tb_temporary_perusahaan.kebutuhan
+    INNER JOIN tb_perusahaan ON tb_perusahaan.kode_perusahaan = tb_temporary_perusahaan.kode_perusahaan
+    LEFT JOIN tb_kerjasama_perusahan ON tb_kerjasama_perusahan.kode_request = tb_temporary_perusahaan.no_pendaftaran
+    ORDER BY tb_temporary_perusahaan.tanggal DESC");
+    $stmt->execute(array());
 ?>
 
 <div class="x_panel">
@@ -43,16 +51,6 @@
                                                 <th class="column-title">List Pekerjaan </th>
                                             </tr>
                                         </thead>
-                                    <?php
-                                    $calon = new Karyawan();
-                                    $stmt = $calon->runQuery("SELECT tb_temporary_perusahaan.no_pendaftaran, tb_temporary_perusahaan.kode_perusahaan, tb_temporary_perusahaan.kebutuhan, tb_temporary_perusahaan.nama_project, tb_temporary_perusahaan.status,tb_kategori_pekerjaan.nama_kategori, tb_perusahaan.nama_perusahaan, tb_kerjasama_perusahan.nomor_kontrak 
-FROM tb_temporary_perusahaan
-INNER JOIN tb_kategori_pekerjaan ON tb_kategori_pekerjaan.kode_kategori = tb_temporary_perusahaan.kebutuhan
-INNER JOIN tb_perusahaan ON tb_perusahaan.kode_perusahaan = tb_temporary_perusahaan.kode_perusahaan
-LEFT JOIN tb_kerjasama_perusahan ON tb_kerjasama_perusahan.kode_request = tb_temporary_perusahaan.no_pendaftaran
-ORDER BY tb_temporary_perusahaan.tanggal DESC");
-                                    $stmt->execute(array());
-                                    ?>
                                         <tbody>
                                         <?php
                                         if ($stmt->rowCount() == '') {
@@ -122,8 +120,7 @@ ORDER BY tb_temporary_perusahaan.tanggal DESC");
                                             </tr>
                                         </thead>
                                     <?php
-                                    $calon = new Karyawan();
-                                    $stmt = $calon->runQuery("SELECT tb_temporary_perusahaan.no_pendaftaran, tb_temporary_perusahaan.kode_perusahaan, tb_temporary_perusahaan.nama_perusahaan, tb_temporary_perusahaan.cp, tb_temporary_perusahaan.phone, tb_temporary_perusahaan.email, tb_temporary_perusahaan.create_date, tb_temporary_perusahaan.status, tb_jenis_pekerjaan.nama_pekerjaan, tb_kategori_pekerjaan.nama_kategori
+                                    $stmt = $config->runQuery("SELECT tb_temporary_perusahaan.no_pendaftaran, tb_temporary_perusahaan.kode_perusahaan, tb_temporary_perusahaan.nama_perusahaan, tb_temporary_perusahaan.cp, tb_temporary_perusahaan.phone, tb_temporary_perusahaan.email, tb_temporary_perusahaan.create_date, tb_temporary_perusahaan.status, tb_jenis_pekerjaan.nama_pekerjaan, tb_kategori_pekerjaan.nama_kategori
                                         FROM tb_temporary_perusahaan
                                         LEFT JOIN tb_jenis_pekerjaan ON tb_jenis_pekerjaan.kd_pekerjaan=tb_temporary_perusahaan.kode_pekerjaan
                                         LEFT JOIN tb_kategori_pekerjaan ON tb_kategori_pekerjaan.kode_kategori=tb_temporary_perusahaan.kebutuhan

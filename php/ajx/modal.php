@@ -12,6 +12,7 @@ $config = new Admin();
 
 $kupon = $_GET['kupon'];
 $admin_id = $_GET['admin'];
+$id_reff = $_GET['idReff'];
 
 $query = "SELECT * FROM tb_complain_perusahaan WHERE kode_komplain = :kode ORDER BY update_on DESC";
 $cek = $config->runQuery($query);
@@ -37,6 +38,7 @@ $row = $cek->fetch(PDO::FETCH_LAZY);
                         <input type="text" id="titleComplain" class="form-control" data-parsley-minlength="10" name="fullname" value="<?=$row['judul']?>" required="">
                         <input type="hidden" id="reffComplain" class="form-control" name="fullname" value="<?=$kupon?>">
                         <input type="hidden" id="adminComplainID" class="form-control" name="fullname" value="<?=$admin_id?>">
+                        <input type="hidden" id="id_reff" class="form-control" name="fullname" value="<?=$id_reff?>">
                         <label for="message">Isi Balasan Complain :</label>
                         <textarea id="isiComplainPerusahaan" required="required" rows="6" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
 

@@ -109,13 +109,13 @@ $stmt->execute();
                                     <table class="table table-striped jambo_table bulk_action">
                                         <thead>
                                         <tr class="headings">
-                                            <th class="column-title">Nama Karyawan</th>
-                                            <th class="column-title">JK</th>
-                                            <th class="column-title">Nama Perusahaan</th>
-                                            <th class="column-title">Bidang Usaha</th>
-                                            <th class="column-title">Nama Project</th>
-                                            <th class="column-title">Nomor Kontrak</th>
-                                            <th class="column-title">Timeplan</th>
+                                            <th class="column-title" width="10%">Nama Karyawan</th>
+                                            <th class="column-title" width="5%">JK</th>
+                                            <th class="column-title" width="15%">Nama Perusahaan</th>
+                                            <th class="column-title" width="10%">Bidang Usaha</th>
+                                            <th class="column-title" width="10%">Nama Project</th>
+                                            <th class="column-title" width="10%">Nomor Kontrak</th>
+                                            <th class="column-title" width="10%">Timeplan</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -134,7 +134,7 @@ $stmt->execute();
                                                 <tr class="even pointer">
 
 
-                                                    <td class="col-md-2"><?php echo $row['nama_depan']; ?> <?= $row['nama_belakang'] ?></td>
+                                                    <td class="col-md-2"><a target="_blank" href="?p=detail-karyawan&id=<?=$row['no_nip']?>"><?php echo $row['nama_depan']; ?> <?= $row['nama_belakang'] ?></a></td>
                                                     <td class="col-md-1"><?php echo $row['jenis_kelamin']; ?></td>
                                                     <td class="col-md-2"><?php echo $row['nama_perusahaan']; ?></td>
                                                     <td class="col-md-2"><?php echo $row['bidang_perusahaan']; ?></td>

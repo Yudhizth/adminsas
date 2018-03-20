@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="x_panel">
       <div class="x_content">
-        <div class="row">
+        <div class="row" id="adminStatus">
           <div class="col-md-12 col-sm-12 col-xs-12 text-center">
             <ul class="pagination pagination-split">
               <li><a href="#" data-toggle="modal" data-target="#myModal" >Add Admin</a></li>
@@ -20,10 +20,15 @@
 
             // echo $new_password;
             while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
+                if($row['status'] == '1'){
+                    $status = '<span class="label label-success">Active</span>';
+                }else{
+                    $status = '<span class="label label-danger">Disable</span>';
+                }
               # code...
               ?>
           <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
-            <div class="well profile_view">
+            <div class="well profile_view" >
               <div class="col-sm-12">
                 <h4 class="brief"><i><?php echo $row['jabatan']; ?></i></h4>
                 <div class="left col-xs-7">
@@ -31,19 +36,29 @@
                   <p><strong>About: </strong> <?php echo $row['username']; ?> </p>
                   <ul class="list-unstyled">
                     <li><i class="fa fa-building"></i> Kode: <?php echo $row['kode_admin']; ?></li>
-                    <li><i class="fa fa-phone"></i> Phone #: </li>
+                    <li><i class="fa fa-phone"></i> Status: <?=$status?></li>
                   </ul>
                 </div>
                 <div class="right col-xs-5 text-center">
                   <img src="images/<?php echo $row['picture']; ?>" alt="" class="img-circle img-responsive">
                 </div>
               </div>
-              <div class="col-xs-12 bottom text-center">
-                <div class="col-xs-12 col-sm-6 emphasis">
-                  <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-remove">
-                    </i> disable</button>
+              <div class="col-xs-12 bottom text-center" >
+                <div class="col-xs-12 col-sm-4 emphasis" >
+                  <?php if($row['status'] == '1'){ ?>
+                      <button type="button" data-username="<?=$row['username']?>" class="btn btn-danger btn-xs disableAdmin"> <i class="fa fa-remove">
+                          </i> disable</button>
+                    <?php }else{ ?>
+                      <button type="button" data-username="<?=$row['username']?>" class="btn btn-success btn-xs enableAdmin"> <i class="fa fa-plus">
+                          </i> Enable</button>
+                  <?php } ?>
                 </div>
-                <div class="col-xs-12 col-sm-6 emphasis">
+                  <div class="col-xs-12 col-sm-4 emphasis">
+                      <button type="button" class="btn btn-primary btn-xs resetPasswordAdmin" data-id="<?=$row['username']?>" title="Reset Password">
+                          <i class="fa fa-key"> </i> Reset
+                      </button>
+                  </div>
+                <div class="col-xs-12 col-sm-4 emphasis">
                   
                   <a href="?p=previllage&user=<?=$row['id']?>">
                       <button type="button" class="btn btn-primary btn-xs">

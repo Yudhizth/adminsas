@@ -141,7 +141,7 @@ $replayKaryawan->execute();
 $newReq = $config->runQuery($newReq);
 $newReq->execute();
 
-    if($newCP->rowCount() > 0){
+    if($newReq->rowCount() > 0){
         $totalNewReq = $newReq->rowCount();
 //        while ($row = $newReq->fetch(PDO::FETCH_LAZY)){
 //
@@ -160,7 +160,20 @@ $newReq->execute();
 //        $notNewReq = '';
     }
 
-    $totalNotifikasi = $totalComplainPerusahaan + $newComplain + $newComplainK + $totalReplayK + $totalNewCP + $totalNewReq;
+    //notifikasi lembur
+    $bb = "SELECT tb_lembur.id, tb_lembur.kode_lembur, tb_lembur.no_ktp, tb_lembur.tanggal, tb_lembur.jam, tb_lembur.keterangan, tb_lembur.status, tb_lembur.admin, tb_karyawan.nama_depan, tb_karyawan.nama_belakang
+ FROM tb_lembur 
+ INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_lembur.no_ktp
+ WHERE tb_lembur.status = ''";
+    $bb = $config->runQuery($bb);
+    $bb->execute();
+    if ($bb->rowCount() > 0){
+        $totLembur = $bb->rowCount();
+    }else{
+        $totLembur = '0';
+    }
+
+    $totalNotifikasi = $totalComplainPerusahaan + $newComplain + $newComplainK + $totalReplayK + $totalNewCP + $totalNewReq + $totLembur;
 
 
 ?>
@@ -269,7 +282,7 @@ $newReq->execute();
                                 </a></li>';
                     };
                 }
-                if($newCP->rowCount() > 0){
+                if($newReq->rowCount() > 0){
                     $totalNewReq = $newReq->rowCount();
                     while ($row = $newReq->fetch(PDO::FETCH_LAZY)){
 
@@ -280,6 +293,21 @@ $newReq->execute();
                                         </span>
                                         <span class="message">
                                           Perusahaan <b>'.$row['nama_perusahaan'].'</b> request <b>'.$row['nama_kategori'].'</b>
+                                        </span>
+                                    </a></li>';
+                    };
+                }
+                if($bb->rowCount() > 0){
+
+                    while ($row = $bb->fetch(PDO::FETCH_LAZY)){
+
+                        echo '<li><a>
+                                        <span>
+                                          <span style="color: #4BB926; font-weight: bold">New Lembur</span>
+                                          <span class="time" style="color: #26b99a;">' .$row['tanggal'].'</span>
+                                        </span>
+                                        <span class="message">
+                                          Karyawan <b>'.$row['nama_depan'].' '. $row['nama_belakang'].'</b> 
                                         </span>
                                     </a></li>';
                     };

@@ -19,7 +19,7 @@ if($cekLogin->is_loggedin()!="")
       # code...
       $cekLogin->redirect('index.php');
     } else{
-      $error = "your information is't valid!";
+      $error = $_SESSION['error'];
     }
   }
   $pass = password_verify('hello', 'makan');
@@ -64,7 +64,7 @@ if($cekLogin->is_loggedin()!="")
       if(isset($error))
       {
         ?>
-                <div class="alert alert-danger">
+                <div class="alert alert-danger" style="font-size: 15px">
                    <i class="glyphicon glyphicon-warning-sign"></i> &nbsp; <?php echo $error; ?> !
                 </div>
                 <?php

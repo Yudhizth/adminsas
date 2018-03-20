@@ -25,12 +25,20 @@ class Login
 				{
 					if(password_verify($password, $userRow['password']))
 					{
-						$_SESSION['user_session'] = $userRow['username'];
+						if($userRow['status'] == '1'){
+                            $_SESSION['user_session'] = $userRow['username'];
 
-						return true;
+                            return true;
+                        }else{
+
+						    $_SESSION['error'] = "Sorry, Your Acount are ready Disable!";
+						    return false;
+
+                        }
 					}
 					else
 					{
+                        $_SESSION['error'] = "Trying to find somewhere";
 						return false;
 					}
 				}
@@ -321,6 +329,12 @@ class Admin
     {
 
         return substr(str_shuffle(str_repeat($x='!@#$%^&*()0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+    }
+
+    function newPassword($pass){
+        $password = password_hash($pass, PASSWORD_DEFAULT);
+
+        return $password;
     }
 
 }

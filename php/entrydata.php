@@ -13,6 +13,7 @@ $cek = new Admin();
         $tanggung = $_POST['txt_tanggung'];
         $penempatan = $_POST['txt_penempatan'];
         $total = $_POST['txt_nilai'];
+        $lembur = $_POST['txt_lembur'];
         $req = $_POST['txt_req'];
         $admin = $_POST['txt_admin'];
         $dateProject = $_POST['txt_start'];
@@ -120,7 +121,7 @@ $cek = new Admin();
             ));
         }else{}
 
-        $query = "INSERT INTO tb_kerjasama_perusahan (nomor_kontrak, kode_perusahaan, kode_request, kode_plan, total_karyawan, type_time, deskripsi, tugas, tanggung_jwb, penempatan, kontrak_start, kontrak_end, total, nilai_kontrak, kode_admin) VALUES (:kontrak, :kode, :plan, :req, :total, :type_time, :deskripsi, :tgs, :tgjwb, :tmpt, :start, :ends, :totalDate, :nilai, :admin)";
+        $query = "INSERT INTO tb_kerjasama_perusahan (nomor_kontrak, kode_perusahaan, kode_request, kode_plan, total_karyawan, type_time, deskripsi, tugas, tanggung_jwb, penempatan, kontrak_start, kontrak_end, total, nilai_kontrak, lembur, kode_admin) VALUES (:kontrak, :kode, :plan, :req, :total, :type_time, :deskripsi, :tgs, :tgjwb, :tmpt, :start, :ends, :totalDate, :nilai, :lembur, :admin)";
 
         $stmt = $cek->runQuery($query);
         $stmt->execute(array(
@@ -138,6 +139,7 @@ $cek = new Admin();
           ':ends'     =>$ends,
           ':totalDate'    =>$totalDates,
           ':nilai'    =>$total,
+          ':lembur'    => $lembur,
           ':admin'    =>$admin));
         if (!$stmt) {
           # code...

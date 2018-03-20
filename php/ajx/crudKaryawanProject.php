@@ -255,6 +255,208 @@ elseif(@$_GET['type'] == 'changeStatus'){
 
 
 }
+elseif(@$_GET['type'] == 'generateInvoice'){
+    $kontrak = $_POST['kontrak'];
+
+    $sql = "SELECT * FROM tb_kerjasama_perusahan WHERE nomor_kontrak = :kontrak";
+    $stmt = $admin->runQuery($sql);
+    $stmt->execute(array(
+        ':kontrak'  => $kontrak
+    ));
+    $info = $stmt->fetch(PDO::FETCH_LAZY);
+
+    $type = substr($info['kode_request'], 0, 3); //cek for MPO or Others
+
+    if($type == 'MPO'){
+        $totalTerm = $info['total'] / 30; //total term pembayaran berapa kali
+        $totalTerm = round($totalTerm, 0, 1); //dibulatkan ke terkecil
+
+        $kodeList = $info['kode_plan']; //kode tb_list_perkerjaan_perusahaan
+
+        if($info['nilai_kontrak'] == '0'){
+            //cek total gaji
+            $sql = "SELECT SUM(total * gaji) AS totalgaji FROM tb_list_perkerjaan_perusahaan WHERE code = :code";
+            $stmt = $admin->runQuery($sql);
+            $stmt->execute(array(':code' => $kodeList));
+            $total = $stmt->fetch(PDO::FETCH_LAZY);
+            $totalGaji = $total['totalgaji']; //total gaji semua karyawan
+
+            $subTotal = $totalGaji / 30; //gaji per-hari;
+            $subTotal = round($subTotal, 0, 3);
+
+            $totalNilaiProject = $subTotal * $info['total']; //nilai project MPO
+            $totalNilaiTerm = $totalNilaiProject / $totalTerm;
+
+            $query = "UPDATE tb_kerjasama_perusahan SET nilai_kontrak = :nilai WHERE nomor_kontrak = :kontrak";
+            $input = $admin->runQuery($query);
+            $input->execute(array(
+                ':nilai'    => $totalNilaiProject,
+                ':kontrak'  => $kontrak
+            ));
+            if($input){
+
+            echo "Try Again!.";
+
+            }else{
+                echo 'gagal';
+            }
+
+
+        }else{
+//           $totalTerm = $info['total'] / 30; //total term pembayaran berapa kali
+
+            $totalTerm = round($totalTerm, 0, 1); //dibulatkan ke terkecil
+
+            $kontrakStart = date('Y/m/d', strtotime($info['kontrak_start'])); //get start kontrak
+
+            $nominal = $info['nilai_kontrak']; //total nomila project
+
+            $nominal = $nominal / $totalTerm;
+            $nominal = round($nominal, 0,1);
+
+            $termDate = date('Y/m/d', strtotime($kontrakStart. '+ 30 days'));
+
+            // echo 'startkontra: '.$kontrakStart. ' Due date ke 1: ' .$termDate;
+
+            for ($i = 1; $i <= $totalTerm; $i++){
+                $query = "SELECT * FROM tb_term_pembayaran WHERE kode_term = :kode";
+                $cek = $admin->runQuery($query);
+                $cek->execute(array(':kode' => $kontrak));
+
+
+                if($cek->rowCount() > 0){
+                    $query = "SELECT MAX(id) AS id FROM tb_term_pembayaran WHERE kode_term = :kode";
+                    $cek = $admin->runQuery($query);
+                    $cek->execute(array(':kode' => $kontrak));
+
+                    $info = $cek->fetch(PDO::FETCH_LAZY);
+
+                    $lastID = $info['id'];
+
+                    $sql = "SELECT due_date FROM tb_term_pembayaran WHERE id = :id";
+                    $cari = $admin->runQuery($sql);
+                    $cari->execute(array(':id'  => $lastID));
+
+                    $hasil = $cari->fetch(PDO::FETCH_LAZY);
+
+                    $tanggal = date('Y/m/d', strtotime($hasil['due_date']));
+
+                    $pembayaran = date('Y/m/d', strtotime($tanggal. '+ 30 days'));
+
+//            echo 'last id: '.$lastID. ' pembayaran: '.$tanggal;
+//            echo 'yes rowCount: '.$cek->rowCount();
+                    $sql = "INSERT INTO tb_term_pembayaran (kode_term, nama_term, due_date, keterangan) VALUES (:a, :b, :c, :d)";
+                    $stmt = $admin->runQuery($sql);
+                    $stmt->execute(array(
+                        ':a'    => $kontrak,
+                        ':b'    => 'Pembayaran Ke-'.$i,
+                        ':c'    => $pembayaran,
+                        'd'     =>$nominal
+                    ));
+
+                    if($stmt){
+
+                    }else{
+                        echo 'Failed';
+                    }
+                }else{
+                    $pembayaran = $termDate;
+//            echo $pembayaran;
+//            echo 'no';
+                    $sql = "INSERT INTO tb_term_pembayaran (kode_term, nama_term, due_date, keterangan) VALUES (:a, :b, :c, :d)";
+                    $stmt = $admin->runQuery($sql);
+                    $stmt->execute(array(
+                        ':a'    => $kontrak,
+                        ':b'    => 'Pembayaran Ke-'.$i,
+                        ':c'    => $pembayaran,
+                        'd'     => $nominal
+                    ));
+                }
+
+            }
+            echo "Success.";
+        }
+
+    }else{
+        $totalTerm = $info['total'] / 30; //total term pembayaran berapa kali
+
+        $totalTerm = round($totalTerm, 0, 1); //dibulatkan ke terkecil
+
+        $kontrakStart = date('Y/m/d', strtotime($info['kontrak_start'])); //get start kontrak
+
+        $nominal = $info['nilai_kontrak']; //total nomila project
+        $nominal = $nominal / $totalTerm;
+        $nominal = round($nominal, 0,1);
+
+//    echo 'start: '.$kontrakStart.' ends: '.$kontrakEnd;
+
+        $termDate = date('Y/m/d', strtotime($kontrakStart. '+ 30 days'));
+
+
+        for ($i = 1; $i <= $totalTerm; $i++){
+            $query = "SELECT * FROM tb_term_pembayaran WHERE kode_term = :kode";
+            $cek = $admin->runQuery($query);
+            $cek->execute(array(':kode' => $kontrak));
+
+
+            if($cek->rowCount() > 0){
+                $query = "SELECT MAX(id) AS id FROM tb_term_pembayaran WHERE kode_term = :kode";
+                $cek = $admin->runQuery($query);
+                $cek->execute(array(':kode' => $kontrak));
+
+                $info = $cek->fetch(PDO::FETCH_LAZY);
+
+                $lastID = $info['id'];
+
+                $sql = "SELECT due_date FROM tb_term_pembayaran WHERE id = :id";
+                $cari = $admin->runQuery($sql);
+                $cari->execute(array(':id'  => $lastID));
+
+                $hasil = $cari->fetch(PDO::FETCH_LAZY);
+
+                $tanggal = date('Y/m/d', strtotime($hasil['due_date']));
+
+                $pembayaran = date('Y/m/d', strtotime($tanggal. '+ 30 days'));
+
+//            echo 'last id: '.$lastID. ' pembayaran: '.$tanggal;
+//            echo 'yes rowCount: '.$cek->rowCount();
+                $sql = "INSERT INTO tb_term_pembayaran (kode_term, nama_term, due_date, keterangan) VALUES (:a, :b, :c, :d)";
+                $stmt = $admin->runQuery($sql);
+                $stmt->execute(array(
+                    ':a'    => $kontrak,
+                    ':b'    => 'Pembayaran Ke-'.$i,
+                    ':c'    => $pembayaran,
+                    'd'     =>$nominal
+                ));
+
+                if($stmt){
+
+                }else{
+                    echo 'Failed';
+                }
+            }else{
+                $pembayaran = $termDate;
+//            echo $pembayaran;
+//            echo 'no';
+                $sql = "INSERT INTO tb_term_pembayaran (kode_term, nama_term, due_date, keterangan) VALUES (:a, :b, :c, :d)";
+                $stmt = $admin->runQuery($sql);
+                $stmt->execute(array(
+                    ':a'    => $kontrak,
+                    ':b'    => 'Pembayaran Ke-'.$i,
+                    ':c'    => $pembayaran,
+                    'd'     => $nominal
+                ));
+            }
+
+        }
+
+        echo "Success";
+    }
+
+
+}
+
+
 else{
     echo "none";
 }

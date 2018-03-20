@@ -36,9 +36,32 @@ $(document).ready(function(){
 
     $('#kontrakStart').daterangepicker({
         locale: {
-            format: 'DD/MM/YYYY'
+            format: 'YYYY/MM/DD'
         }
     });
+
+    $('#detailMPO').on('click', '.saveGaji', function () {
+        var id = $(this).data('id');
+        var gaji = $('#'+id).val();
+
+        if(gaji == ''){
+            alert('Not Null!');
+        }else{
+            $.ajax({
+                url : 'php/ajx/CRUD.php?type=saveGaji',
+                type: 'post',
+                data: 'id='+id+'&gaji='+gaji,
+
+                success : function(msg){
+                    if(msg != ''){
+                        alert(msg);
+                        location.reload();
+                    }
+
+                }
+            })
+        }
+    })
 
 
 })

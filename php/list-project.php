@@ -137,7 +137,13 @@ LEFT JOIN tb_kerjasama_perusahan ON tb_kerjasama_perusahan.kode_request = tb_tem
                                 <?=$bg?>
                             </td>
                             <td>
+                                <?php
+                                if(empty($col['nomor_kontrak'])){
+
+                                }else{
+                                ?>
                                 <a href="?p=detailProject&id=<?=$col['nomor_kontrak']?>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                                <?php } ?>
                                 <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                                 <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                             </td>

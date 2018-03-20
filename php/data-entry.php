@@ -11,7 +11,7 @@ $tbName = "tb_kerjasama_perusahan";
 $nomor = $config->Generate($field, $kode, $tbName);
 
 //inisial data
-    $sql ="SELECT tb_temporary_perusahaan.no_pendaftaran, tb_temporary_perusahaan.kebutuhan, tb_temporary_perusahaan.kode_pekerjaan, tb_temporary_perusahaan.nama_project, tb_perusahaan.kode_perusahaan, tb_perusahaan.nama_perusahaan, tb_kerjasama_perusahan.nomor_kontrak, tb_kerjasama_perusahan.total_karyawan, tb_kerjasama_perusahan.deskripsi, tb_kerjasama_perusahan.tugas, tb_kerjasama_perusahan.tanggung_jwb, tb_kerjasama_perusahan.penempatan, tb_kerjasama_perusahan.kontrak_start, tb_kerjasama_perusahan.kontrak_end, tb_kerjasama_perusahan.nilai_kontrak, tb_kerjasama_perusahan.tgl_input, tb_kerjasama_perusahan.kode_admin,
+    $sql ="SELECT tb_temporary_perusahaan.no_pendaftaran, tb_temporary_perusahaan.kebutuhan, tb_temporary_perusahaan.kode_pekerjaan, tb_temporary_perusahaan.nama_project, tb_perusahaan.kode_perusahaan, tb_perusahaan.nama_perusahaan, tb_kerjasama_perusahan.nomor_kontrak, tb_kerjasama_perusahan.total_karyawan, tb_kerjasama_perusahan.deskripsi, tb_kerjasama_perusahan.tugas, tb_kerjasama_perusahan.tanggung_jwb, tb_kerjasama_perusahan.penempatan, tb_kerjasama_perusahan.kontrak_start, tb_kerjasama_perusahan.kontrak_end, tb_kerjasama_perusahan.nilai_kontrak, tb_kerjasama_perusahan.tgl_input, tb_kerjasama_perusahan.total, tb_kerjasama_perusahan.lembur, tb_kerjasama_perusahan.kode_admin,
 	SUM(tb_list_perkerjaan_perusahaan.total) as totalkaryawan
 FROM tb_temporary_perusahaan 
     LEFT JOIN tb_perusahaan ON tb_perusahaan.kode_perusahaan = tb_temporary_perusahaan.kode_perusahaan 
@@ -38,7 +38,7 @@ FROM tb_temporary_perusahaan
 
 
         //tampil data MPO yaa
-        $query = "SELECT tb_list_perkerjaan_perusahaan.total, tb_jenis_pekerjaan.nama_pekerjaan FROM tb_list_perkerjaan_perusahaan 
+        $query = "SELECT tb_list_perkerjaan_perusahaan.id, tb_list_perkerjaan_perusahaan.total, tb_list_perkerjaan_perusahaan.gaji, tb_jenis_pekerjaan.nama_pekerjaan FROM tb_list_perkerjaan_perusahaan 
         INNER JOIN tb_jenis_pekerjaan ON tb_jenis_pekerjaan.kd_pekerjaan = tb_list_perkerjaan_perusahaan.name_list WHERE tb_list_perkerjaan_perusahaan.code = :detailMPO";
         $stmt = $config->runQuery($query);
         $stmt->execute(array(':detailMPO' => $row['kode_pekerjaan']));
@@ -127,30 +127,46 @@ FROM tb_temporary_perusahaan
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Penempatan Kerja</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" name="txt_penempatan" id="tempat" class="form-control" placeholder="nama kota penempatan" required="">
+                                    <input type="text" name="txt_penempatan" id="tempat" class="form-control" value="<?=$row['penempatan'];?>" placeholder="nama kota penempatan" required="">
                                 </div>
                             </div>
+                            <?php if($split == "MPO"){ ?>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Nilai Pekerjaan</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input type="text" data-parsley-type="number" id="nilaiPekerjaan" name="txt_nilai" value="0" class="form-control" placeholder="" readonly>
+                                    </div>
+                                </div>
+
+                            <?php }else{ ?>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Nilai Pekerjaan</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" data-parsley-type="number" id="nilaiPekerjaan" name="txt_nilai" class="form-control" placeholder="" required="">
+                                    <input type="text" data-parsley-type="number" id="nilaiPekerjaan" name="txt_nilai" value="<?=$row['nilai_kontrak'];?>" class="form-control" placeholder="" required="">
                                 </div>
                             </div>
+                            <?php } ?>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Kontrak Start</label>
                                 <div class="col-md-4 col-sm-4 col-xs-12">
-                                    <input type="text" name="txt_start" class="form-control has-feedback-left" id="kontrakStart" aria-describedby="inputSuccess2Status4">
+                                        <input type="text" name="txt_start" class="form-control has-feedback-left" id="kontrakStart" aria-describedby="inputSuccess2Status4">
                                     <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                                 <label class="control-label col-md-2 col-sm-2 col-xs-12">Total Hari</label>
                                 <div class="col-md-2 col-sm-2 col-xs-12">
 
 
-                                    <input class="form-control has-feedback-left" placeholder="First Name" name="txt_ends" data-parsley-type="number" aria-describedby="inputSuccess2Status" type="text" required>
+                                    <input class="form-control has-feedback-left" placeholder="Total Hari" name="txt_ends" value="<?=$row['total'];?>" data-parsley-type="number" aria-describedby="inputSuccess2Status" type="text" required>
                                     <span class="fa fa-plus form-control-feedback left" aria-hidden="true"></span>
                                     <span id="inputSuccess2Status" class="sr-only">(success)</span>
 
 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Nilai Per-Jam Lembur</label>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <input type="text" name="txt_lembur" class="form-control" value="<?=$row['lembur'];?>" id="txtLembur" placeholder="Rp. ........" required data-parsley-type="number" >
                                 </div>
                             </div>
                             <hr>
@@ -289,17 +305,27 @@ FROM tb_temporary_perusahaan
                         </form>
                     </div>
                     <div role="tabpanel" class="tab-pane fade " id="tab_content2" aria-labelledby="time-tab">
-                            <div class="row">
+                            <div class="row" id="detailMPO">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3">
                                     <table class="table table-bordered">
                                         <thead>
                                         <th>List Posisi</th>
+                                        <th>Gaji</th>
                                         <th>Total</th>
                                         </thead>
                                         <tbody>
-                                            <?php while($MPO = $stmt->fetch(PDO::FETCH_LAZY)){ ?>
+                                            <?php while($MPO = $stmt->fetch(PDO::FETCH_LAZY)){
+                                                ?>
                                         <tr>
                                             <td><?=$MPO['nama_pekerjaan']?></td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control" value="<?=$MPO['gaji']?>" name="gajiMPO" id="<?=$MPO['id']?>">
+                                                    <span class="input-group-btn">
+                                                      <button type="button" class="btn btn-default saveGaji" data-id="<?=$MPO['id']?>">Save</button>
+                                                    </span>
+                                                </div>
+                                            </td>
                                             <td><b><i><?=$MPO['total']?></i></b> karyawan</td>
                                         </tr>
                                         <?php } ?>

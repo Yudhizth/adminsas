@@ -236,5 +236,64 @@ $(document).ready(function(){
         }
     });
 
+    $('#adminStatus').on('click', '.disableAdmin', function () {
+
+        var id = $(this).data('username');
+
+        $.ajax({
+            url : 'php/ajx/CRUD.php?type=disableAdmin',
+            type: 'post',
+            data: 'kode='+id,
+
+            success : function(msg){
+                if(msg != ''){
+                    alert(msg);
+                    location.reload();
+                }
+
+            }
+
+        });
+    })
+    $('#adminStatus').on('click', '.enableAdmin', function () {
+
+        var id = $(this).data('username');
+
+        $.ajax({
+            url : 'php/ajx/CRUD.php?type=enableAdmin',
+            type: 'post',
+            data: 'kode='+id,
+
+            success : function(msg){
+                if(msg != ''){
+                    alert(msg);
+                    location.reload();
+                }
+
+            }
+
+        });
+    })
+
+    $('#adminStatus').on('click', '.resetPasswordAdmin', function () {
+
+        var id = $(this).data('id');
+        //alert(id);
+        $.ajax({
+            url : 'php/ajx/CRUD.php?type=resetPasswordAdmin',
+            type: 'post',
+            data: 'username='+id,
+
+            success : function(msg){
+                if(msg != ''){
+                    alert(msg);
+                    location.reload();
+                }
+
+            }
+
+        });
+    })
+
     
 })

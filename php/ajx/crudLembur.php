@@ -12,12 +12,14 @@ $config = new Admin();
 if(@$_GET['type'] == 'approve'){
     $ktp = $_POST['ktp'];
     $kode = $_POST['kode'];
+    $admin = $_POST['admin'];
     $status = "1";
 
-    $sql = "UPDATE tb_lembur SET status = :status WHERE kode_lembur = :kode AND no_ktp = :ktp";
+    $sql = "UPDATE tb_lembur SET status = :status, admin = :admin WHERE id = :kode AND no_ktp = :ktp";
     $stmt = $config->runQuery($sql);
     $stmt->execute(array(
         ':status' => $status,
+        ':admin'  => $admin,
         ':kode'   => $kode,
         ':ktp'    => $ktp
     ));
@@ -32,12 +34,14 @@ if(@$_GET['type'] == 'approve'){
 elseif(@$_GET['type'] == 'decline'){
     $ktp = $_POST['ktp'];
     $kode = $_POST['kode'];
+    $admin = $_POST['admin'];
     $status = "2";
 
-    $sql = "UPDATE tb_lembur SET status = :status WHERE kode_lembur = :kode AND no_ktp = :ktp";
+    $sql = "UPDATE tb_lembur SET status = :status, admin = :admin WHERE id = :kode AND no_ktp = :ktp";
     $stmt = $config->runQuery($sql);
     $stmt->execute(array(
         ':status' => $status,
+        ':admin'  => $admin,
         ':kode'   => $kode,
         ':ktp'    => $ktp
     ));

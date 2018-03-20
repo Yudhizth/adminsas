@@ -24,6 +24,28 @@ if (isset($_POST['addRekomendasi'])) {
                 </script>";
     }
 }
+if(isset($_POST['resetPassword'])){
+    $nomor_ktp = $_POST['txt_id_ktp'];
+    $password = $_POST['txt_password'];
+    $pass = password_hash($password, PASSWORD_DEFAULT);
+
+    $query = "UPDATE tb_login_karyawan SET password = :password WHERE no_ktp = :ktp";
+    $stmt = $config->runQuery($query);
+    $stmt->execute(array(
+            ':password' => $pass,
+            ':ktp'      => $nomor_ktp
+    ));
+
+    if($stmt){
+        echo "<script>
+                alert('Reset Password Success!');
+                window.location.href='?p=detail-karyawan&id=" . $no_ktp . "';
+                </script>";
+    }else{
+        echo "data tidak masuk";
+    }
+
+}
 
 
 $stmt = $config->runQuery("SELECT * FROM tb_karyawan LEFT JOIN tb_kode_status_karyawan ON tb_kode_status_karyawan.kd_id = tb_karyawan.kd_status_karyawan WHERE no_ktp = :id");
@@ -145,6 +167,25 @@ WHERE tb_list_karyawan.no_nip = :karyawan");
 $pekerjaan->execute(array(
         ':karyawan' =>$no_ktp
 ));
+
+$rt = "SELECT SUM(rating) as TotalRating FROM tb_report_job WHERE no_NIP = :nip";
+$rating = $config->runQuery($rt);
+$rating->execute(array(':nip' => $no_ktp));
+
+$rating = $rating->fetch(PDO::FETCH_LAZY);
+
+$rs = "SELECT id FROM tb_report_job WHERE no_NIP = :nip";
+$totalRating = $config->runQuery($rs);
+$totalRating->execute(array(':nip' => $no_ktp));
+
+$totalRat = $totalRating->rowCount();
+if($rating['TotalRating'] > 0){
+    $totalRatingKayawan = $rating['TotalRating'] / $totalRat;
+}else{
+    $totalRatingKayawan = "0";
+}
+
+
 ?>
 
 
@@ -199,6 +240,8 @@ $pekerjaan->execute(array(
                         class="fa fa-qrcode m-right-xs"></i> Export Data Karyawan</a>
             <a class="btn btn-primary" data-toggle="modal" data-target="#addRekomendasi"
                title="Rekomendasi Pekerjaan"><span class="fa fa-fw fa-plus"></span> Rekomendasi</a>
+            <a class="btn btn-default" data-toggle="modal" data-target="#resetPassword"
+               title="Reset Password"><span class="fa fa-fw fa-key"></span> Reset Password</a>
 
             <br/>
 
@@ -995,6 +1038,38 @@ $pekerjaan->execute(array(
                             </table>
                         </div>
                     </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3 widget widget_tally_box">
+                        <div class="x_panel fixed_height_390">
+                            <div class="x_content">
+
+                                <div class="flex">
+                                    <ul class="list-inline widget_profile_box">
+                                        <li style="float: unset !important;">
+                                            <img src="<?= $dataFoto ?>" alt="..." class="img-circle profile_img">
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <h3 class="name">Productivitas</h3>
+
+                                <div class="flex">
+                                    <ul class="list-inline count2">
+                                        <li style="width: 100% !important;">
+                                            <?php if($totalRatingKayawan > 0){ for($i = 1; $i <= $totalRatingKayawan; $i++){ ?>
+                                            <span class="fa fa-2x fa-star" style="color: #B92029;"></span>
+                                            <?php } }else{ echo "Not Yet Rating!"; } ?>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p>
+                                    Total Poin: <?=$rating['TotalRating']?>
+                                </p>
+                                <p>
+                                    Task Done: <?=$totalRat?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -1039,6 +1114,38 @@ $pekerjaan->execute(array(
                         </select>
                     </div>
                     <button type="submit" name="addRekomendasi" class="btn btn-default">Submit</button>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="resetPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"><span class="fa fa-users"></span> RESET PASSWORD</h4>
+            </div>
+            <div class="modal-body">
+
+                <form method="post" action="">
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">YOUR PASSWORD IS</label>
+                        <input name="txt_id_ktp" type="hidden" class="form-control" value="<?= $no_ktp ?>">
+                        <input name="txt_password" type="text" class="form-control" value="<?= $no_ktp ?>" readonly>
+
+                    </div>
+                    <button type="submit" name="resetPassword" class="btn btn-block btn-primary">RESET</button>
 
                 </form>
 

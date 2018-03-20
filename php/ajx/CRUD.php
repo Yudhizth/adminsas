@@ -348,6 +348,77 @@ elseif (@$_GET['type'] == 'saveMap'){
     }
 }
 
+elseif (@$_GET['type'] == 'disableAdmin'){
+    $a = $_POST['kode'];
+
+    $sql = "UPDATE tb_admin SET status = '0' WHERE tb_admin.username = :username";
+
+    $stmt = $config->runQuery($sql);
+    $stmt->execute(array(
+        ':username'    => $a
+    ));
+
+    if($stmt){
+        echo "Berhasil Disable Admin";
+    }else{
+        echo "Tidak Berhasil.";
+    }
+}
+elseif (@$_GET['type'] == 'enableAdmin'){
+    $a = $_POST['kode'];
+
+    $sql = "UPDATE tb_admin SET status = '1' WHERE tb_admin.username = :username";
+
+    $stmt = $config->runQuery($sql);
+    $stmt->execute(array(
+        ':username'    => $a
+    ));
+
+    if($stmt){
+        echo "Berhasil Enable Admin";
+    }else{
+        echo "Tidak Berhasil.";
+    }
+}
+
+elseif (@$_GET['type'] == 'saveGaji'){
+    $a = $_POST['id'];
+    $b = $_POST['gaji'];
+
+    $sql = "UPDATE tb_list_perkerjaan_perusahaan SET gaji = :gaji WHERE id = :id";
+
+    $stmt = $config->runQuery($sql);
+    $stmt->execute(array(
+        ':gaji'    => $b,
+        ':id'      => $a
+    ));
+
+    if($stmt){
+        echo "Berhasil Add Gaji";
+    }else{
+        echo "Tidak Berhasil.";
+    }
+}
+
+elseif (@$_GET['type'] == 'resetPasswordAdmin'){
+    $a = $_POST['username'];
+    $b = $config->newPassword("adminSAS123");
+
+    $sql = "UPDATE tb_admin SET password = :pass WHERE username = :userame";
+
+    $stmt = $config->runQuery($sql);
+    $stmt->execute(array(
+        ':pass'    => $b,
+        ':userame'      => $a
+    ));
+
+    if($stmt){
+        echo "New Password 'adminSAS123' ";
+    }else{
+        echo "Tidak Berhasil.";
+    }
+}
+
 
 
 

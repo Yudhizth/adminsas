@@ -1,6 +1,6 @@
 <?php
 $records_per_page = 10;
-$sql = "SELECT tb_lembur.kode_lembur, tb_lembur.no_ktp, tb_lembur.tanggal, tb_lembur.keterangan, tb_lembur.status, tb_karyawan.nama_depan, tb_karyawan.nama_belakang
+$sql = "SELECT tb_lembur.id, tb_lembur.kode_lembur, tb_lembur.no_ktp, tb_lembur.tanggal, tb_lembur.jam, tb_lembur.keterangan, tb_lembur.status, tb_lembur.admin, tb_karyawan.nama_depan, tb_karyawan.nama_belakang
  FROM tb_lembur 
  INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_lembur.no_ktp
  ORDER BY tanggal DESC";
@@ -38,7 +38,8 @@ $stmt->execute();
                 <th width="2%">#</th>
                 <th width="23%">Nama Karyawan</th>
                 <th width="15%">Tanggal Lembur</th>
-                <th width="40%">Keterangan</th>
+                <th width="10%">Total Jam</th>
+                <th width="30%">Keterangan</th>
                 <th width="10%">Status</th>
                 <th width="10%">Action</th>
             </tr>
@@ -60,31 +61,36 @@ $stmt->execute();
                     <tr>
                         <th scope="row"><?=$i++?></th>
                         <td><?=$row['nama_depan']?> <?=$row['nama_belakang']?></td>
-                        <td><?=$row['tanggal']?></td>
+                        <td><?=$row['tanggal']?> </td>
+                        <td><?=$row['jam']?> jam</td>
                         <td><?=$row['keterangan']?></td>
                         <td><?=$status?></td>
                         <td>
-                            <button type="button" data-toggle="tooltip"
-                                    data-kode="<?= $row['kode_lembur'] ?>" data-ktp="<?=$row['no_ktp']?>" data-placement="right"
-                                    title="Approve"
-                                    class="btn btn-success btn-xs approveLembur"
-                                    onclick="return confirm('Are you sure you want to Approve?');">
-                                <i class="fa fa-fw fa-check-square-o"> </i>
-                            </button>
-                            <button type="button" data-toggle="tooltip"
-                                    data-kode="<?= $row['kode_lembur'] ?>" data-ktp="<?=$row['no_ktp']?>" data-placement="right"
-                                    title="Decline"
-                                    class="btn btn-danger btn-xs declineLembur"
-                                    onclick="return confirm('Are you sure you want to Decline?');">
-                                <i class="fa fa-fw fa-times-circle"> </i>
-                            </button>
+                           <?php
+                           if(empty($row['status'])){ ?>
+                               <button type="button" data-toggle="tooltip"
+                                       data-kode="<?= $row['id'] ?>" data-ktp="<?=$row['no_ktp']?>" data-admin="<?=$kd_admin?>" data-placement="right"
+                                       title="Approve"
+                                       class="btn btn-success btn-xs approveLembur"
+                                       onclick="return confirm('Are you sure you want to Approve?');">
+                                   <i class="fa fa-fw fa-check-square-o"> </i>
+                               </button>
+                               <button type="button" data-toggle="tooltip"
+                                       data-kode="<?= $row['id'] ?>" data-ktp="<?=$row['no_ktp']?>" data-admin="<?=$kd_admin?>" data-placement="right"
+                                       title="Decline"
+                                       class="btn btn-danger btn-xs declineLembur"
+                                       onclick="return confirm('Are you sure you want to Decline?');">
+                                   <i class="fa fa-fw fa-times-circle"> </i>
+                               </button>
+                           <?php } else { echo "Action by: <span class='label label-primary'>".$row['admin'] . "</span>" ; }
+                           ?>
                         </td>
                     </tr>
 
                 <?php  }
             }else{ ?>
                 <tr>
-                    <td colspan="6">Belum ada lemburan.</td>
+                    <td colspan="7">Belum ada lemburan.</td>
                 </tr>
             <?php }
             ?>

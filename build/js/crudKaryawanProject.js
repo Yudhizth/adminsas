@@ -162,6 +162,24 @@ $(document).ready(function(){
         }
     });
 
+    $('#dataKontrak').on('click', '.generateInvoice', function () {
+        var kontrak = $(this).data('kontrak');
+
+        $.ajax({
+            url : 'php/ajx/crudKaryawanProject.php?type=generateInvoice',
+            type: 'post',
+            data: 'kontrak='+kontrak,
+
+            success : function(msg){
+                if(msg != ''){
+                    alert(msg);
+                    location.reload();
+                }
+
+            }
+        })
+    })
+
 
 
 })

@@ -81,75 +81,82 @@ $stmt->execute();
 
   <!-- Modal -->
 <div class="modal fade" id="addMenuList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-<div class="modal-content">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
 
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-    </button>
-    <h4 class="modal-title" id="myModalLabel"><span class="fa fa-users"></span> Add New Menu</h4>
-  </div>
-  <div class="modal-body">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"><span class="fa fa-users"></span> Add New Menu</h4>
+            </div>
+            <div class="modal-body">
 
-    <form method="post" action="php/add-menu.php">
-      <div class="form-group">
-    <select name="txt_category" class="form-control">
-      <option value="0" selected style="text-transform: capitalize; font-weight: 600;">-- Category --</option>
-      <?php
-            $admin = new Admin();
+                <form method="post" action="php/add-menu.php">
+                    <div class="form-group">
+                        <select name="txt_category" class="form-control">
+                            <option value="0" selected style="text-transform: capitalize; font-weight: 600;">-- Category
+                                --
+                            </option>
+                            <?php
+                            $admin = new Admin();
 
-            $stmt = $admin->runQuery("SELECT * FROM tb_category");
-            $stmt->execute();
-            // $upass = "admin";
-            // $new_password = password_hash($upass, PASSWORD_DEFAULT);
+                            $stmt = $admin->runQuery("SELECT * FROM tb_category");
+                            $stmt->execute();
+                            // $upass = "admin";
+                            // $new_password = password_hash($upass, PASSWORD_DEFAULT);
 
-            // echo $new_password;
-            while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
-              # code...
-              ?>
-      <option style="text-transform: capitalize; font-weight: 600;" value="<?=$row['id_category']?>"><?=$row['name']?> </option>
-      <?php } ?>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Nama Sub Category</label>
-    <input name="txt_subCategory" type="text" class="form-control" id="exampleInputEmail1" minlength="3" placeholder=". . . . . . . " required>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Link URL</label>
-    <input name="txt_link" type="text" class="form-control" minlength="3" id="exampleInputPassword1" placeholder=". . . . . . . ." required>
-  </div>
-  <div class="form-group">
-    <select name="txt_icon" class="form-control" style="font-family: 'FontAwesome', Arial;">
-      <option value="0" selected style="text-transform: capitalize; font-weight: 600;">-- Icon --</option>
-      <option value="fa fa-home">&#xf015;</option>
-      <option value="fa fa-list-alt">&#xf022;</option>
-      <option value="fa fa-th">&#xf00a;</option>
-      <option value="fa fa-sitemap">&#xf0e8;</option>
-      <option value="fa fa-bullseye">&#xf140;</option>
-      <option value="fa fa-user">&#xf007;</option>
-      <option value="fa fa-users">&#xf0c0;</option>
-      <option value="fa fa-user-md">&#xf0f0;</option>
-      <option value="fa fa-calendar">&#xf073;</option>
-      <option value="fa fa-calendar-o">&#xf133;</option>
-      <option value="fa fa-pencil-square-o">&#xf044;</option>
-      <option value="fa fa-gear">&#xf013;</option>
-      <option value="fa fa-barcode">&#xf02a;</option>
-      <option value="fa fa-image">&#xf03e;</option>
-      <option value="fa fa-newspaper-o">&#xf1ea;</option>
-      <option value="fa fa-frown-o">&#xf119;</option>
-      <option value="fa fa-pie-chart">&#xf200;</option>
-      
-    </select>
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
+                            // echo $new_password;
+                            while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
+                                # code...
+                                ?>
+                                <option style="text-transform: capitalize; font-weight: 600;"
+                                        value="<?= $row['id_category'] ?>"><?= $row['name'] ?> </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nama Sub Category</label>
+                        <input name="txt_subCategory" type="text" class="form-control" id="exampleInputEmail1"
+                               minlength="3" placeholder=". . . . . . . " required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Link URL</label>
+                        <input name="txt_link" type="text" class="form-control" minlength="3" id="exampleInputPassword1"
+                               placeholder=". . . . . . . ." required>
+                    </div>
+                    <div class="form-group">
+                        <select name="txt_icon" class="form-control" style="font-family: 'FontAwesome', Arial;">
+                            <option value="0" selected style="text-transform: capitalize; font-weight: 600;">-- Icon
+                                --
+                            </option>
+                            <option value="fa fa-home">&#xf015;</option>
+                            <option value="fa fa-list-alt">&#xf022;</option>
+                            <option value="fa fa-th">&#xf00a;</option>
+                            <option value="fa fa-sitemap">&#xf0e8;</option>
+                            <option value="fa fa-bullseye">&#xf140;</option>
+                            <option value="fa fa-user">&#xf007;</option>
+                            <option value="fa fa-users">&#xf0c0;</option>
+                            <option value="fa fa-user-md">&#xf0f0;</option>
+                            <option value="fa fa-calendar">&#xf073;</option>
+                            <option value="fa fa-calendar-o">&#xf133;</option>
+                            <option value="fa fa-pencil-square-o">&#xf044;</option>
+                            <option value="fa fa-gear">&#xf013;</option>
+                            <option value="fa fa-barcode">&#xf02a;</option>
+                            <option value="fa fa-image">&#xf03e;</option>
+                            <option value="fa fa-newspaper-o">&#xf1ea;</option>
+                            <option value="fa fa-frown-o">&#xf119;</option>
+                            <option value="fa fa-pie-chart">&#xf200;</option>
 
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">Close</button>
-  </div>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
 
-</div>    
-  </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
 </div>

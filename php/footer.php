@@ -103,6 +103,14 @@
     <script src="build/js/gaji.js"></script>
 <?php } ?>
 
+<?php if($footer == 'list-loker') { ?>
+    <script src="build/js/loker.js"></script>
+<?php } ?>
+
+<?php if($footer == 'push') { ?>
+    <script src="build/js/push.js"></script>
+<?php } ?>
+
 
 <script src="vendors/parsleyjs/dist/parsley.js"></script>
 

@@ -584,20 +584,20 @@ tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_kerjasama_perusahan.nomor_
                                 <p>Tony Chicken</p>
                             </div>
 
-                            <p><?=$data['deskripsi']?></p>
+                            <p style="overflow: hidden;"><?=$data['deskripsi']?></p>
                             <hr>
                             <div class="project_detail" id="dataKontrak">
                                 <p class="title">Tugas</p>
-                                <p><?=$data['tugas']?></p>
+                                <p style="overflow: hidden;"><?=$data['tugas']?></p>
                                 <hr>
                                 <p class="title">Tanggung Jawab</p>
-                                <p><?=$data['tanggung_jwb']?></p>
+                                <p style="overflow: hidden;"><?=$data['tanggung_jwb']?></p>
                                 <hr>
                                 <?php if($term->rowCount() > 0 ){  while ($row = $term->fetch(PDO::FETCH_LAZY)){ ?>
                                     <ul class="list-unstyled project_files">
                                         <li><i class="fa fa-tags"></i> <?=$row['nama_term']?>
                                         </li>
-                                        <li><i class="fa fa-calendar"></i> <?=$row['due_date']?>
+                                        <li><i class="fa fa-calendar"></i> <?=date('d M Y', strtotime($row['due_date']))?>
                                         </li>
                                         <li>Subtotal:  Rp.<?=number_format($row['keterangan'], 2, ',', '.')?>
                                         </li>

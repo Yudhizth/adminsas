@@ -16,6 +16,75 @@ $id = $_GET['spk'];
         .card-block{
             padding: 0.1rem;
         }
+
+        .input-group {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-box-align: stretch;
+            -ms-flex-align: stretch;
+            align-items: stretch;
+            width: 100%;
+        }
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+        .input-group-prepend {
+            margin-right: -1px;
+        }
+        .input-group-append, .input-group-prepend {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+        .input-group-text {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: .375rem .75rem;
+            margin-bottom: 0;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            text-align: center;
+            white-space: nowrap;
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+        }
+
+        .input-group>.custom-select:not(:first-child), .input-group>.form-control:not(:first-child) {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .input-group>.custom-file, .input-group>.custom-select, .input-group>.form-control {
+            position: relative;
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            width: 1%;
+            margin-bottom: 0;
+        }
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
     </style>
 </head>
 <body style="font-size: 13px;">
@@ -31,6 +100,12 @@ $id = $_GET['spk'];
             </form>
         </div>
     </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+                <br>
+                <button class="btn btn-default btn-block" type="button" data-toggle="modal" data-target="#exampleModal">Fast Location</button>
+        </div>
+    </div>
 
     <div class="card-block" id='error-page'></div>
     <div class="card-block" id='formatted-address'></div>
@@ -38,8 +113,69 @@ $id = $_GET['spk'];
     <div class="card-block" id='geometry'></div>
     <div class="card-block" id='button-submit'></div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="fast-map">
+                    <div class="input-group mb-3">
+                        <input type="hidden" id="spk" value="<?=$id?>">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">Latitued</span>
+                        </div>
+                        <input type="text" class="form-control" id="latitued" required aria-describedby="basic-addon3">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">Longitude</span>
+                        </div>
+                        <input type="text" class="form-control" id="longitude" required aria-describedby="basic-addon3">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-block btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 <script type="text/javascript">
+
+    $('#fast-map').on('submit', function (e) {
+        e.preventDefault();
+        var lat = $('#latitued').val();
+        var lng = $('#longitude').val();
+        var spk = $('#spk').val();
+        var label = 'Map-'+spk;
+        var location = 'Unset';
+        $.ajax({
+
+            url  : 'ajx/CRUD.php?type=saveMap',
+            type: 'post',
+            data: 'spk='+spk+'&label='+label+'&lat='+lat+'&lng='+lng+'&location='+location,
+
+            success : function (msg) {
+                if(msg == '1'){
+
+                    window.top.close();
+                    // var list = $('#showListCuti').hide().load('php/ajx/detailCuti.php?admin='+admin).fadeIn(1500);
+                }
+            }
+        });
+
+    })
     //geocode();
 
     //get location form

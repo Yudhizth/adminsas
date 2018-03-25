@@ -173,7 +173,18 @@ $newReq->execute();
         $totLembur = '0';
     }
 
-    $totalNotifikasi = $totalComplainPerusahaan + $newComplain + $newComplainK + $totalReplayK + $totalNewCP + $totalNewReq + $totLembur;
+    $pu = "SELECT tb_compos.id, tb_compos.judul, tb_compos.last_seed, tb_karyawan.nama_depan, tb_karyawan.nama_belakang FROM tb_compos
+            INNER JOIN tb_karyawan ON tb_compos.no_ktp = tb_karyawan.no_ktp
+            WHERE tb_compos.status = '2'";
+    $push = $config->runQuery($pu);
+    $push->execute();
+    if($push->rowCount() > 0){
+        $pushTot = $push->rowCount();
+    }else{
+        $pushTot = '0';
+    }
+
+    $totalNotifikasi = $totalComplainPerusahaan + $newComplain + $newComplainK + $totalReplayK + $totalNewCP + $totalNewReq + $totLembur + $pushTot;
 
 
 ?>
@@ -305,6 +316,22 @@ $newReq->execute();
                                         <span>
                                           <span style="color: #4BB926; font-weight: bold">New Lembur</span>
                                           <span class="time" style="color: #26b99a;">' .$row['tanggal'].'</span>
+                                        </span>
+                                        <span class="message">
+                                          Karyawan <b>'.$row['nama_depan'].' '. $row['nama_belakang'].'</b> 
+                                        </span>
+                                    </a></li>';
+                    };
+                }
+
+                if($push->rowCount() > 0){
+
+                    while ($row = $push->fetch(PDO::FETCH_LAZY)){
+
+                        echo '<li><a>
+                                        <span>
+                                          <span style="color: #4BB926; font-weight: bold">Replay Push</span>
+                                          <span class="time" style="color: #26b99a;">' .$row['last_seed'].'</span>
                                         </span>
                                         <span class="message">
                                           Karyawan <b>'.$row['nama_depan'].' '. $row['nama_belakang'].'</b> 

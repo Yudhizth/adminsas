@@ -1,6 +1,6 @@
 <?php
 
-    $st = $config->runQuery("SELECT * FROM tb_temporary_perusahaan WHERE kode_perusahaan = ''");
+    $st = $config->runQuery("SELECT id FROM tb_temporary_perusahaan WHERE kode_perusahaan = ''");
     $st->execute();
 
     $data  = $st->rowCount();
@@ -120,17 +120,17 @@
                                             </tr>
                                         </thead>
                                     <?php
-                                    $stmt = $config->runQuery("SELECT tb_temporary_perusahaan.no_pendaftaran, tb_temporary_perusahaan.kode_perusahaan, tb_temporary_perusahaan.nama_perusahaan, tb_temporary_perusahaan.cp, tb_temporary_perusahaan.phone, tb_temporary_perusahaan.email, tb_temporary_perusahaan.create_date, tb_temporary_perusahaan.status, tb_jenis_pekerjaan.nama_pekerjaan, tb_kategori_pekerjaan.nama_kategori
+                                    $stmt2 = $config->runQuery("SELECT tb_temporary_perusahaan.no_pendaftaran, tb_temporary_perusahaan.kode_perusahaan, tb_temporary_perusahaan.nama_perusahaan, tb_temporary_perusahaan.cp, tb_temporary_perusahaan.phone, tb_temporary_perusahaan.email, tb_temporary_perusahaan.create_date, tb_temporary_perusahaan.status, tb_jenis_pekerjaan.nama_pekerjaan, tb_kategori_pekerjaan.nama_kategori
                                         FROM tb_temporary_perusahaan
                                         LEFT JOIN tb_jenis_pekerjaan ON tb_jenis_pekerjaan.kd_pekerjaan=tb_temporary_perusahaan.kode_pekerjaan
                                         LEFT JOIN tb_kategori_pekerjaan ON tb_kategori_pekerjaan.kode_kategori=tb_temporary_perusahaan.kebutuhan
                                         WHERE tb_temporary_perusahaan.kode_perusahaan = ''
                                         ORDER BY tb_temporary_perusahaan.create_date DESC");
-                                    $stmt->execute(array());
+                                    $stmt2->execute(array());
                                     ?>
                                         <tbody>
                                         <?php
-                                        if ($stmt->rowCount() == '') {
+                                        if ($stmt2->rowCount() == '') {
                                             # code...
                                             ?>
                                             <tr>
@@ -138,24 +138,24 @@
                                             </tr>
                                             <?php
                                         } else{
-                                        while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
+                                        while ($col = $stmt2->fetch(PDO::FETCH_LAZY)) {
                                             # code...
                                             ?>
                                                 <tr class="even pointer">
 
 
-                                                    <td class="col-md-2"><?php echo $row['nama_perusahaan']; ?></td>
-                                                    <td class="col-md-2"><?php echo $row['cp']; ?></td>
-                                                    <td class="col-md-2"><?php echo $row['phone']; ?></td>
-                                                    <td class="col-md-2"><?php echo $row['email']; ?></td>
-                                                    <td class="col-md-1"><?php echo $row['nama_kategori']; ?></td>
-                                                    <td class="col-md-2"><?php echo $row['create_date']; ?></td>
+                                                    <td class="col-md-2"><?php echo $col['nama_perusahaan']; ?></td>
+                                                    <td class="col-md-2"><?php echo $col['cp']; ?></td>
+                                                    <td class="col-md-2"><?php echo $col['phone']; ?></td>
+                                                    <td class="col-md-2"><?php echo $col['email']; ?></td>
+                                                    <td class="col-md-1"><?php echo $col['nama_kategori']; ?></td>
+                                                    <td class="col-md-2"><?php echo $col['create_date']; ?></td>
                                                     <td class="col-md-2">
-                                                        <a href="?p=detail-entry&name=<?php echo $row['no_pendaftaran']; ?>">
+                                                        <a href="?p=detail-entry&name=<?php echo $col['no_pendaftaran']; ?>">
                                                         <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-edit">
                                                           </i>  Entry </button>
                                                           </a>
-                                                          <a href="php/delete-request.php?id=<?php echo $row['no_pendaftaran']; ?>" onClick="return confirm('Yakin data akan dihapus?')" >
+                                                          <a href="php/delete-request.php?id=<?php echo $col['no_pendaftaran']; ?>" onClick="return confirm('Yakin data akan dihapus?')" >
                                                           <button type="button" class="btn btn-danger btn-xs">
                                                           <i class="fa fa-remove">  </i>  Delete
                                                         </button>

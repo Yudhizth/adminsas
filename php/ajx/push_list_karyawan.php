@@ -11,7 +11,7 @@
     $stmt = $kelas->runQuery($query);
     $stmt->execute();
     while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
-        $data[] = $row['nama_depan']. ' ' .$row['nama_belakang']. '(' .$row['no_ktp']. ')' ;
+        $data[] = $row['nama_depan']. ' ' .$row['nama_belakang']. '_' .$row['no_ktp'] ;
     }
     
     //return json data

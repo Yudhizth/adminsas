@@ -1,299 +1,135 @@
 <?php
 
+    $record_lokers = '5';
 
-  if (isset($_POST['addPush'])) {
+    $sql = "SELECT tb_compos.id, tb_compos.kode_compos, tb_compos.id_reff, tb_compos.no_ktp, tb_compos.judul,
+            tb_compos.isi, tb_compos.create_date, tb_compos.admin, tb_compos.status, tb_karyawan.nama_depan, tb_karyawan.nama_belakang
+            FROM tb_compos 
+            INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_compos.no_ktp
+            WHERE tb_compos.kode_compos !='' ORDER BY tb_compos.create_date DESC  ";
 
-    $kepada = $_POST['txt_kepada'];
-    $admin = $_POST['txt_admin'];
-    $subject = $_POST['txt_subject'];
-    $isi = $_POST['txt_isi'];
-
-    if ($isi == "") {
-      # code...
-      echo "Data tidak boleh kosong";
-    } else {
-      $cek = new Admin();
-
-      $id3 = "kd_subject";
-      $kode3 = "DTSBJPS";
-      $tbName3 = "tb_subject_push";
-
-      $kd = $cek->Generate($id3, $kode3, $tbName3);
-
-      $sql = "INSERT INTO tb_subject_push (kd_subject, nama_subject, isi) VALUES (:kd, :nama, :isi)";
-      $stmt = $cek->runQuery($sql);
-      $stmt->execute(array(
-        ':kd' =>$kd,
-        ':nama' =>$subject,
-        ':isi'  =>$isi));
-
-      if (!$stmt) {
-        # code...
-        echo "<script>
-        alert('Push Fail Send!');
-        window.location.href='index.php?p=push';
-        </script>";
-      }
-      else{
-        echo "<script>
-        alert('Push Has Send!');
-        window.location.href='index.php?p=push';
-        </script>";
-      }
-    }
-
-    $nama = explode(',', $kepada);
-
-    
-
-    // ==============================
-    
-      
-    // ==============================
-
-    
-    foreach ($nama as $key => $value) {
-
-      $pdo = new Admin();
-      $sql = "INSERT INTO tb_push (kd_push, subject, dari, kepada) VALUES (:kode, :aa, :bb, :cc)";
-
-      $stmt = $pdo->runQuery($sql);
-
-      $input = new Admin();
-      
-      $id = "kd_push";
-      $kode = "PUSH";
-      $tbName = "tb_push";
-      $new_kode = $input->Generate($id, $kode, $tbName);
-      $kode = substr($value, -17, 16);
-      $stmt->execute(array(
-        ':kode'=>$new_kode,
-        ':aa' =>$kd,
-        ':bb' =>$admin,
-        ':cc' =>$kode));
-
-      $id2 = "kd_detail";
-      $kode2 = "PUSHDT";
-      $tbName2 = "tb_detail_push";
-      $kdDetail = $input->Generate($id2, $kode2, $tbName2);
-    $sql = "INSERT INTO tb_detail_push (kd_detail, kd_push, inisial, pesan) VALUES (:kd, :push, :inisial, :isi)";
-    $stmt = $input->runQuery($sql);
-    $stmt->execute(array(
-      ':kd'   =>$kdDetail,
-      ':push' =>$new_kode,
-      ':inisial' =>$admin,
-      ':isi'  =>$isi));
-
-      if (!$stmt) {
-        # code...
-        echo "tidak berhasil";
-      } else{
-            
-
-      //   $sql = " insert ke $key, dari kode ke: $kode";
-      // echo $sql;
-      // echo "<br/>";
-      }
-    }
-
-    // $input = new Admin();
-
-    // // ==============================
-    // $id = "kd_push";
-    // $kode = "PUSH";
-    // $tbName = "tb_push";
-    //   $new_kode = $input->Generate($id, $kode, $tbName);
-    // // ==============================
-
-    // $sql = "INSERT INTO tb_push (kd_push, subject, dari, kepada) VALUES (:kd, :subject, :dari, :kepada)";
-    // $stmt = $input->runQuery($sql);
-    // $stmt->execute(array(
-    //   ':kd'   => $new_kode,
-    //   ':subject' => $subject,
-    //   ':dari' => $admin,
-    //   ':kepada' => $kepada));
-
-    // if (!$stmt) {
-    //   # code...
-    //   echo "Data tidak masuk ke Database";
-    // }else {
-    //     $id = "kd_detail";
-    //     $kode = "PUSHDT";
-    //     $tbName = "tb_detail_push";
-    //     $kdDetail = $input->Generate($id, $kode, $tbName);
-    //   $sql = "INSERT INTO tb_detail_push (kd_detail, kd_push, inisial, pesan) VALUES (:kd, :push, :inisial, :isi)";
-    //   $stmt = $input->runQuery($sql);
-    //   $stmt->execute(array(
-    //     ':kd'   =>$kdDetail,
-    //     ':push' =>$new_kode,
-    //     ':inisial' =>$admin,
-    //     ':isi'  =>$isi));
-    //   if (!$stmt) {
-    //     # code...
-    //     echo "data tidak masuk.";
-    //   } else{
-       
-    //   }
-    // }
-  }
-
-  
+    $listPUsh = $config->paging($sql, $record_lokers);
+    $list = $config->runQuery($listPUsh);
+    $list->execute();
 ?>
 
-<div class="page-title">
-  <div class="title_left">
-    <h3>Make a Push! <span class="text-danger"><span class="fa fa-bullseye"></span></span></h3>
-    <hr>
-  </div>
+<div class="x_panel" id="isiPush" style="padding: 3% 2%;"></div>
+
+
+
+<div class="row" id="push-content" >
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Push Pages<small>Admin Mail</small></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" >
+                <div class="row">
+                    <div  id="content-push">
+                        <div class="col-sm-10 col-md-10 col-sm-offset-1 col-md-offset-1 col-xs-12 mail_list_column" id="showPush">
+                            <button id="compose" class="btn btn-sm btn-success btn-block newCompos" type="button">COMPOSE</button>
+                            <br>
+                            <?php
+                            if($list->rowCount() > 0){
+                                while ($row = $list->fetch(PDO::FETCH_LAZY)){
+                                    $date = date('d/m/y H:m', strtotime($row['create_date']));
+                                    if($row['status'] == '1'){
+                                        $status = '<i class="fa fa-circle-o"></i>';
+                                        $title = "<label class='badge bg-green'>Replayed</label>";
+                                    }elseif($row['status'] == '2'){
+                                        $status = '<i class="fa fa-circle"></i>';
+                                        $title = "<label class='label label-sm label-success'>replay</label>";
+
+                                    }else{
+                                        $status = '<i class="fa fa-circle"></i>';
+                                        $title = "<label class='badge bg-green'>new</label>";
+
+                                    }
+
+                                    ?>
+                                    <a href="#" class="showMore" data-id="<?=$row['kode_compos']?>">
+                                        <div class="mail_list">
+                                            <div class="left">
+                                                <?=$status?>
+                                            </div>
+                                            <div class="right">
+                                                <h3><span style="text-transform: capitalize;"><?=$row['judul']?> <?=$title?></span> <small><?=$date?></small></h3>
+                                                <br>
+                                                <p>Push dikirim ke Karyawan : <?=$row['nama_depan']?> <?=$row['nama_belakang']?>
+                                                    <br>
+                                                    Create by Admin: <?=$row['admin']?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                <?php   }
+                            }else{ echo '<div class="jumbotron">
+<h1>Nothing here!</h1> 
+<p>Just Click Button Compose and start chat with your "Karyawan".</p> 
+</div>' ;}
+                            ?>
+
+                            <?php $pages = $config->paginglink($sql, $record_lokers); ?>
+
+                        </div>
+                    </div>
+                    <!-- /MAIL LIST -->
+
+                    <!-- CONTENT MAIL -->
+<!--                    <div class="col-sm-9 mail_view" id="isiPush">-->
+<!---->
+<!---->
+<!--                    </div>-->
+                    <!-- /CONTENT MAIL -->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="clearfix"></div>
+<div class="modal fade" id="replyPush" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
 
-<div class="row">
-  <div class="col-md-12">
-    <div class="x_panel">
-      <div class="x_title">
-        <h2>Inbox</h2>
-        <div class="clearfix"></div>
-      </div>
-      <div class="x_content">
-        <div id="composeNew" style="display: none;">
-          <?php
-            include_once "ajx/compose_new_push.php";
-          ?>
-        </div>
-      </div>
-      <div class="x_content">
-        <div class="row">
-
-          <div id="listKiri" class="col-sm-8 col-sm-offset-2">
-              <div class="row">
-                <div class="col-sm-4 col-sm-offset-4">
-                  <button id="compose" type="button" class="btn btn-sm btn-success btn-block">COMPOSE</button>
-                </div>
-              </div>
-            <hr>
-
-            <?php 
-            $row_per_page = '10';
-              $cek = new Admin();
-              $sql = 'SELECT tb_push.kd_push, tb_push.subject, tb_push.dari, tb_push.kepada, tb_push.create_date, tb_subject_push.nama_subject, tb_detail_push.inisial,
-tb_subject_push.isi, tb_subject_push.create_date, tb_admin.nama_admin, tb_karyawan.no_ktp, tb_karyawan.nama_depan, 
-tb_karyawan.nama_belakang, tb_detail_push.read_date FROM tb_push
-            INNER JOIN tb_subject_push ON tb_subject_push.kd_subject=tb_push.subject
-            INNER JOIN tb_admin ON tb_admin.username = tb_push.dari
-            INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_push.kepada
-            INNER JOIN tb_detail_push ON tb_detail_push.kd_push = tb_push.kd_push
-            WHERE tb_push.dari = :adminID AND tb_detail_push.inisial = :adminID
-                ORDER BY tb_push.create_date DESC
-              ';
-              $stmt = $cek->runQuery($sql);
-              $stmt->execute(array(
-                ':adminID' => $admin_id
-              ));
-
-            if ($stmt->rowCount() == '0') {
-              # code...
-              ?>
-
-            <div class="alert alert-info alert-dismissible fade in" role="alert">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-              </button>
-              <strong>Hore!</strong> belum ada push
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-reply"></i> Replay Push</h4>
             </div>
+            <div class="modal-body">
 
-              <?php
-            }else {
-
-              while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
-
-              
-                $count = $row['read_date'];
-
-
-                if ($count == NULL) {
-    # code...
-                 $label = '<i class="fa fa-circle"></i>';
-                   }else{
-                    $label = '<i class="fa fa-circle-o"></i>';
-                  }
-              
-            ?>
-                <a  href="?p=detailPesan&pesan=<?=$row['kd_push']?>" data-id="<?php echo $row['kd_push']; ?>" data-jd="<?php echo $row['subject']; ?>" data-kd = "<?php echo $row['kd_detail']; ?>" data-in = "<?php echo $row['inisial']; ?>" data-ps = "<?php echo $row['pesan']; ?>" data-cd = "<?php echo $row['create_date']; ?>" data-nama = "<?php echo $row['nama_depan']; ?> <?php echo $row['nama_belakang']; ?>">
-                  <div class="mail_list">
-                    <div class="left">
-                      <?=$label?>
+                <form  method="post" action="" class="form-horizontal form-label-left" id="replay-push" data-parsley-validate="">
+                    <div class="form-group">
+                        <label for="kepada" class="control-label col-md-3 col-sm-3 col-xs-12">Kepada</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="replayKepada" type="text" name="txt_kepada" class="form-control col-md-7 col-xs-12" placeholder="nama karyawan" readonly>
+                            <input id="replayadmin" type="hidden" name="txt_admin" class="form-control col-md-7 col-xs-12" value="<?=$admin_id;?>" >
+                            <input id="replayidReff" type="hidden" name="txt_idReff" class="form-control col-md-7 col-xs-12" value="" >
+                        </div>
                     </div>
-                    <div class="right">
-                      <h3><?php echo $row['nama_subject']; ?> <small><?php echo $row['create_date']; ?></small></h3>
-                      <p>Dari <?php echo $row['nama_admin']; ?> untuk <?php echo $row['nama_depan']; ?> <?php echo $row['nama_belakang']; ?></p>
+
+                    <div class="form-group">
+                        <label for="kepada" class="control-label col-md-3 col-sm-3 col-xs-12">Replay Message</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <textarea name="txt_isi" class="form-control" id="replayPushISI" required></textarea>
+                            <br>
+                        </div>
                     </div>
-                  </div>
-                </a>
-            <?php }
-            }?>
-            <?php
-        
-        // $stmt = $config->paginglink($sql, $row_per_page);
 
-        
-        ?>
-          </div>
+
+                    <button class="btn btn-lg btn-block btn-success" type="submit">
+                        <span class="fa fa-send"></span> Send Push
+                    </button>
+                </form>
+
+            </div>
 
         </div>
-
-         
-      </div>
     </div>
-  </div>
+</div>
 
-
-<div class="modal fade" id="newCompose" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">New Push</h4>
-      </div>
-      <div class="modal-body">
-
-        <form  method="post" action="" class="form-horizontal form-label-left">
-            <div class="form-group">
-                <label for="kepada" class="control-label col-md-3 col-sm-3 col-xs-12">Kepada</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input id="kepada" type="text" name="txt_kepada" class="form-control col-md-7 col-xs-12" placeholder="input nomor KTP" required autofocus>
-                  <input id="admin" type="text" name="txt_admin" class="form-control col-md-7 col-xs-12" value="<?php echo $admin_id;?>" >
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="kepada" class="control-label col-md-3 col-sm-3 col-xs-12">Subject</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input id="subject" type="text" name="txt_subject" class="form-control col-md-7 col-xs-12" placeholder="" required >
-                </div>
-            </div>
-          
-          <hr>
-          
-          <div class="form-group">
-                <label for="kepada" class="control-label col-md-3 col-sm-3 col-xs-12">Subject</label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <textarea name="txt_isi" rows="9" class="form-control col-md-7 col-xs-12"> 
-                    
-                  </textarea>
-                </div>
-            </div>
-        </div>
-        <div class="panel-footer">
-          <button class="btn btn-lg btn-primary" type="submit" name="addPush" id="kirim">
-            <span class="fa fa-send"></span> Kirim
-          </button>
-        </div>
-        </form>
-
-
-      </div>
-      
-    </div>
-  </div>
+<div id="form-push">
+    <?php include 'php/ajx/compose_new_push.php';?>
 </div>
 

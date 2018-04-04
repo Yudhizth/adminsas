@@ -2,6 +2,8 @@
 
 $no_ktp = $_GET['id'];
 
+$admin_id = $config->adminID();
+$admin_id = $admin_id['id'];
 
 if (isset($_POST['addRekomendasi'])) {
     # code...
@@ -18,6 +20,16 @@ if (isset($_POST['addRekomendasi'])) {
     if (!$dd) {
         echo "data tidak masuk";
     } else {
+        $id_reff = $config->lastInsertID();
+        $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+                        $log = $config->runQuery($log);
+                        $log->execute(array(
+                            ':a'    => $ktpp,
+                            ':b'    => '1',
+                            ':c'    => 'tb_rekomendasi_posisi',
+                            ':d'    => 'insert rekomendasi posisi',
+                            ':e'    =>  $admin_id
+                        ));
         echo "<script>
                 alert('Rekomendasi Data Success!');
                 window.location.href='?p=detail-karyawan&id=" . $no_ktp . "';
@@ -37,6 +49,15 @@ if(isset($_POST['resetPassword'])){
     ));
 
     if($stmt){
+        $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+                        $log = $config->runQuery($log);
+                        $log->execute(array(
+                            ':a'    => $nomor_ktp,
+                            ':b'    => '3',
+                            ':c'    => 'tb_login_karyawan',
+                            ':d'    => 'update password karyawan',
+                            ':e'    =>  $admin_id
+                        ));
         echo "<script>
                 alert('Reset Password Success!');
                 window.location.href='?p=detail-karyawan&id=" . $no_ktp . "';

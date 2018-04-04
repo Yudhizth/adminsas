@@ -1,6 +1,10 @@
 <?php
+session_start();
 include_once '../config/api.php';
 $config = new Admin();
+
+$admin_id = $config->adminID();
+$admin_id = $admin_id['id'];
 
 $jabatan = $_POST['txt_kode'];
 $email = $_POST['txt_email'];
@@ -24,6 +28,16 @@ $query = "INSERT INTO tb_admin (username, password, nama_admin, id_role, jabatan
     ));
 
     if ($stmt) {
+      $id_reff = $config->lastInsertID();
+      $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+      $log = $config->runQuery($log);
+      $log->execute(array(
+          ':a'    => $id_reff,
+          ':b'    => '1',
+          ':c'    => 'tb_admin',
+          ':d'    => 'insert admin',
+          ':e'    =>  $admin_id
+      ));
       # code...
       echo "<script>
         alert('Admin berhasil ditambahkan!');

@@ -1,10 +1,12 @@
 <?php
 $id = $_GET['id'];
-$data = new Admin();
+
+$admin_id = $config->adminID();
+$admin_id = $admin_id['id'];
 
 $sql ="SELECT tb_info_test.no_ktp, tb_info_test.kode_test, tb_info_interview.kd_interview FROM tb_info_test
 LEFT JOIN tb_info_interview ON tb_info_interview.no_ktp = tb_info_test.no_ktp WHERE tb_info_test.no_ktp = :id";
-$stmt = $data->runQuery($sql);
+$stmt = $config->runQuery($sql);
 $stmt->execute(array(
     ':id'   => $id
 ));
@@ -29,7 +31,7 @@ $interview = $info['kd_interview'];
         } else
         {
             $query = "INSERT INTO tb_hasil_test (kd_test, nama_penilaian, nilai, kd_admin) VALUES (:kd, :nama, :nilai, :admin)";
-            $sys = $data->runQuery($query);
+            $sys = $config->runQuery($query);
             $sys->execute(array(
                 ':kd'   => $kode,
                 ':nama' => $nama,
@@ -39,6 +41,16 @@ $interview = $info['kd_interview'];
             if (!$sys){
                 echo "data tidak masuk";
             } else {
+                $id_reff = $config->lastInsertID();
+                $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+                $log = $config->runQuery($log);
+                $log->execute(array(
+                    ':a'    => $id_reff,
+                    ':b'    => '1',
+                    ':c'    => 'tb_hasil_test',
+                    ':d'    => 'insert hasil test',
+                    ':e'    =>  $admin_id
+                ));
 
             }
         }
@@ -57,7 +69,7 @@ $interview = $info['kd_interview'];
         } else
         {
             $query = "INSERT INTO tb_hasil_interview (kd_interview, nama_penilaian, nilai, kd_admin) VALUES (:kd, :nama, :nilai, :admin)";
-            $sys = $data->runQuery($query);
+            $sys = $config->runQuery($query);
             $sys->execute(array(
                 ':kd'   => $kode,
                 ':nama' => $nama,
@@ -67,7 +79,16 @@ $interview = $info['kd_interview'];
             if (!$sys){
                 echo "data tidak masuk";
             } else {
-
+                $id_reff = $config->lastInsertID();
+                $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+                $log = $config->runQuery($log);
+                $log->execute(array(
+                    ':a'    => $id_reff,
+                    ':b'    => '1',
+                    ':c'    => 'tb_hasil_interview',
+                    ':d'    => 'insert hasil interview',
+                    ':e'    =>  $admin_id
+                ));
             }
         }
     }elseif (isset($_POST['addNilai'])){
@@ -75,17 +96,26 @@ $interview = $info['kd_interview'];
         $nil = $_POST['txt_nilai'];
 
         $ql = "UPDATE tb_karyawan SET nilai = :nilai WHERE no_ktp = :ktp";
-        $ttm = $data->runQuery($ql);
+        $ttm = $config->runQuery($ql);
         $ttm->execute(array(
                 ':nilai' => $nil,
                 ":ktp"   => $ktp
         ));
         if ($ttm){
+                $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+                $log = $config->runQuery($log);
+                $log->execute(array(
+                    ':a'    => $ktp,
+                    ':b'    => '3',
+                    ':c'    => 'tb_karyawan',
+                    ':d'    => 'update hasil ujian',
+                    ':e'    =>  $admin_id
+                ));
             echo "<script>
         alert('Input Data Success!');
         window.location.href='?p=schedule-test';
         </script>";
-        }
+        }else{}
     }
 ?>
 
@@ -138,16 +168,16 @@ $interview = $info['kd_interview'];
                     <tbody>
                     <?php
                         $qr = "SELECT id, nama_penilaian, nilai FROM tb_hasil_test WHERE kd_test = :kd";
-                        $soq = $data->runQuery($qr);
+                        $soq = $config->runQuery($qr);
                         $soq->execute(array(
                             ':kd'   => $test
                         ));
-                        $data = array();
+                        $config = array();
                        $sum = 0;
                         while ($row = $soq->fetch(PDO::FETCH_LAZY)){
                             $n = $row['nilai'];
                             $sum +=$n;
-                            $data[] = $row;
+                            $config[] = $row;
                          ?>
                     <tr>
                         <td width="60%"><?php echo $row['nama_penilaian'];?></td>
@@ -160,7 +190,7 @@ $interview = $info['kd_interview'];
                     </tr>
                         <?php
                         }
-                        $total = count($data);
+                        $total = count($config);
                         if($sum != "0" && $total != "0"){
                         $hasil_test = @($sum/$total);
                         $total = @($sum/$total);
@@ -228,18 +258,18 @@ $interview = $info['kd_interview'];
                         </thead>
                         <tbody>
                         <?php
-                        $data = new Perusahaan;
+                        $config = new Perusahaan;
                         $qr = "SELECT * FROM tb_hasil_interview WHERE kd_interview = :kd";
-                        $soq = $data->runQuery($qr);
+                        $soq = $config->runQuery($qr);
                         $soq->execute(array(
                             ':kd'   => $interview
                         ));
-                        $data = array();
+                        $config = array();
                         $sum = 0;
                         while ($row = $soq->fetch(PDO::FETCH_LAZY)){
                             $n = $row['nilai'];
                             $sum +=$n;
-                            $data[] = $row;
+                            $config[] = $row;
                             ?>
                             <tr>
                                 <td width="60%"><?php echo $row['nama_penilaian'];?></td>
@@ -251,7 +281,7 @@ $interview = $info['kd_interview'];
                                 </td>
                             </tr>
                         <?php }
-                        $total = count($data);
+                        $total = count($config);
                         if($sum != "0" && $total != "0"){
                             $hasil_interview = @($sum/$total);
                             $total = @($sum/$total);

@@ -5,6 +5,8 @@ $stmt = $config->runQuery($sql);
 $stmt->execute();
 
 if (isset($_POST['addJabatan'])) {
+  $admin_id = $config->adminID();
+  $admin_id = $admin_id['id'];
     # code...
     $kd = $_POST['txt_kode'];
     $nm = $_POST['txt_nama'];
@@ -24,6 +26,16 @@ if (isset($_POST['addJabatan'])) {
         window.location.href='?p=addJabatan';
         </script>";
     }else{
+      $id_reff = $config->lastInsertID();
+      $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+      $log = $config->runQuery($log);
+      $log->execute(array(
+          ':a'    => $id_reff,
+          ':b'    => '1',
+          ':c'    => 'tb_list_jabatan',
+          ':d'    => 'insert jabatan',
+          ':e'    =>  $admin_id
+      ));
         echo "<script>
         alert('Input Data Success!');
         window.location.href='?p=addJabatan';

@@ -18,6 +18,7 @@ $query = "INSERT INTO tb_subcategory (id_category, name_sub, link, icon) VALUES 
     ));
 
     if ($stmt) {
+      $id_reff = $config->lastInsertID();
       # code...
       echo "<script>
         alert('Menu berhasil ditambahkan!');

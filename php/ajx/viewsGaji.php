@@ -5,10 +5,12 @@
  * Date: 06/03/2018
  * Time: 12.56
  */
+session_start();
 include_once '../../config/api.php';
 
 $config = new Admin();
-
+$admin_id = $config->adminID();
+$admin_id = $admin_id['id'];
 ?>
 <?php if($_GET['type'] == 'views'){
     $sql = "SELECT tb_info_bank.no_ktp, tb_info_bank.kd_bank, tb_info_bank.cabang, tb_info_bank.nomor_rek, tb_kode_bank.nama_bank, tb_karyawan.kd_status_karyawan, tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_info_gaji.status, MONTH(tb_info_gaji.create_date) as tanggal FROM tb_info_bank
@@ -184,6 +186,16 @@ WHERE tb_karyawan.kd_status_karyawan IN ('KDKRY0011') AND tb_kode_bank.kd_bank =
                 ':a'    => $row['no_ktp'],
                 ':b'    => $status,
                 ':c'    => $tanggal
+        ));
+        $id_reff = $config->lastInsertID();
+        $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+        $log = $config->runQuery($log);
+        $log->execute(array(
+            ':a'    => $id_reff,
+            ':b'    => '1',
+            ':c'    => 'tb_info_gaji',
+            ':d'    => 'insert notifikasi gaji',
+            ':e'    =>  $admin_id
         ));
     }
 

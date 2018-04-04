@@ -38,6 +38,7 @@ if(isset($_POST['addMap'])){
         ));
 
         if($stmt){
+            $id_reff = $config->lastInsertID();
             echo "<script>
         alert('Koordinat berhasil ditambahkan!');
         window.location.href='?p=detailProject&id=".$a." ';

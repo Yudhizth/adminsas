@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../config/api.php';
 
 if(isset($_GET['id'])){
@@ -19,7 +20,17 @@ $stmt = $config->runQuery($sql);
 $stmt->execute(array(':ktp' => $no_ktp));
 
 $info = $stmt->fetch(PDO::FETCH_LAZY);
-
+$admin_id = $config->adminID();
+$admin_id = $admin_id['id'];
+$log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+                        $log = $config->runQuery($log);
+                        $log->execute(array(
+                            ':a'    => $no_ktp,
+                            ':b'    => '2',
+                            ':c'    => 'unset',
+                            ':d'    => 'export data karyawan',
+                            ':e'    =>  $admin_id
+                        ));
 
 if ($info['foto'] != "") {
   # code...

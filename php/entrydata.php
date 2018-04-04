@@ -1,6 +1,11 @@
 <?php
+session_start();
 include_once '../config/api.php';
 $cek = new Admin();
+$config = new Admin();
+
+$admin_id = $cek->adminID();
+
     date_default_timezone_set('Asia/Jakarta');
 
     if(isset($_POST['addData'])){
@@ -106,6 +111,17 @@ $cek = new Admin();
                 ':jumat' => $fri,
                 ':sabtu' => $sat
             ));
+            $id_reff = $config->lastInsertID();
+
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $id_reff,
+                ':b'    => '1',
+                ':c'    => 'tb_time_fix',
+                ':d'    => 'insert data time fix project',
+                ':e'    =>  $admin_id['id']
+            ));
         }elseif ($time_select == "flex") {
             $query = "INSERT INTO tb_time_fleksible (nomor_spk, minggu, senin, selasa, rabu, kamis, jumat, sabtu) VALUES (:nomor, :minggu, :senin, :selasa, :rabu, :kamis, :jumat, :sabtu)";
             $flex = $cek->runQuery($query);
@@ -118,6 +134,17 @@ $cek = new Admin();
                 ':kamis' => $kamis,
                 ':jumat' => $jumat,
                 ':sabtu' => $sabtu
+            ));
+            $id_reff = $config->lastInsertID();
+
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $id_reff,
+                ':b'    => '1',
+                ':c'    => 'tb_time_fleksible',
+                ':d'    => 'insert data time flex project',
+                ':e'    =>  $admin_id['id']
             ));
         }else{}
 
@@ -154,6 +181,17 @@ $cek = new Admin();
                   # code...
                   echo "data tidak update di tb_temporary_perusahaan";
                 }else{
+                    $id_reff = $config->lastInsertID();
+                    $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+                    $log = $config->runQuery($log);
+                    $log->execute(array(
+                        ':a'    => $id_reff,
+                        ':b'    => '1',
+                        ':c'    => 'tb_kerjasama_perusahan',
+                        ':d'    => 'insert new project',
+                        ':e'    =>  $admin_id['id']
+                    ));
+                    
                     echo "<script>
                           alert('DATA Berhasil di Input!');
                           window.location.href='../index.php?p=entry-data';

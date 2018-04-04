@@ -34,6 +34,7 @@ if (isset($_POST['addReply'])) {
       	':isi' => $isi
       	));
       if ($set) {
+            $id_reff = $config->lastInsertID();
       	# code...
       	header('Location: ?p=push');
       }else{

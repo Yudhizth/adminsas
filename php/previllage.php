@@ -5,7 +5,8 @@
  * Date: 06/02/2018
  * Time: 14.36
  */
-
+$admin_id = $config->adminID();
+$admin_id = $admin_id['id'];
 $id = $_GET['user'];
 
 if(isset($_POST['addSubcategori'])){
@@ -20,6 +21,16 @@ if(isset($_POST['addSubcategori'])){
     ));
 
     if($input){
+        $id_reff = $config->lastInsertID();
+        $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+        $log = $config->runQuery($log);
+        $log->execute(array(
+            ':a'    => $id_reff,
+            ':b'    => '1',
+            ':c'    => 'tb_previllage',
+            ':d'    => 'insert previllage',
+            ':e'    =>  $admin_id
+        ));
         echo "<script>
             alert('Berhasil ditambahkan!');
             window.location.href='?p=previllage&user=".$admin."';
@@ -138,7 +149,7 @@ GROUP BY tb_subcategory.id_subcategory
                                     $panel = "danger";
                                     $label = "background: #ea6153; !imporant";
                                 }
-                                $b = "SELECT tb_category.id_category, tb_category.name, tb_subcategory.id_subcategory, tb_subcategory.name_sub, tb_subcategory.link, tb_subcategory.icon, tb_previllage.id_admin FROM tb_subcategory
+                                $b = "SELECT tb_category.id_category, tb_category.name, tb_subcategory.id_subcategory, tb_subcategory.name_sub, tb_subcategory.link, tb_subcategory.icon, tb_previllage.id, tb_previllage.id_admin FROM tb_subcategory
 INNER JOIN tb_category ON tb_category.id_category = tb_subcategory.id_category
 INNER JOIN tb_previllage ON tb_previllage.id_subcategory = tb_subcategory.id_subcategory
 WHERE tb_category.id_category = :id AND tb_previllage.id_admin = :admin";
@@ -163,7 +174,11 @@ WHERE tb_category.id_category = :id AND tb_previllage.id_admin = :admin";
                                                             <li style="<?=$label?> color: #fff!important;">
                                                                 <p>
                                                                     <?=$sub['name_sub']?>
+                                                                    <?php if($rowAdmin['id'] == '1'){ ?>
+                                                                    <button class="btn btn-xs btn-link removePrevillage" data-id="<?=$sub['id']?>" data-admin="<?=$sub['id_admin']?>" style="float: right"><i class="fa fa-fw fa-trash"></i> </button>
+                                                                    <?php } ?>
                                                                 </p>
+
                                                             </li>
                                                         <?php } ?>
                                                     </ul>

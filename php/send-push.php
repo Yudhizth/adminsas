@@ -89,6 +89,7 @@ if (isset($_POST['addNewPush'])) {
         window.location.href='index.php?p=calon-karyawan';
         </script>";
         } else{
+          $id_reff = $config->lastInsertID();
 
               echo "<script>
                       alert('Push Has Send!');

@@ -1,6 +1,10 @@
 <?php
 $id = $_GET['id'];
 $jadwal = new Admin();
+$config = new Admin();
+
+$admin_id = $config->adminID();
+$admin_id = $admin_id['id'];
 if (isset($_POST['addJadwal'])) {
     # code...
     $kodeTest = strip_tags($_POST['kode_test']);
@@ -12,7 +16,7 @@ if (isset($_POST['addJadwal'])) {
 
     $input = new Karyawan();
     $sql = "INSERT INTO tb_info_test (kode_test, no_ktp, date_test, kode_admin, keterangan) VALUES (:kode, :ktp, :tgl, :admin, :ket)";
-    $stmt = $input->runQuery($sql);
+    $stmt = $config->runQuery($sql);
     $stmt->execute(array(
         ':kode' => $kodeTest,
         ':ktp' => $ktp,
@@ -20,11 +24,23 @@ if (isset($_POST['addJadwal'])) {
         ':admin' => $kdAdmin,
         ':ket' => $cv
     ));
+
+    $id_reff = $config->lastInsertID();
     if (!$stmt) {
+        
         # code...
         echo "data tidak masuk";
     } else {
-
+        
+        $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $id_reff,
+                ':b'    => '1',
+                ':c'    => 'tb_info_test',
+                ':d'    => 'insert jadwal test',
+                ':e'    =>  $admin_id
+            ));
         $sql2 = "UPDATE tb_karyawan SET kd_status_karyawan = :kd_karyawan WHERE no_ktp = :ktp";
         $update = $config->runQuery($sql2);
         $update->execute(array(
@@ -59,6 +75,15 @@ if (isset($_POST['addData'])) {
         # code...
         echo "data tidak masuk";
     } else {
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $kodeTest,
+                ':b'    => '3',
+                ':c'    => 'tb_info_test',
+                ':d'    => 'update jadwal test',
+                ':e'    =>  $admin_id
+            ));
         $sql2 = "UPDATE tb_karyawan SET kd_status_karyawan = :kd_karyawan WHERE no_ktp = :ktp";
         $update = $config->runQuery($sql2);
         $update->execute(array(

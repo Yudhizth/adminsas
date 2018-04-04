@@ -5,9 +5,11 @@
  * Date: 05/02/2018
  * Time: 15.59
  */
-
+session_start();
 require '../../config/api.php';
 $config = new Admin();
+$admin_id = $config->adminID();
+$admin_id = $admin_id['id'];
 
 if(@$_GET['type'] == 'approve'){
     $ktp = $_POST['ktp'];
@@ -26,6 +28,15 @@ if(@$_GET['type'] == 'approve'){
 
     if($stmt){
         echo "Berhasil di Approve!";
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $kode,
+                ':b'    => '3',
+                ':c'    => 'tb_lembur',
+                ':d'    => 'update approved lembur',
+                ':e'    =>  $admin_id
+            ));
     }else{
         echo "failed";
     }
@@ -48,6 +59,15 @@ elseif(@$_GET['type'] == 'decline'){
 
     if($stmt){
         echo "Berhasil di Decline!";
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $kode,
+                ':b'    => '3',
+                ':c'    => 'tb_lembur',
+                ':d'    => 'update decline lembur',
+                ':e'    =>  $admin_id
+            ));
     }else{
         echo "failed";
     }

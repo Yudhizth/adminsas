@@ -29,6 +29,9 @@ $kd = $_GET['name'];
 
 
         if (isset($_POST['newCompany'])) {
+
+            $admin_id = $config->adminID();
+
             # code...
             $kodePerusahaan = $_POST['txt_kode'];
             $nama = $_POST['txt_nama'];
@@ -76,6 +79,16 @@ $kd = $_GET['name'];
                 # code...
                 echo "DATA TIDAK MASUK KE DB.";
             }else{
+                $id_reff = $config->lastInsertID();
+                $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+                $log = $config->runQuery($log);
+                $log->execute(array(
+                    ':a'    => $id_reff,
+                    ':b'    => '1',
+                    ':c'    => 'tb_perusahaan',
+                    ':d'    => 'insert new perusahaan',
+                    ':e'    =>  $admin_id['id']
+                ));
                 //will be generate password and usualy like 'admin123'
                 $new_pass = password_hash($new_kode, PASSWORD_DEFAULT);
 

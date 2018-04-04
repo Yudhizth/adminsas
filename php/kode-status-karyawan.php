@@ -2,6 +2,9 @@
 
 if (isset($_POST['addKodeKaryawan'])) {
   # code...
+  $admin_id = $config->adminID();
+  $admin_id = $admin_id['id'];
+
   $kode = $_POST['txt_kode'];
   $nama = $_POST['txt_nama'];
 
@@ -13,6 +16,16 @@ if (isset($_POST['addKodeKaryawan'])) {
   ));
 
   if ($stmt) {
+    $id_reff = $config->lastInsertID();
+    $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+    $log = $config->runQuery($log);
+    $log->execute(array(
+        ':a'    => $id_reff,
+        ':b'    => '1',
+        ':c'    => 'tb_kode_status_karyawan',
+        ':d'    => 'insert kode status karyawan',
+        ':e'    =>  $admin_id
+    ));
     # code...
     echo "<script>
     alert('Input Kode Berhasil!');

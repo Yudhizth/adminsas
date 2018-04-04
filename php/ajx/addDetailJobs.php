@@ -34,7 +34,7 @@ $admin = $_GET['admin'];
 
             <div class="form-group">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3 col-xs-offset-12">
-                    <button type="submit" name="addDetail" class="btn btn-block btn-info" onclick="getDetail('<?=$row['kode_detail_job']?>')" id="addDetail">Tambah <span class="fa fa-fw fa-plus"></span></button>
+                    <button type="submit" name="addDetail" class="btn btn-block btn-info"  id="addDetail">Tambah <span class="fa fa-fw fa-plus"></span></button>
                 </div>
             </div>
         </form>

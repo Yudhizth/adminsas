@@ -5,7 +5,14 @@
  * Date: 22/03/2018
  * Time: 19.32
  */
+include_once '../../config/session.php';
 include_once '../../config/api.php';
+
+if(isset($_SESSION['user_session'])){
+    $admin_id = $_SESSION['admin_id'];
+}else{
+    $admin_id = false;
+}
 
 $config = new Admin();
 if(isset($_POST['saveLoker'])){
@@ -45,8 +52,21 @@ if(isset($_POST['saveLoker'])){
             ':h' => $h,
             ':i' => $i
         ));
+        $id_reff = $config->lastInsertID();
 
         if($stmt){
+            
+
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $id_reff,
+                ':b'    => '1',
+                ':c'    => 'tb_loker',
+                ':d'    => 'menambah data loker',
+                ':e'    =>  $admin_id
+            ));
+
             echo "<script>
                         alert('Berhasil ditambahkan!');
                         window.location.href='../../index.php?p=list-loker';
@@ -58,11 +78,6 @@ if(isset($_POST['saveLoker'])){
                     </script>";
         }
     }else{
-//        echo 'edit data';
-//        echo '<br> <pre>';
-//        print_r($o);
-//        echo '</pre>';
-
 
         $sql = "UPDATE tb_loker SET id_kategori = :a, judul_loker = :b, job_description = :c, 
         requirements = :d, salary_loker = :e, area_loker = :f, minpengalaman_loker = :g, create_loker = :h, nama_user = :i
@@ -82,6 +97,15 @@ if(isset($_POST['saveLoker'])){
         ));
 
         if($stmt){
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $id,
+                ':b'    => '2',
+                ':c'    => 'tb_loker',
+                ':d'    => 'update data loker',
+                ':e'    =>  $admin_id
+            ));
             echo "<script>
                         alert('Berhasil diUpdate!');
                         window.location.href='../../index.php?p=list-loker';

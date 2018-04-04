@@ -10,12 +10,13 @@
   
 
 
-  $stmt = $user_admin->runQuery("SELECT * FROM tb_admin WHERE username=:user_id");
+  $stmt = $user_admin->runQuery("SELECT id, username, nama_admin, id_role, picture, status FROM tb_admin WHERE username=:user_id");
   $stmt->execute(array(":user_id"=>$admin_id));
 
   $rowAdmin=$stmt->fetch(PDO::FETCH_ASSOC);
   $kd_admin = $rowAdmin['username'];
-
+  $_SESSION['admin_id'] = $rowAdmin['id'];
+  
   // sidebarquery
     $category = "SELECT * FROM  tb_category INNER JOIN tb_staff ON tb_staff.id_category = tb_category.id_category WHERE tb_staff.id_roles = :idstaff";
     $cat = $config->runQuery($category);
@@ -51,7 +52,6 @@
         <!-- page content -->
         <div class="right_col" role="main">
           <?php
-          echo $footer;
             include_once 'php/page.php';
           ?>
 

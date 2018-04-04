@@ -1,7 +1,9 @@
 <?php
 
+$admin_id = $config->adminID();
+$admin_id = $admin_id['id'];
+
 $id = $_GET['id'];
-$jadwal = new Admin();
 
     if (isset($_POST['addJadwal'])) {
         # code...
@@ -13,8 +15,7 @@ $jadwal = new Admin();
         $detail = strip_tags($_POST['detail']);
         $kd_status = "KDKRY0005";
 
-        $input = new Admin();
-        $stmt = $input->runQuery("INSERT INTO tb_info_interview (kd_interview, no_ktp, date_interview, detail, kd_admin) VALUES (:kd, :ktp, :tgl, :detail, :admin)");
+        $stmt = $config->runQuery("INSERT INTO tb_info_interview (kd_interview, no_ktp, date_interview, detail, kd_admin) VALUES (:kd, :ktp, :tgl, :detail, :admin)");
         $stmt->execute(array(
             ':kd'   => $kodeTest,
             ':ktp'  => $ktp,
@@ -26,6 +27,16 @@ $jadwal = new Admin();
             # code...
             echo "data tidak masuk";
         }else{
+            $id_reff = $config->lastInsertID();
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $id_reff,
+                ':b'    => '1',
+                ':c'    => 'tb_info_interview',
+                ':d'    => 'insert interview',
+                ':e'    =>  $admin_id
+            ));
           $sql2 = "UPDATE tb_karyawan SET kd_status_karyawan = :kd_karyawan WHERE no_ktp = :ktp";
           $update = $config->runQuery($sql2);
           $update->execute(array(
@@ -42,19 +53,19 @@ $jadwal = new Admin();
 
     }
 
-    $stmt  = $jadwal->runQuery("SELECT no_ktp FROM tb_info_interview WHERE no_ktp = :id");
+    $stmt  = $config->runQuery("SELECT no_ktp FROM tb_info_interview WHERE no_ktp = :id");
     $stmt->execute(array(
       ':id' => $id));
 
       if ($stmt->rowCount() == 0) {
-          $dt = $jadwal->runQuery("SELECT * FROM tb_karyawan WHERE no_ktp = :id");
+          $dt = $config->runQuery("SELECT * FROM tb_karyawan WHERE no_ktp = :id");
             $dt->bindParam(':id', $id);
             $dt->execute();
         while($col = $dt->fetch(PDO::FETCH_LAZY)) {
             $id = "kd_interview";
             $kode = "ITRV";
             $tbName = "tb_info_interview";
-            $kd = $jadwal->Generate($id, $kode, $tbName);
+            $kd = $config->Generate($id, $kode, $tbName);
             // ===========================================//
 
             $row = $stmt->fetch(PDO::FETCH_LAZY);
@@ -123,7 +134,7 @@ $jadwal = new Admin();
 }
   } else {
     
-    $stmt = $jadwal->runQuery("SELECT tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_info_interview.kd_interview, tb_info_interview.no_ktp, tb_info_interview.date_interview, tb_info_interview.detail, tb_info_interview.kd_admin FROM tb_info_interview
+    $stmt = $config->runQuery("SELECT tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_info_interview.kd_interview, tb_info_interview.no_ktp, tb_info_interview.date_interview, tb_info_interview.detail, tb_info_interview.kd_admin FROM tb_info_interview
 LEFT JOIN tb_karyawan ON tb_karyawan.no_ktp=tb_info_interview.no_ktp
 WHERE tb_info_interview.no_ktp = :id");
 $stmt->bindParam(':id', $id);
@@ -146,8 +157,8 @@ if (isset($_POST['addData'])) {
   $st = "";
   $kd_status = "KDKRY0014";
 
-  $input = new Karyawan();
-  $stmt = $input->runQuery("UPDATE tb_info_interview SET kd_interview = :kode, date_interview = :tanggal, detail = :detail, kd_admin = :admin, status = :st WHERE no_ktp = :id");
+  $config = new Karyawan();
+  $stmt = $config->runQuery("UPDATE tb_info_interview SET kd_interview = :kode, date_interview = :tanggal, detail = :detail, kd_admin = :admin, status = :st WHERE no_ktp = :id");
   $stmt->execute(array(
     ':kode'   => $kodeTest,
     ':tanggal'=> $tanggalTest,
@@ -159,7 +170,15 @@ if (isset($_POST['addData'])) {
     # code...
     echo "data tidak masuk";
   }else{
-
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $kodeTest,
+                ':b'    => '3',
+                ':c'    => 'tb_info_interview',
+                ':d'    => 'update interview',
+                ':e'    =>  $admin_id
+            ));
     $sql2 = "UPDATE tb_karyawan SET kd_status_karyawan = :kd_karyawan WHERE no_ktp = :ktp";
       $update = $config->runQuery($sql2);
       $update->execute(array(

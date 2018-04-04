@@ -37,6 +37,21 @@
 
     id = '1';
 
+6.  1 = C 
+    2 = R 
+    3 = U 
+    4 = D
+
+$log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+$log = $config->runQuery($log);
+$log->execute(array(
+    ':a'    => $id,
+    ':b'    => '2',
+    ':c'    => 'tb_loker',
+    ':d'    => 'update data loker',
+    ':e'    =>  $admin_id
+));
+
 TRUNCATE tb_absen;
 TRUNCATE tb_complain_karyawan;
 TRUNCATE tb_complain_perusahaan;

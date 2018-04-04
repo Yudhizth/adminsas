@@ -5,9 +5,11 @@
  * Date: 05/02/2018
  * Time: 23.49
  */
-
+session_start();
 require '../../config/api.php';
 $config = new Admin();
+    $admin_id = $config->adminID();
+    $admin_id = $admin_id['id'];
 
 if(@$_GET['type'] == 'addNIP'){
     $ktp = $_POST['ktp'];
@@ -20,6 +22,16 @@ if(@$_GET['type'] == 'addNIP'){
     ));
 
     if($stmt){
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $ktp,
+                ':b'    => '3',
+                ':c'    => 'tb_karyawan',
+                ':d'    => 'update nik',
+                ':e'    =>  $admin_id
+            ));
+
         echo 'NIP berhasil ditambahkan.';
     }else{
         echo 'failed';
@@ -48,6 +60,8 @@ elseif (@$_GET['type'] == 'addAbsen'){
     ));
 
     if ($stmt){
+        $id_reff = $config->lastInsertID();
+        
         echo "Success!";
     }else{
         echo "Failed!";
@@ -81,6 +95,16 @@ elseif (@$_GET['type'] == 'replayCP'){
             ':d'    => $d
         ));
         if ($stmt){
+            $id_reff = $config->lastInsertID();
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $id_reff,
+                ':b'    => '1',
+                ':c'    => 'tb_complain_perusahaan',
+                ':d'    => 'insert replay complain cp',
+                ':e'    =>  $admin_id
+            ));
             $change = "UPDATE tb_complain_perusahaan SET status = :status WHERE id = :id";
             $change = $config->runQuery($change);
             $change->execute(array(
@@ -116,6 +140,16 @@ elseif (@$_GET['type'] == 'replayCP'){
                 ':d'    => $d
             ));
             if ($stmt){
+                $id_reff = $config->lastInsertID();
+                $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+                $log = $config->runQuery($log);
+                $log->execute(array(
+                    ':a'    => $id_reff,
+                    ':b'    => '1',
+                    ':c'    => 'tb_complain_perusahaan',
+                    ':d'    => 'insert replay complain cp',
+                    ':e'    =>  $admin_id
+                ));
                 $change = "UPDATE tb_complain_perusahaan SET status = :status WHERE id = :id";
                 $change = $config->runQuery($change);
                 $change->execute(array(
@@ -162,6 +196,16 @@ elseif (@$_GET['type'] == 'replayKaryawan'){
             ':d'    => $d
         ));
         if ($stmt){
+            $id_reff = $config->lastInsertID();
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $id_reff,
+                ':b'    => '1',
+                ':c'    => 'tb_complain_karyawan',
+                ':d'    => 'insert replay complain karyawan',
+                ':e'    =>  $admin_id
+            ));
             echo "1";
         }else{
             echo "0";
@@ -186,6 +230,16 @@ elseif (@$_GET['type'] == 'replayKaryawan'){
                 ':d'    => $d
             ));
             if ($stmt){
+                $id_reff = $config->lastInsertID();
+                $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+                $log = $config->runQuery($log);
+                $log->execute(array(
+                    ':a'    => $id_reff,
+                    ':b'    => '1',
+                    ':c'    => 'tb_complain_karyawan',
+                    ':d'    => 'insert replay complain karyawan',
+                    ':e'    =>  $admin_id
+                ));
                 echo "1";
             }else{
                 echo "0";
@@ -213,6 +267,16 @@ elseif (@$_GET['type'] == 'replayCustomer'){
         ':d'    => $d
     ));
     if ($stmt){
+            $id_reff = $config->lastInsertID();
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $id_reff,
+                ':b'    => '1',
+                ':c'    => 'tb_complain_perusahaan',
+                ':d'    => 'insert replay complain cp',
+                ':e'    =>  $admin_id
+            ));
         echo "1";
     }else{
         echo "0";
@@ -236,6 +300,16 @@ elseif (@$_GET['type'] == 'replayKaryawan'){
         ':d'    => $d
     ));
     if ($stmt){
+            $id_reff = $config->lastInsertID();
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $id_reff,
+                ':b'    => '1',
+                ':c'    => 'tb_complain_karyawan',
+                ':d'    => 'insert replay complain karyawan',
+                ':e'    =>  $admin_id
+            ));
         echo "1";
     }else{
         echo "0";
@@ -261,6 +335,15 @@ elseif (@$_GET['type'] == 'actCuti'){
         ));
 
         if($stmt){
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $a,
+                ':b'    => '3',
+                ':c'    => 'tb_cuti',
+                ':d'    => 'update cuti approved',
+                ':e'    =>  $admin_id
+            ));
             echo "Cuti Berhasil di Approve!";
         }else{
             echo "Error";
@@ -275,6 +358,15 @@ elseif (@$_GET['type'] == 'actCuti'){
         ));
 
         if($stmt){
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $a,
+                ':b'    => '3',
+                ':c'    => 'tb_cuti',
+                ':d'    => 'update cuti decline',
+                ':e'    =>  $admin_id
+            ));
             echo "Cuti Berhasil di Decline!";
         }else{
             echo "Error";
@@ -297,6 +389,16 @@ elseif (@$_GET['type'] == 'addPrevillage'){
     ));
 
     if ($stmt){
+        $id_reff = $config->lastInsertID();
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $id_reff,
+                ':b'    => '1',
+                ':c'    => 'tb_previllage',
+                ':d'    => 'insert previllage',
+                ':e'    =>  $admin_id
+            ));
         echo "Success!";
     }else{
         echo "Failed!";
@@ -317,6 +419,15 @@ elseif (@$_GET['type'] == 'addJabatan'){
     ));
 
     if ($stmt){
+            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+            $log = $config->runQuery($log);
+            $log->execute(array(
+                ':a'    => $b,
+                ':b'    => '3',
+                ':c'    => 'tb_list_karyawan',
+                ':d'    => 'update jabatan karyawan',
+                ':e'    =>  $admin_id
+            ));
         echo "Success Tambah Jabatan!";
     }else{
         echo "Gagal Tambah Jabatan!";
@@ -342,6 +453,16 @@ elseif (@$_GET['type'] == 'saveMap'){
     ));
 
     if($stmt){
+        $id_reff = $config->lastInsertID();
+                        $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+                        $log = $config->runQuery($log);
+                        $log->execute(array(
+                            ':a'    => $id_reff,
+                            ':b'    => '1',
+                            ':c'    => 'tb_koordinat_perusahaan',
+                            ':d'    => 'insert map',
+                            ':e'    =>  $admin_id
+                        ));
         echo "1";
     }else{
         echo "error";
@@ -359,6 +480,15 @@ elseif (@$_GET['type'] == 'disableAdmin'){
     ));
 
     if($stmt){
+                        $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+                        $log = $config->runQuery($log);
+                        $log->execute(array(
+                            ':a'    => $id_reff,
+                            ':b'    => '3',
+                            ':c'    => 'tb_admin',
+                            ':d'    => 'update disabled admin',
+                            ':e'    =>  $admin_id
+                        ));
         echo "Berhasil Disable Admin";
     }else{
         echo "Tidak Berhasil.";
@@ -376,6 +506,15 @@ elseif (@$_GET['type'] == 'enableAdmin'){
 
     if($stmt){
         echo "Berhasil Enable Admin";
+                        $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+                        $log = $config->runQuery($log);
+                        $log->execute(array(
+                            ':a'    => $id_reff,
+                            ':b'    => '3',
+                            ':c'    => 'tb_admin',
+                            ':d'    => 'update enabled admin',
+                            ':e'    =>  $admin_id
+                        ));
     }else{
         echo "Tidak Berhasil.";
     }
@@ -395,6 +534,15 @@ elseif (@$_GET['type'] == 'saveGaji'){
 
     if($stmt){
         echo "Berhasil Add Gaji";
+                        $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+                        $log = $config->runQuery($log);
+                        $log->execute(array(
+                            ':a'    => $a,
+                            ':b'    => '3',
+                            ':c'    => 'tb_list_perkerjaan_perusahaan',
+                            ':d'    => 'update gaji karyawan',
+                            ':e'    =>  $admin_id
+                        ));
     }else{
         echo "Tidak Berhasil.";
     }
@@ -413,6 +561,15 @@ elseif (@$_GET['type'] == 'resetPasswordAdmin'){
     ));
 
     if($stmt){
+                        $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+                        $log = $config->runQuery($log);
+                        $log->execute(array(
+                            ':a'    => $a,
+                            ':b'    => '3',
+                            ':c'    => 'tb_admin',
+                            ':d'    => 'update password',
+                            ':e'    =>  $admin_id
+                        ));
         echo "New Password 'adminSAS123' ";
     }else{
         echo "Tidak Berhasil.";

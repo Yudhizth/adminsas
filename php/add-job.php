@@ -51,8 +51,11 @@ if (isset($_POST['addList'])) {
       ':admin' => $admin));
   }
   if (!$stmt) {
+    
     # code..
     echo "Data Tidak masuk";
+  }else{
+    $id_reff = $config->lastInsertID();
   }
 }
 ?>

@@ -27,7 +27,16 @@ class Login
 					{
 						if($userRow['status'] == '1'){
                             $_SESSION['user_session'] = $userRow['username'];
-
+							
+							$log = $this->conn->prepare("INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id)
+							VALUES (:a, :b, :c, :d, :e)");
+							$log->execute(array(
+								':a'	=> $userRow['id'],
+								':b'	=> '2',
+								':c'	=> 'tb_admin',
+								':d'	=> 'login',
+								':e'	=> $userRow['id']
+							));
                             return true;
                         }else{
 
@@ -93,6 +102,21 @@ class Admin
 	{
 		$stmt = $this->conn->prepare($sql);
 		return $stmt;
+	}
+	public function lastInsertID()
+	{
+		return $this->conn->lastInsertId();
+	}
+	public function adminID()
+	{
+		$id = $_SESSION['user_session'];
+		$stmt = $this->conn->prepare("SELECT id, username, nama_admin, id_role, picture, status FROM tb_admin WHERE username=:user_id");
+		$stmt->execute(array(':user_id' => $id));
+
+		$rowAdmin=$stmt->fetch(PDO::FETCH_LAZY);
+
+		return $rowAdmin;
+
 	}
 	public function CountQuery($sql)
 	{

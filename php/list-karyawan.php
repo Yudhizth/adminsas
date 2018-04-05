@@ -58,9 +58,9 @@ $stmt->execute();
                                         <tr class="headings">
                                             <th class="column-title" width="20%">Nomor NIP</th>
                                             <th class="column-title" width="30%">Nama Karyawan</th>
-                                            <th class="column-title" width="30%">Jenis Kelamin</th>
-                                            <th class="column-title" width="30%">Status Karyawan</th>
-                                            <th class="column-title" width="20%">Action</th>
+                                            <th class="column-title" width="15%">Jenis Kelamin</th>
+                                            <th class="column-title" width="20%">Status Karyawan</th>
+                                            <th class="column-title" width="45%">Action</th>
                                         </tr>
                                         </thead>
                                         <?php while ($data = $karyawanAvailable->fetch(PDO::FETCH_LAZY)) { ?>
@@ -82,6 +82,7 @@ $stmt->execute();
                                                         <i class="fa fa-user"> </i> View Profile
                                                     </button>
                                                 </a>
+                                                <?php if(empty($data['no_NIK'])){ ?>
                                                 <button type="button" data-toggle="tooltip"
                                                         data-ktp="<?= $data['no_ktp'] ?>" data-placement="right"
                                                         title="Add NIP"
@@ -89,6 +90,7 @@ $stmt->execute();
                                                         onclick="return confirm('Are you sure you want to add?');">
                                                     <i class="fa fa-fw fa-plus-square"> </i>
                                                 </button>
+                                                <?php } ?>
                                             </td>
 
                                         </tr>

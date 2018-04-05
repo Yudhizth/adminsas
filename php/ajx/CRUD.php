@@ -483,7 +483,7 @@ elseif (@$_GET['type'] == 'disableAdmin'){
                         $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
                         $log = $config->runQuery($log);
                         $log->execute(array(
-                            ':a'    => $id_reff,
+                            ':a'    => $a,
                             ':b'    => '3',
                             ':c'    => 'tb_admin',
                             ':d'    => 'update disabled admin',
@@ -509,7 +509,7 @@ elseif (@$_GET['type'] == 'enableAdmin'){
                         $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
                         $log = $config->runQuery($log);
                         $log->execute(array(
-                            ':a'    => $id_reff,
+                            ':a'    => $a,
                             ':b'    => '3',
                             ':c'    => 'tb_admin',
                             ':d'    => 'update enabled admin',

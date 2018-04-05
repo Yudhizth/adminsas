@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $kode = $_POST['id'];
 $lulus = $_POST['st'];
 $kd_status = $_POST['kode'];
@@ -7,6 +7,9 @@ $status = "1";
 include_once '../../config/api.php';
 
 $config = new Admin();
+
+$admin_id = $config->adminID();
+$admin_id = $admin_id['id'];
 $sql = "UPDATE tb_karyawan SET nilai = :lulus, status = :status WHERE no_KTP = :ktp";
 $stmt = $config->runQuery($sql);
 
@@ -30,7 +33,7 @@ if (!$stmt) {
     $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
             $log = $config->runQuery($log);
             $log->execute(array(
-                ':a'    => $id_reff,
+                ':a'    => $kode,
                 ':b'    => '1',
                 ':c'    => 'tb_loker',
                 ':d'    => 'menambah data loker',

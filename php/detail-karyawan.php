@@ -176,6 +176,12 @@ $file = $config->runQuery("SELECT * FROM tb_uploadfile_karyawan where no_ktp = :
 $file->bindParam(':no_ktp', $no_ktp);
 $file->execute();
 
+$appKerja = $config->runQuery("SELECT tb_apply_pekerjaan.id, tb_apply_pekerjaan.kd_pekerjaan, tb_apply_pekerjaan.status, tb_jenis_pekerjaan.nama_pekerjaan FROM tb_apply_pekerjaan
+INNER JOIN tb_jenis_pekerjaan ON tb_jenis_pekerjaan.kd_pekerjaan = tb_apply_pekerjaan.kd_pekerjaan WHERE tb_apply_pekerjaan.no_ktp = :ktp");
+$appKerja->execute(array(
+    ':ktp'  => $no_ktp
+));
+
 $pekerjaan = $config->runQuery("SELECT tb_list_karyawan.kode_list_karyawan, tb_list_karyawan.no_nip, tb_list_karyawan.kode_jabatan, tb_list_karyawan.kode_pekerjaan, tb_list_karyawan.status_karyawan, tb_kerjasama_perusahan.nomor_kontrak, tb_kerjasama_perusahan.kode_perusahaan, tb_kerjasama_perusahan.kode_request, tb_kerjasama_perusahan.kontrak_start, tb_kerjasama_perusahan.kontrak_end, tb_kerjasama_perusahan.penempatan, tb_perusahaan.nama_perusahaan, tb_temporary_perusahaan.kebutuhan, tb_temporary_perusahaan.kode_pekerjaan, tb_temporary_perusahaan.nama_project, tb_jenis_pekerjaan.nama_pekerjaan, tb_list_jabatan.nama_jabatan FROM tb_list_karyawan
 
 INNER JOIN tb_kerjasama_perusahan ON tb_kerjasama_perusahan.kode_list_karyawan=tb_list_karyawan.kode_list_karyawan
@@ -960,22 +966,14 @@ if($rating['TotalRating'] > 0){
                             <dd> : <?= $karyawan['menghire'] ?> </dd>
                         </dl>
                     </div>
+
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 profile_details">
-                        <table class="table table-hover table-bordered">
-                            <thead>
-                            <th>Nama Posisi</th>
-                            <th>Direkomendasika Oleh</th>
-                            </thead>
-                            <tbody>
-                        <?php while ($rek = $cek->fetch(PDO::FETCH_LAZY)){ ?>
-                            <tr>
-                                <td><?=$rek['nama_pekerjaan']?></td>
-                                <td><?=$rek['kd_admin']?></td>
-                            </tr>
-                            <?php } ?>
-                            </tbody>
-                        </table>
+                        <?php while ($rows = $appKerja->fetch(PDO::FETCH_LAZY)) {
+                          ?>
+                        <a class="btn btn-success" style="width: 50%;"><i class="fa fa-road m-right-xs"></i> <?=$rows['nama_pekerjaan']?></a>
+                        <?php } ?>
                     </div>
+                    
                 </div>
 
             </div>
@@ -1059,7 +1057,7 @@ if($rating['TotalRating'] > 0){
                             </table>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 col-sm-offset-3 widget widget_tally_box">
+                    <div class="col-md-6 col-sm-6 col-xs-12  widget widget_tally_box">
                         <div class="x_panel fixed_height_390">
                             <div class="x_content">
 
@@ -1090,6 +1088,22 @@ if($rating['TotalRating'] > 0){
                                 </p>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 profile_details">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                            <th>Nama Posisi</th>
+                            <th>Direkomendasika Oleh</th>
+                            </thead>
+                            <tbody>
+                        <?php while ($rek = $cek->fetch(PDO::FETCH_LAZY)){ ?>
+                            <tr>
+                                <td><?=$rek['nama_pekerjaan']?></td>
+                                <td><?=$rek['kd_admin']?></td>
+                            </tr>
+                            <?php } ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 

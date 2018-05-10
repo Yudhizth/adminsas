@@ -19,7 +19,12 @@ if($cekLogin->is_loggedin()!="")
       # code...
       $cekLogin->redirect('index.php');
     } else{
-      $error = $_SESSION['error'];
+      if(isset($_SESSION['error'])){
+        $error = $_SESSION['error'];
+      }else{
+        $error = "";
+      }
+      
     }
   }
   $pass = password_verify('hello', 'makan');

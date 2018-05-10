@@ -110,6 +110,9 @@
 <?php if($footer == 'push') { ?>
     <script src="build/js/push.js"></script>
 <?php } ?>
+<?php if($footer == 'article') { ?>
+    <script src="build/js/artikel.js"></script>
+<?php } ?>
 
 
 <script src="vendors/parsleyjs/dist/parsley.js"></script>

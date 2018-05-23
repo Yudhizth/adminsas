@@ -7,7 +7,7 @@
     $lokers->execute();
 ?>
 <div class="x_panel">
-    <div class="x_content" id="form-loker">
+    <div class="x_content " id="form-loker">
         <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 col-xs-12" style="padding: 1%; border: 2px solid #ebebeb; border-radius: 1%;">
 
             <div class="x_title">

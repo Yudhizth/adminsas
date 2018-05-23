@@ -33,6 +33,10 @@
       <link href="vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
       <link href="vendors/timepicker/jquery.timepicker.min.css" rel="stylesheet">
 
+      <?php if($footer == 'data-entry' OR $footer == 'map'){ ?>
+        <link href="vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <?php } ?>
+
     <!-- Custom Theme Style -->
     <link href="build/css/custom.css" rel="stylesheet">
   </head>

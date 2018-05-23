@@ -576,6 +576,14 @@ elseif (@$_GET['type'] == 'resetPasswordAdmin'){
     }
 }
 
+elseif (@$_GET['type'] == 'provinsi'){
+    $id = $_POST['id'];
+    $stmt = $config->runQuery('SELECT * FROM regencies WHERE province_id = :id');
+    $stmt->execute(array(':id' => $id));
+    header('Content-Type: application/json');
+    echo json_encode($stmt->fetchAll());
+}
+
 
 
 

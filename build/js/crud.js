@@ -3,7 +3,7 @@ function addDetail() {
     var admin = $('.tambahDetail').data('admin');
 
     alert(id);
-    
+
 }
 function formArtikel(){
     $('#artikel-form').removeClass('hidden');
@@ -17,7 +17,7 @@ $(document).ready(function(){
         event.preventDefault();
 
         if($(this).parsley().validate()){
-            
+
             var spk   = $('#txtSPK').val();
             var id    = $('#txtID').val();
             var judul = $('#txtJudul').val();
@@ -304,24 +304,24 @@ $(document).ready(function(){
     //     this.checkDirty();  // true
     // });
 
-    CKEDITOR.editorConfig = function( config ) {
-        config.toolbarGroups = [
-            { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
-            { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-            { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-            { name: 'forms', groups: [ 'forms' ] },
-            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-            { name: 'links', groups: [ 'links' ] },
-            { name: 'insert', groups: [ 'insert' ] },
-            { name: 'styles', groups: [ 'styles' ] },
-            { name: 'colors', groups: [ 'colors' ] },
-            { name: 'tools', groups: [ 'tools' ] },
-            { name: 'others', groups: [ 'others' ] },
-            { name: 'about', groups: [ 'about' ] }
-        ];
-    };
-    CKEDITOR.replace( 'isiArtikel' );
+      // CKEDITOR.editorConfig = function( config ) {
+      //     config.toolbarGroups = [
+      //         { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+      //         { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+      //         { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+      //         { name: 'forms', groups: [ 'forms' ] },
+      //         { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+      //         { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+      //         { name: 'links', groups: [ 'links' ] },
+      //         { name: 'insert', groups: [ 'insert' ] },
+      //         { name: 'styles', groups: [ 'styles' ] },
+      //         { name: 'colors', groups: [ 'colors' ] },
+      //         { name: 'tools', groups: [ 'tools' ] },
+      //         { name: 'others', groups: [ 'others' ] },
+      //         { name: 'about', groups: [ 'about' ] }
+      //     ];
+      // };
+      // CKEDITOR.replace( 'isiArtikel' );
 
-    
+
 })

@@ -27,6 +27,9 @@ $pwd = $_SESSION['pwd'];
 				</form>
 				<hr>
 				<button class="btn btn-sm btn-info pull-right" onclick="myFunction()"  tooltip="print halaman"><span class="fa fa-fw fa-print"></span></button>
+				<a href="?p=entry-data">
+					<button class="btn btn-success"><span class="fa fa-fw fa-arrow-left"></span> Pull Back</button>
+				</a>
 			</div>
 		</div>
 	</div>

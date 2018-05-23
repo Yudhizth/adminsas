@@ -68,6 +68,7 @@
 
 <?php if($footer == 'data-entry' OR $footer == 'map'){ ?>
     <script src="build/js/crudDetailProject.js"></script>
+    <script src="vendors/select2/dist/js/select2.min.js"></script>
 <?php } ?>
 <script src="build/js/crudKaryawanProject.js"></script>
 <?php if($footer == 'list-lembur'){ ?>

@@ -17,7 +17,7 @@ $delete = new Perusahaan();
 			# code...
 			echo " Data list tidak terhapuskan!";
 		}else{
-			header('Location: ../index.php?p=new-request');
+			header('Location: ../index.php?p=entry-data');
 		}
 
 	}

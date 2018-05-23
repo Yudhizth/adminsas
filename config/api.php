@@ -103,6 +103,13 @@ class Admin
 		$stmt = $this->conn->prepare($sql);
 		return $stmt;
 	}
+
+	public function Products($field, $table)
+    {
+        $stmt = $this->conn->prepare('SELECT '. $field .' FROM '. $table);
+        $stmt->execute();
+        return $stmt;
+    }
 	public function lastInsertID()
 	{
 		return $this->conn->lastInsertId();

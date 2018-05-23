@@ -1,23 +1,23 @@
-$(document).ready(function(){
-   var fixedTime = $('#fixedTime').hide();
-   var flexiTime = $('#flexibleTime').hide();
+$(document).ready(function() {
 
-    $('#timeType').on('change', function () {
-       id = $(this).val();
+    $('.js-example-basic-multiple').select2();
+    var fixedTime = $('#fixedTime').hide();
+    var flexiTime = $('#flexibleTime').hide();
+
+    $('#timeType').on('change', function() {
+        id = $(this).val();
         $('#typeTime').val(id);
-       if(id == 'fix'){
+        if (id == 'fix') {
 
-           flexiTime.hide( "drop", { direction: "right" }, 500 );
+            flexiTime.hide("drop", { direction: "right" }, 500);
             fixedTime.show(500);
-       }
-       else if(id == 'flex'){
-           fixedTime.hide( "drop", { direction: "right" }, 500 );
+        } else if (id == 'flex') {
+            fixedTime.hide("drop", { direction: "right" }, 500);
             flexiTime.show(500);
+        } else {
+            fixedTime.hide("drop", { direction: "down" }, "slow");
+            flexiTime.hide("drop", { direction: "down" }, "slow");
         }
-        else{
-           fixedTime.hide( "drop", { direction: "down" }, "slow" );
-           flexiTime.hide( "drop", { direction: "down" }, "slow" );
-       }
 
     });
 
@@ -40,28 +40,56 @@ $(document).ready(function(){
         }
     });
 
-    $('#detailMPO').on('click', '.saveGaji', function () {
+    $('#detailMPO').on('click', '.saveGaji', function() {
         var id = $(this).data('id');
-        var gaji = $('#'+id).val();
+        var gaji = $('#' + id).val();
 
-        if(gaji == ''){
+        if (gaji == '') {
             alert('Not Null!');
-        }else{
+        } else {
             $.ajax({
-                url : 'php/ajx/CRUD.php?type=saveGaji',
+                url: 'php/ajx/CRUD.php?type=saveGaji',
                 type: 'post',
-                data: 'id='+id+'&gaji='+gaji,
+                data: 'id=' + id + '&gaji=' + gaji,
 
-                success : function(msg){
-                    if(msg != ''){
+                success: function(msg) {
+                    if (msg != '') {
                         alert(msg);
-                        location.reload();
                     }
 
                 }
             })
         }
-    })
+    });
+
+    $('#txt_provinsi').on('change', function(e) {
+        e.preventDefault();
+
+        var id = $(this).val();
+
+        $.ajax({
+            url: 'php/ajx/CRUD.php?type=provinsi',
+            type: 'post',
+            data: 'id=' + id,
+
+            success: function(msg) {
+                console.log(msg);
+                // $('#tempatKerja').empty();
+                $('#tempatKerja').prop('disabled', false);
+                $.each(msg, function(index, value) {
+                    $('#tempatKerja').append('<option value="' + value.id + '" data-id="' + value.id + '">' + value.name + '</option>');
+                })
+
+                // $('#kotaReg').select2({
+                //     theme: 'bootstrap4',
+                //     placeholder: "Select an option",
+                //     allowClear: true
+                // });
+
+            }
+        });
+
+    });
 
 
 })

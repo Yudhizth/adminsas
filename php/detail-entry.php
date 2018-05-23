@@ -1,132 +1,141 @@
 <?php
 $kd = $_GET['name'];
 
+// MPO2018-m7cXp
+
+
     $cek = new Perusahaan();
     $sql = "SELECT * FROM tb_temporary_perusahaan WHERE no_pendaftaran = :id";
     $stmt = $cek->runQuery($sql);
     $stmt->execute(array(
         ':id'   =>$kd));
 
-    $row = $stmt->fetch(PDO::FETCH_LAZY);
+    if($stmt->rowCount() > 0){
+        $rest = strtoupper(substr($kd, -5));
+        $row = $stmt->fetch(PDO::FETCH_LAZY);
 
-    $status = $row['status'];
+        $status = $row['status'];
 
-    if ($status == '1')
-    {
-        print "<script>window.location='index.php?p=entrydata&name=".$row['kebutuhan']."/".$row['no_pendaftaran']."';</script>";
+            if ($status == '1')
+        {
+            print "<script>window.location='index.php?p=entrydata&name=".$row['kebutuhan']."/".$row['no_pendaftaran']."';</script>";
 
-        $_SESSION['kodePendaftaran'] = $row['no_pendaftaran'];
-    }
-    elseif ($status == '0')
-    {
-        $id = "kode_perusahaan";
-        $tbName = 'tb_perusahaan';
-        $kode = "CUS-$kd-";
+            $_SESSION['kodePendaftaran'] = $row['no_pendaftaran'];
+        }
+        else
+        {   
+            $tanggall = $config->getdate('md');
+            $tahuun = $config->getdate('Y');
+
+            $namaa = strtoupper(substr($row['nama_perusahaan'], 0, 3 ));
+        
+            $id = "kode_perusahaan";
+            $tbName = 'tb_perusahaan';
+            $new = "$namaa$tanggall$rest$tahuun";
 
 
-        $gen = new Perusahaan();
-        $new = $gen->Generate($id, $kode, $tbName);
+            if (isset($_POST['newCompany'])) {
 
+                $admin_id = $config->adminID();
 
-        if (isset($_POST['newCompany'])) {
-
-            $admin_id = $config->adminID();
-
-            # code...
-            $kodePerusahaan = $_POST['txt_kode'];
-            $nama = $_POST['txt_nama'];
-            $bidang = $_POST['txt_bidang'];
-            $npwp = $_POST['txt_npwp'];
-            $siup = $_POST['txt_siup'];
-            $telp = $_POST['txt_telp'];
-            $hp = $_POST['txt_hp'];
-            $fax = $_POST['txt_fax'];
-            $email = $_POST['txt_email'];
-            $web = $_POST['txt_website'];
-            $cp = $_POST['txt_cp'];
-            $alamat = $_POST['txt_alamat'];
-            $kel = $_POST['txt_kelurahan'];
-            $kec = $_POST['txt_kecamatan'];
-            $kota = $_POST['txt_kota'];
-
-            $a = array($kodePerusahaan, $nama, $bidang, $npwp, $siup, $telp, $hp, $fax, $email, $web, $cp, $alamat, $kel, $kec, $kota);
-            // echo "<pre>";
-            // print_r($a);
-            // echo "</pre>";
-            $new_kode = explode('-', $kodePerusahaan);
-            $new_kode = implode($new_kode);
-
-            $query = "INSERT INTO tb_perusahaan (kode_perusahaan, nama_perusahaan, bidang_perusahaan, nomor_NPWP, nomor_SIUP, nomor_telp, nomor_hp, nomor_fax, email, website, contact_person, alamat, kelurahan, kecamatan, kota) VALUES (:kode, :nama, :bidang, :npwp, :siup, :telp, :hp, :fax, :email, :web, :cp, :alamat, :kel, :kec, :kota)";
-            $input = $cek->runQuery($query);
-            $input->execute(array(
-                ':kode'     => $kodePerusahaan,
-                ':nama'     => $nama,
-                ':bidang'   => $bidang,
-                ':npwp'     => $npwp,
-                ':siup'     => $siup,
-                ':telp'     => $telp,
-                ':hp'       => $hp,
-                ':fax'      => $fax,
-                ':email'    => $email,
-                ':web'      => $web,
-                ':cp'       => $cp,
-                ':alamat'   => $alamat,
-                ':kel'      => $kel,
-                ':kec'      => $kec,
-                ':kota'     => $kota
-            ));
-            if (!$input) {
                 # code...
-                echo "DATA TIDAK MASUK KE DB.";
-            }else{
-                $id_reff = $config->lastInsertID();
-                $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
-                $log = $config->runQuery($log);
-                $log->execute(array(
-                    ':a'    => $id_reff,
-                    ':b'    => '1',
-                    ':c'    => 'tb_perusahaan',
-                    ':d'    => 'insert new perusahaan',
-                    ':e'    =>  $admin_id['id']
+                $kodePerusahaan = $_POST['txt_kode'];
+                $nama = $_POST['txt_nama'];
+                $bidang = $_POST['txt_bidang'];
+                $npwp = $_POST['txt_npwp'];
+                $siup = $_POST['txt_siup'];
+                $telp = $_POST['txt_telp'];
+                $hp = $_POST['txt_hp'];
+                $fax = $_POST['txt_fax'];
+                $email = $_POST['txt_email'];
+                $web = $_POST['txt_website'];
+                $cp = $_POST['txt_cp'];
+                $alamat = $_POST['txt_alamat'];
+                $kel = $_POST['txt_kelurahan'];
+                $kec = $_POST['txt_kecamatan'];
+                $kota = $_POST['txt_kota'];
+
+                $a = array($kodePerusahaan, $nama, $bidang, $npwp, $siup, $telp, $hp, $fax, $email, $web, $cp, $alamat, $kel, $kec, $kota);
+                // echo "<pre>";
+                // print_r($a);
+                // echo "</pre>";
+                $new_kode = explode('-', $kodePerusahaan);
+                $new_kode = implode($new_kode);
+
+                $query = "INSERT INTO tb_perusahaan (kode_perusahaan, nama_perusahaan, bidang_perusahaan, nomor_NPWP, nomor_SIUP, nomor_telp, nomor_hp, nomor_fax, email, website, contact_person, alamat, kelurahan, kecamatan, kota) VALUES (:kode, :nama, :bidang, :npwp, :siup, :telp, :hp, :fax, :email, :web, :cp, :alamat, :kel, :kec, :kota)";
+                $input = $cek->runQuery($query);
+                $input->execute(array(
+                    ':kode'     => $kodePerusahaan,
+                    ':nama'     => $nama,
+                    ':bidang'   => $bidang,
+                    ':npwp'     => $npwp,
+                    ':siup'     => $siup,
+                    ':telp'     => $telp,
+                    ':hp'       => $hp,
+                    ':fax'      => $fax,
+                    ':email'    => $email,
+                    ':web'      => $web,
+                    ':cp'       => $cp,
+                    ':alamat'   => $alamat,
+                    ':kel'      => $kel,
+                    ':kec'      => $kec,
+                    ':kota'     => $kota
                 ));
-                //will be generate password and usualy like 'admin123'
-                $new_pass = password_hash($new_kode, PASSWORD_DEFAULT);
-
-                $key = "INSERT INTO tb_login_perusahaan (kd_perusahaan, password, kode_password) VALUES (:idPerusahaan, :pwd, :kode)";
-                $pwd = $cek->runQuery($key);
-                $pwd->execute(array(
-                    ':idPerusahaan' => $kodePerusahaan,
-                    ':pwd'          => $new_pass,
-                    ':kode'         => $new_kode
-                    ));
-                if (!$pwd) {
+                if (!$input) {
                     # code...
-                    echo "TIDAK BERHASIL GENERATE CODE PASSWD";
+                    echo "DATA TIDAK MASUK KE DB.";
                 }else{
+                    $id_reff = $config->lastInsertID();
+                    $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+                    $log = $config->runQuery($log);
+                    $log->execute(array(
+                        ':a'    => $id_reff,
+                        ':b'    => '1',
+                        ':c'    => 'tb_perusahaan',
+                        ':d'    => 'insert new perusahaan',
+                        ':e'    =>  $admin_id['id']
+                    ));
+                    //will be generate password and usualy like 'admin123'
+                    $new_pass = password_hash($new_kode, PASSWORD_DEFAULT);
 
-                        $statuss = "0";
-                        $sql = "UPDATE tb_temporary_perusahaan SET kode_perusahaan = :id, status = :st WHERE no_pendaftaran = :kode";
-                        $stmt = $cek->runQuery($sql);
-                        $stmt->execute(array(
-                            ':id'   => $kodePerusahaan,
-                            ':st'   => $statuss,
-                            ':kode' => $kd
-                            ));
-                        if (!$stmt) {
-                               # code...
-                            echo "tidak berhasil update tb_temporary_perusahaan";
-                           }else{
-                            //kirim id perusahaan dan password
-                            print "<script>window.location='index.php?p=password';</script>";
-                            session_start();
-                            $_SESSION['kode'] = $kodePerusahaan;
-                            $_SESSION['pwd']  = $new_kode;
-                           }
+                    $key = "INSERT INTO tb_login_perusahaan (kd_perusahaan, password, kode_password) VALUES (:idPerusahaan, :pwd, :kode)";
+                    $pwd = $cek->runQuery($key);
+                    $pwd->execute(array(
+                        ':idPerusahaan' => $kodePerusahaan,
+                        ':pwd'          => $new_pass,
+                        ':kode'         => $new_kode
+                        ));
+                    if (!$pwd) {
+                        # code...
+                        echo "TIDAK BERHASIL GENERATE CODE PASSWD";
+                    }else{
+
+                            $statuss = "0";
+                            $sql = "UPDATE tb_temporary_perusahaan SET kode_perusahaan = :id, status = :st WHERE no_pendaftaran = :kode";
+                            $stmt = $cek->runQuery($sql);
+                            $stmt->execute(array(
+                                ':id'   => $kodePerusahaan,
+                                ':st'   => $statuss,
+                                ':kode' => $kd
+                                ));
+                            if (!$stmt) {
+                                # code...
+                                echo "tidak berhasil update tb_temporary_perusahaan";
+                            }else{
+                                //kirim id perusahaan dan password
+                                print "<script>window.location='index.php?p=password';</script>";
+                                session_start();
+                                $_SESSION['kode'] = $kodePerusahaan;
+                                $_SESSION['pwd']  = $new_kode;
+                            }
+                    }
+
                 }
 
             }
 
-        }
+    
+
         ?>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -279,5 +288,9 @@ $kd = $_GET['name'];
 </div>
 
     <?php
+}
+
+}else{
+    echo 'data tidak ada';
 }
 ?>

@@ -1,4 +1,4 @@
-<?php
+    <?php
 
     $st = $config->runQuery("SELECT id FROM tb_temporary_perusahaan WHERE kode_perusahaan = ''");
     $st->execute();

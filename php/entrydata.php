@@ -16,139 +16,140 @@ $admin_id = $cek->adminID();
         $deskripsi = $_POST['txt_deskripsi'];
         $tugas = $_POST['txt_tugas'];
         $tanggung = $_POST['txt_tanggung'];
-        $penempatan = $_POST['txt_penempatan'];
+        $penempatan = implode(',', $_POST['txt_penempatan']);
         $total = $_POST['txt_nilai'];
         $lembur = $_POST['txt_lembur'];
         $req = $_POST['txt_req'];
         $admin = $_POST['txt_admin'];
         $dateProject = $_POST['txt_start'];
-        $totalDates = $_POST['txt_ends'];
-        $time_select = $_POST['typeTime'];
-        $sun1 = $_POST['txt_minggu_start'];
-        $sun2 = $_POST['txt_minggu_end'];
-        $mon1 = $_POST['txt_senin_start'];
-        $mon2 = $_POST['txt_senin_end'];
-        $tue1 = $_POST['txt_selasa_start'];
-        $tue2 = $_POST['txt_selasa_end'];
-        $wen1 = $_POST['txt_rabu_start'];
-        $wen2 = $_POST['txt_rabu_end'];
-        $thu1 = $_POST['txt_kamis_start'];
-        $thu2 = $_POST['txt_kamis_end'];
-        $fri1 = $_POST['txt_jumat_start'];
-        $fri2 = $_POST['txt_jumat_end'];
-        $sat1 = $_POST['txt_sabtu_start'];
-        $sat2 = $_POST['txt_sabtu_end'];
-        $minggu = $_POST['txt_minggu'];
-        $senin = $_POST['txt_senin'];
-        $selasa = $_POST['txt_selasa'];
-        $rabu = $_POST['txt_rabu'];
-        $kamis = $_POST['txt_kamis'];
-        $jumat = $_POST['txt_jumat'];
-        $sabtu = $_POST['txt_sabtu'];
+        $totalDates = $_POST['txt_ends']; 
+       
+        // $time_select = $_POST['typeTime'];
+        // $sun1 = $_POST['txt_minggu_start'];
+        // $sun2 = $_POST['txt_minggu_end'];
+        // $mon1 = $_POST['txt_senin_start'];
+        // $mon2 = $_POST['txt_senin_end'];
+        // $tue1 = $_POST['txt_selasa_start'];
+        // $tue2 = $_POST['txt_selasa_end'];
+        // $wen1 = $_POST['txt_rabu_start'];
+        // $wen2 = $_POST['txt_rabu_end'];
+        // $thu1 = $_POST['txt_kamis_start'];
+        // $thu2 = $_POST['txt_kamis_end'];
+        // $fri1 = $_POST['txt_jumat_start'];
+        // $fri2 = $_POST['txt_jumat_end'];
+        // $sat1 = $_POST['txt_sabtu_start'];
+        // $sat2 = $_POST['txt_sabtu_end'];
+        // $minggu = $_POST['txt_minggu'];
+        // $senin = $_POST['txt_senin'];
+        // $selasa = $_POST['txt_selasa'];
+        // $rabu = $_POST['txt_rabu'];
+        // $kamis = $_POST['txt_kamis'];
+        // $jumat = $_POST['txt_jumat'];
+        // $sabtu = $_POST['txt_sabtu'];
 
         $dateProject = explode('-', $dateProject);
         $start = str_replace(' ', '', $dateProject[0]);
         $ends = str_replace(' ', '', $dateProject[1]);
 
-        if(empty($sun1)){
-            $sun = "Libur";
-        }else{
-            $sun = $sun1 . "/" . $sun2;
-        }
-        if(empty($mon1)){
-            $mon = "Libur";
-        }else{
-            $mon = $mon1 . "/" . $mon2;
-        }
-        if(empty($tue1)){
-            $tue = "Libur";
-        }else{
-            $tue = $tue1 . "/" . $tue2;
-        }
-        if(empty($wen1)){
-            $wen = "Libur";
-        }else{
-            $wen = $wen1 . "/" . $wen2;
-        }
-        if(empty($thu1)){
-            $thu = "Libur";
-        }else{
-            $thu = $thu1 . "/" . $thu2;
-        }
-        if(empty($fri1)){
-            $fri = "Libur";
-        }else{
-            $fri = $fri1 . "/" . $fri2;
-        }
-        if(empty($sat1)){
-            $sat = "Libur";
-        }else{
-            $sat = $sat1 . "/" . $sat2;
-        }
+        // if(empty($sun1)){
+        //     $sun = "Libur";
+        // }else{
+        //     $sun = $sun1 . "/" . $sun2;
+        // }
+        // if(empty($mon1)){
+        //     $mon = "Libur";
+        // }else{
+        //     $mon = $mon1 . "/" . $mon2;
+        // }
+        // if(empty($tue1)){
+        //     $tue = "Libur";
+        // }else{
+        //     $tue = $tue1 . "/" . $tue2;
+        // }
+        // if(empty($wen1)){
+        //     $wen = "Libur";
+        // }else{
+        //     $wen = $wen1 . "/" . $wen2;
+        // }
+        // if(empty($thu1)){
+        //     $thu = "Libur";
+        // }else{
+        //     $thu = $thu1 . "/" . $thu2;
+        // }
+        // if(empty($fri1)){
+        //     $fri = "Libur";
+        // }else{
+        //     $fri = $fri1 . "/" . $fri2;
+        // }
+        // if(empty($sat1)){
+        //     $sat = "Libur";
+        // }else{
+        //     $sat = $sat1 . "/" . $sat2;
+        // }
 
 
-         $o = array($no_kontrak, $kd_perusahaan, $req, $kodeMPO, $jmlh, $deskripsi, $tugas, $tanggung, $penempatan, $total, $admin, $time_select);
-         $days = array($minggu, $senin, $selasa, $rabu, $kamis, $jumat, $sabtu);
+        //  $o = array($no_kontrak, $kd_perusahaan, $req, $kodeMPO, $jmlh, $deskripsi, $tugas, $tanggung, $penempatan, $total, $admin, $time_select);
+        //  $days = array($minggu, $senin, $selasa, $rabu, $kamis, $jumat, $sabtu);
 
-         $day = array($sun1, $sun2, $mon1, $mon2, $tue1, $tue2, $wen1, $wen2, $thu1, $thu2, $fri1, $fri2, $sat1, $sat2);
+        //  $day = array($sun1, $sun2, $mon1, $mon2, $tue1, $tue2, $wen1, $wen2, $thu1, $thu2, $fri1, $fri2, $sat1, $sat2);
 //         echo "<pre>";
 //          print_r($o);
 //         print_r($days);
 //         print_r($day);
 //         echo "</pre>";
 
-        if ($time_select == "fix") {
-            # code...
-            $query = "INSERT INTO tb_time_fix (nomor_spk, minggu, senin, selasa, rabu, kamis, jumat, sabtu) VALUES (:nomor, :minggu, :senin, :selasa, :rabu, :kamis, :jumat, :sabtu)";
-            $fix = $cek->runQuery($query);
-            $fix->execute(array(
-                ':nomor' => $no_kontrak,
-                ':minggu'=> $sun,
-                ':senin' => $mon,
-                ':selasa'=> $tue,
-                ':rabu'  => $wen,
-                ':kamis' => $thu,
-                ':jumat' => $fri,
-                ':sabtu' => $sat
-            ));
-            $id_reff = $config->lastInsertID();
+        // if ($time_select == "fix") {
+        //     # code...
+        //     $query = "INSERT INTO tb_time_fix (nomor_spk, minggu, senin, selasa, rabu, kamis, jumat, sabtu) VALUES (:nomor, :minggu, :senin, :selasa, :rabu, :kamis, :jumat, :sabtu)";
+        //     $fix = $cek->runQuery($query);
+        //     $fix->execute(array(
+        //         ':nomor' => $no_kontrak,
+        //         ':minggu'=> $sun,
+        //         ':senin' => $mon,
+        //         ':selasa'=> $tue,
+        //         ':rabu'  => $wen,
+        //         ':kamis' => $thu,
+        //         ':jumat' => $fri,
+        //         ':sabtu' => $sat
+        //     ));
+        //     $id_reff = $config->lastInsertID();
 
-            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
-            $log = $config->runQuery($log);
-            $log->execute(array(
-                ':a'    => $id_reff,
-                ':b'    => '1',
-                ':c'    => 'tb_time_fix',
-                ':d'    => 'insert data time fix project',
-                ':e'    =>  $admin_id['id']
-            ));
-        }elseif ($time_select == "flex") {
-            $query = "INSERT INTO tb_time_fleksible (nomor_spk, minggu, senin, selasa, rabu, kamis, jumat, sabtu) VALUES (:nomor, :minggu, :senin, :selasa, :rabu, :kamis, :jumat, :sabtu)";
-            $flex = $cek->runQuery($query);
-            $flex->execute(array(
-                ':nomor' => $no_kontrak,
-                ':minggu' => $minggu,
-                ':senin' => $senin,
-                ':selasa' => $selasa,
-                ':rabu' => $rabu,
-                ':kamis' => $kamis,
-                ':jumat' => $jumat,
-                ':sabtu' => $sabtu
-            ));
-            $id_reff = $config->lastInsertID();
+        //     $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+        //     $log = $config->runQuery($log);
+        //     $log->execute(array(
+        //         ':a'    => $id_reff,
+        //         ':b'    => '1',
+        //         ':c'    => 'tb_time_fix',
+        //         ':d'    => 'insert data time fix project',
+        //         ':e'    =>  $admin_id['id']
+        //     ));
+        // }elseif ($time_select == "flex") {
+        //     $query = "INSERT INTO tb_time_fleksible (nomor_spk, minggu, senin, selasa, rabu, kamis, jumat, sabtu) VALUES (:nomor, :minggu, :senin, :selasa, :rabu, :kamis, :jumat, :sabtu)";
+        //     $flex = $cek->runQuery($query);
+        //     $flex->execute(array(
+        //         ':nomor' => $no_kontrak,
+        //         ':minggu' => $minggu,
+        //         ':senin' => $senin,
+        //         ':selasa' => $selasa,
+        //         ':rabu' => $rabu,
+        //         ':kamis' => $kamis,
+        //         ':jumat' => $jumat,
+        //         ':sabtu' => $sabtu
+        //     ));
+        //     $id_reff = $config->lastInsertID();
 
-            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
-            $log = $config->runQuery($log);
-            $log->execute(array(
-                ':a'    => $id_reff,
-                ':b'    => '1',
-                ':c'    => 'tb_time_fleksible',
-                ':d'    => 'insert data time flex project',
-                ':e'    =>  $admin_id['id']
-            ));
-        }else{}
+        //     $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+        //     $log = $config->runQuery($log);
+        //     $log->execute(array(
+        //         ':a'    => $id_reff,
+        //         ':b'    => '1',
+        //         ':c'    => 'tb_time_fleksible',
+        //         ':d'    => 'insert data time flex project',
+        //         ':e'    =>  $admin_id['id']
+        //     ));
+        // }else{}
 
-        $query = "INSERT INTO tb_kerjasama_perusahan (nomor_kontrak, kode_perusahaan, kode_request, kode_plan, total_karyawan, type_time, deskripsi, tugas, tanggung_jwb, penempatan, kontrak_start, kontrak_end, total, nilai_kontrak, lembur, kode_admin) VALUES (:kontrak, :kode, :plan, :req, :total, :type_time, :deskripsi, :tgs, :tgjwb, :tmpt, :start, :ends, :totalDate, :nilai, :lembur, :admin)";
+        $query = "INSERT INTO tb_kerjasama_perusahan (nomor_kontrak, kode_perusahaan, kode_request, kode_plan, total_karyawan, deskripsi, tugas, tanggung_jwb, penempatan, kontrak_start, kontrak_end, total, nilai_kontrak, lembur, kode_admin) VALUES (:kontrak, :kode, :plan, :req, :total, :deskripsi, :tgs, :tgjwb, :tmpt, :start, :ends, :totalDate, :nilai, :lembur, :admin)";
 
         $stmt = $cek->runQuery($query);
         $stmt->execute(array(
@@ -157,7 +158,7 @@ $admin_id = $cek->adminID();
           ':plan'     =>$req,
           ':req'      =>$kodeMPO,
           ':total'    =>$jmlh,
-          ':type_time'=>$time_select,
+        //   ':type_time'=>$time_select,
           ':deskripsi'=>$deskripsi,
           ':tgs'      =>$tugas,
           ':tgjwb'    =>$tanggung,
@@ -639,7 +640,6 @@ $admin_id = $cek->adminID();
 //    }else{
 //      // echo "you should better select one of them.";
 //    }
-
 
 
 

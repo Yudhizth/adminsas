@@ -201,6 +201,7 @@ WHERE tb_karyawan.kd_status_karyawan IN ('KDKRY0011') AND tb_kode_bank.kd_bank =
 
     if($input){
         echo "Notifikasi Telah dikirim";
+        //select no_ktp from tb_info_gaji where no_ktp = '' AND tanggal_gaji CURMONTH()
     }else{
         echo "Notifikasi belum terkirim";
     }

@@ -47,6 +47,7 @@
                                                 <th class="column-title">Nama Perusahaan </th>
                                                 <th class="column-title">Kebutuhan </th>
                                                 <th class="column-title">Detail Request </th>
+                                                <th class="column-title">Jam Kerja </th>
                                                 <th class="column-title">Add Karyawan </th>
                                                 <th class="column-title">List Pekerjaan </th>
                                             </tr>
@@ -64,33 +65,44 @@
                                         while ($row = $stmt->fetch(PDO::FETCH_LAZY)) {
                                             # code...
                                             // jika detail-request
-                                            if ($row['status'] == 3){
+                                            if($row['status'] == 2){
                                                 $st = '<i class="text-success"><span class="fa fa-fw fa-check-square-o"></span></i>';
-                                                $st2 = '<a href="?p=karyawan-project&id='.$row['nomor_kontrak'].'"><button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user"></i>  Add Karyawan </button></a>';
+                                                $st2 = '<a href="?p=schedule&id='.$row['nomor_kontrak'].'"><button type="button" class="btn btn-success btn-xs"> <i class="fa fa-clock-o"></i>  jam kerja </button></a>';
                                                 $st3 = '<span class="label label-default">not sett</span>';
+                                                $st4 = '<span class="label label-default">not sett</span>';
+                                            }
+                                            elseif ($row['status'] == 3){
+                                                $st = '<i class="text-success"><span class="fa fa-fw fa-check-square-o"></span></i>';
+                                                $st2 = '<i class="text-success"><span class="fa fa-fw fa-check-square-o"></span></i>';
+                                                $st3 = '<a href="?p=karyawan-project&id='.$row['nomor_kontrak'].'"><button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user"></i>  Add Karyawan </button></a>';
+                                                $st4 = '<span class="label label-default">not sett</span>';
                                             }elseif ($row['status'] == 4){
                                                 $st = '<i class="text-success"><span class="fa fa-fw fa-check-square-o"></span></i>';
                                                 $st2 = '<i class="text-success"><span class="fa fa-fw fa-check-square-o"></span></i>';
-                                                $st3 = '<a href="?p=add-list-job&name='.$row['nomor_kontrak'].'"><button type="button" class="btn btn-success btn-xs"> <i class="fa fa-edit"></i>  List Pekerjaan</button></a>';
+                                                $st3 = '<i class="text-success"><span class="fa fa-fw fa-check-square-o"></span></i>';
+                                                $st4 = '<a href="?p=add-list-job&name='.$row['nomor_kontrak'].'"><button type="button" class="btn btn-success btn-xs"> <i class="fa fa-edit"></i>  List Pekerjaan</button></a>';
                                             }
                                             elseif ($row['status'] == 5){
                                                 $st = '<i class="text-success"><span class="fa fa-fw fa-check-square-o"></span></i>';
                                                 $st2 = '<i class="text-success"><span class="fa fa-fw fa-check-square-o"></span></i>';
-                                                $st3 = '<i class="text-success"><span class="fa fa-fw fa-check-square-o"></span></i>';                                         }
+                                                $st3 = '<i class="text-success"><span class="fa fa-fw fa-check-square-o"></span></i>';
+                                                $st4 = '<i class="text-success"><span class="fa fa-fw fa-check-square-o"></span></i>';                                         }
                                             else{
                                                 $st = '<a href="?p=data-entry&name='.$row['kode_kategori'].''.$row['no_pendaftaran'].'"><button type="button" class="btn btn-success btn-xs"> <i class="fa fa-edit"></i>  Detail Request </button></a>';
                                                 $st2 = '<span class="label label-default">not sett</span>';
                                                 $st3 = '<span class="label label-default">not sett</span>';
+                                                $st4 = '<span class="label label-default">not sett</span>';
                                             }
                                             ?>
                                                 <tr class="even pointer">
 
 
                                                     <td  style="text-transform: uppercase;"><?php echo $row['nama_perusahaan']; ?></td>
-                                                    <td ><?php echo $row['nama_kategori']; ?> / <?=$row['nama_project']?></td>
+                                                    <td ><?php echo $row['nama_kategori']; ?> </td>
                                                     <td ><?php echo $st; ?></td>
                                                     <td ><?php echo $st2; ?></td>
                                                     <td ><?php echo $st3; ?></td>
+                                                    <td ><?php echo $st4; ?></td>
 
                                                 </tr>
                                     <?php } }?>

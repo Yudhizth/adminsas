@@ -51,11 +51,18 @@ $stmt->execute();
                 while ($row = $stmt->fetch(PDO::FETCH_LAZY)){
 
                     if($row['status'] == '1'){
-                        $status = "<span class='label label-success'>Approve</span>";
+                        $status = "<span class='label label-success'>Approve1</span>";
                     }elseif($row['status'] == '2'){
-                        $status = "<span class='label label-danger'>Decline</span>";
+                        $status = "<span class='label label-danger'>Decline2</span>";
                     }else{
                         $status = "<span class='label label-default'>unset</span>";
+                    }
+                    if($row['status2'] == '1'){
+                        $status2 = "<span class='label label-success'>Approve2</span>";
+                    }elseif($row['status2'] == '2'){
+                        $status2 = "<span class='label label-danger'>Decline2</span>";
+                    }else{
+                        $status2 = "<span class='label label-default'>unset</span>";
                     }
                     ?>
                     <tr>
@@ -64,7 +71,7 @@ $stmt->execute();
                         <td><?=$row['tanggal']?> </td>
                         <td><?=$row['jam']?> jam</td>
                         <td><?=$row['keterangan']?></td>
-                        <td><?=$status?></td>
+                        <td><?=$status?> <?=$status2?></td>
                         <td>
                            <?php
                            if(empty($row['status'])){ ?>

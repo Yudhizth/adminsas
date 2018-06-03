@@ -7,7 +7,7 @@
  */
 $id = $_GET['id'];
 $nomorSPK = $_GET['id'];
-$cekdata = 'SELECT * FROM tb_kerjasama_perusahan WHERE nomor_kontrak = :kodekontrak';
+$cekdata = 'SELECT nomor_kontrak, kode_perusahaan, kode_request, kode_plan, kode_list_karyawan, total_karyawan, penempatan FROM tb_kerjasama_perusahan WHERE nomor_kontrak = :kodekontrak';
 $show = $config->runQuery($cekdata);
 $show->execute(array(':kodekontrak' => $id));
 
@@ -15,17 +15,17 @@ $dataSPK = $show->fetch(PDO::FETCH_LAZY);
 $type = $dataSPK['kode_request'];
 $kebutuhan = substr($type, 0, 3);
 
-$kodeListKaryawan = $dataSPK['kode_list_karyawan'];
-echo $kodeListKaryawan;
+// show list penemepatan
+$tempat = $config->runQuery("SELECT id, name FROM regencies WHERE id IN (". $dataSPK['penempatan'] .")");
+$tempat->execute();
 
-$totKar = "SELECT tb_list_karyawan.id, tb_karyawan.nama_depan, tb_karyawan.nama_belakang 
-FROM tb_list_karyawan 
-INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_list_karyawan.no_nip
-WHERE kode_list_karyawan = :kode";
-$totalKary = $config->runQuery($totKar);
-$totalKary->execute(array(
-    ':kode' => $kodeListKaryawan
-));
+$kodeListKaryawan = $dataSPK['kode_list_karyawan'];
+
+    $totKar = "SELECT id FROM tb_list_karyawan WHERE kode_list_karyawan = :kode";
+    $totalKary = $config->runQuery($totKar);
+    $totalKary->execute(array(
+        ':kode' => $kodeListKaryawan
+    ));
 
 $totalKaryawanSelected = $totalKary->rowCount();
 
@@ -76,21 +76,16 @@ WHERE tb_temp_remove_karyawan.kode_list_karyawan = '".$kodeListKaryawan."')";
         case "MPO":
             $typeKebutuhan = "MPO01";
 
-            $query = "SELECT tb_kerjasama_perusahan.nomor_kontrak, tb_kerjasama_perusahan.kode_perusahaan, tb_kerjasama_perusahan.kode_request, tb_kerjasama_perusahan.kode_plan, tb_kerjasama_perusahan.kode_list_karyawan, tb_list_perkerjaan_perusahaan.name_list, tb_list_perkerjaan_perusahaan.total, tb_jenis_pekerjaan.nama_pekerjaan
-            FROM tb_kerjasama_perusahan
-            INNER JOIN tb_list_perkerjaan_perusahaan ON tb_list_perkerjaan_perusahaan.code = tb_kerjasama_perusahan.kode_plan
-            INNER JOIN tb_jenis_pekerjaan ON tb_jenis_pekerjaan.kd_pekerjaan=tb_list_perkerjaan_perusahaan.name_list
-            WHERE tb_kerjasama_perusahan.nomor_kontrak = :nomorKontrak";
+            $query = "SELECT tb_list_perkerjaan_perusahaan.id, tb_list_perkerjaan_perusahaan.name_list, tb_list_perkerjaan_perusahaan.total, 
+tb_list_perkerjaan_perusahaan.gaji, tb_jenis_pekerjaan.nama_pekerjaan FROM tb_list_perkerjaan_perusahaan
+INNER JOIN tb_jenis_pekerjaan ON tb_jenis_pekerjaan.kd_pekerjaan = tb_list_perkerjaan_perusahaan.name_list
+WHERE tb_list_perkerjaan_perusahaan.code = '". $dataSPK['kode_plan'] ."' ";
 
             $listMPO = $config->runQuery($query);
-            $listMPO->execute(array(
-                ':nomorKontrak' => $nomorSPK
-            ));
+            $listMPO->execute();
 
-            $listMPO2 = $config->runQuery($query);
-            $listMPO2->execute(array(
-                ':nomorKontrak' => $nomorSPK
-            ));
+            $MPOdata = $config->runQuery($query);
+            $MPOdata->execute();
 
             break;
         case "KST":
@@ -134,10 +129,11 @@ WHERE tb_temp_remove_karyawan.kode_list_karyawan = '".$kodeListKaryawan."')";
 //    tampilkaryawan terpilih
 
 
-    $sm = "SELECT tb_list_karyawan.kode_list_karyawan, tb_list_karyawan.no_nip, tb_list_karyawan.kode_jabatan, tb_list_karyawan.status_karyawan, tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_karyawan.jenis_kelamin, tb_karyawan.email, tb_kerjasama_perusahan.nomor_kontrak, tb_kerjasama_perusahan.kode_list_karyawan, tb_list_karyawan.kode_pekerjaan, tb_jenis_pekerjaan.nama_pekerjaan
+    $sm = "SELECT tb_list_karyawan.kode_list_karyawan, tb_list_karyawan.no_nip, tb_list_karyawan.lokasi, tb_list_karyawan.kode_jabatan, tb_list_karyawan.status_karyawan, tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_karyawan.jenis_kelamin, tb_karyawan.email, tb_kerjasama_perusahan.nomor_kontrak, tb_kerjasama_perusahan.kode_list_karyawan, tb_list_karyawan.kode_pekerjaan, tb_jenis_pekerjaan.nama_pekerjaan, regencies.name as Lokasi
 FROM tb_list_karyawan INNER JOIN tb_karyawan ON tb_karyawan.no_ktp = tb_list_karyawan.no_nip
 LEFT JOIN tb_kerjasama_perusahan ON tb_kerjasama_perusahan.kode_list_karyawan = tb_list_karyawan.kode_list_karyawan
 LEFT JOIN tb_jenis_pekerjaan ON tb_jenis_pekerjaan.kd_pekerjaan = tb_list_karyawan.kode_pekerjaan
+LEFT JOIN regencies ON regencies.id = tb_list_karyawan.lokasi
 WHERE tb_kerjasama_perusahan.kode_list_karyawan = :nomor";
     $selectedKaryawan = $config->runQuery($sm);
     $selectedKaryawan->execute(array(':nomor' => $kodeListKaryawan));
@@ -204,7 +200,7 @@ WHERE tb_kerjasama_perusahan.kode_list_karyawan = :nomor";
                                                         data-ktp="<?= $row['no_ktp'] ?>" data-placement="right"
                                                         title="Add"
                                                         class="btn btn-info btn-xs tambahKaryawan"
-                                                        onclick="return confirm('Are you sure you want to add?');">
+                                                        >
                                                     <i class="fa fa-fw fa-plus-square"> </i>
                                                 </button>
                                             </td>
@@ -280,7 +276,7 @@ WHERE tb_kerjasama_perusahan.kode_list_karyawan = :nomor";
                                 <select class="form-control" id="selectMPO">
                                     <option value="">List Posisi</option>
                                     <?php
-                                    while ($data = $listMPO2->fetch(PDO::FETCH_LAZY)){
+                                    while ($data = $MPOdata->fetch(PDO::FETCH_LAZY)){
                                         ?>
                                         <option value="<?=$data['name_list']?>" data-id="<?=$id?>" data-karyawan="<?=$kodeListKaryawan?>"><?= $data['nama_pekerjaan'] ?></option>
                                     <?php } ?>
@@ -358,3 +354,39 @@ WHERE tb_kerjasama_perusahan.kode_list_karyawan = :nomor";
 
     <!--    end content select karyawan-->
 <?php } ?>
+
+
+<div class="modal fade bs-example-modal-sm" id="ModalContoh" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">Select Penempatan</h4>
+            </div>
+            <div class="modal-body">
+                <form id="pilihLokasiKaryawan" data-parsley-validate="" >
+
+                    <div class="form-group">
+                        <input type="hidden" id="kodeKaryawan" value="<?=$kodeListKaryawan?>">
+                        <input type="hidden" id="noKTPKaryawan">
+                        <input type="hidden" id="posisiLamaran">
+                        <select class="form-control" id="lokasiKaryawan" required="required">
+                            <option value="">Choose option</option>
+                            <?php while ($cols = $tempat->fetch(PDO::FETCH_LAZY)){ ?>
+                            <option value="<?=$cols['id']?>"><?=$cols['name']?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group" id="loadBtnTempat">
+                        <button class="btn btn-block btn-primary" id="addtempatBtn" style="text-transform: uppercase; font-size: 12px; font-weight: 600;">submit</button>
+                    </div>
+
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

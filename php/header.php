@@ -33,7 +33,7 @@
       <link href="vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
       <link href="vendors/timepicker/jquery.timepicker.min.css" rel="stylesheet">
 
-      <?php if($footer == 'data-entry' OR $footer == 'map'){ ?>
+      <?php if($footer == 'data-entry' OR $footer == 'map' OR $footer == 'calon-karyawan'){ ?>
         <link href="vendors/select2/dist/css/select2.min.css" rel="stylesheet">
     <?php } ?>
 

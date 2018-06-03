@@ -144,7 +144,7 @@ FROM tb_temporary_perusahaan
                                     <!-- <input type="text" name="txt_penempatan" id="tempat" class="form-control" value="<?=$row['penempatan'];?>" placeholder="nama kota penempatan" required=""> -->
                                     <select name="txt_penempatan[]" id="tempatKerja" class="js-example-basic-multiple form-control" multiple="multiple" required="" disabled>
                                         
-                                            <option value="<?=$col['id']?>"><?=$col['name']?></option>
+                                           
                                        
                                     </select>
                                 </div>
@@ -186,6 +186,25 @@ FROM tb_temporary_perusahaan
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Nilai Per-Jam Lembur</label>
                                 <div class="col-md-4 col-sm-4 col-xs-12">
                                     <input type="text" name="txt_lembur" class="form-control" value="<?=$row['lembur'];?>" id="txtLembur" placeholder="Rp. ........" required data-parsley-type="number" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Type Kontrak<span class="required">(jam_kerja)</span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                   <select name="txt_type_kontrak" id="txt_type_kontrak" class="form-control" required="">
+                                    <option value="">:: choose ::</option>
+                                    <option value="kontrak">kontrak</option>
+                                    <option value="freelance">freelance</option>
+                                    <option value="shift">shift</option>
+                                   </select>
+                                </div>
+                            </div>
+                            <div class="form-group hidden" id="keteranganKontrak">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Keterangan</span>
+                                </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12" >
+                                <textarea class="form-control" rows="3" id="isiKontrak" readonly="readonly"></textarea>
                                 </div>
                             </div>
                             <div class="ln_solid"></div>

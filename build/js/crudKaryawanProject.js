@@ -39,20 +39,32 @@ $(document).ready(function(){
        var spk = $(this).data('kode');
        var ktp = $(this).data('ktp');
 
-       $.ajax({
-           url : 'php/ajx/crudKaryawanProject.php?type=addKaryawan',
-           type: 'post',
-           data: 'spk='+spk+'&ktp='+ktp,
+       if(! confirm('Are you sure want to add?')){
+           return false;
 
-           success: function (msg) {
-               if(msg != ""){
-                   alert(msg);
-                   location.reload();
-               }
-           }
-
-       });
+       }else{
+           $('#ModalContoh').modal('show');
+           $('#noKTPKaryawan').val(ktp);
+       }
+       // $.ajax({
+       //     url : 'php/ajx/crudKaryawanProject.php?type=addKaryawan',
+       //     type: 'post',
+       //     data: 'spk='+spk+'&ktp='+ktp,
+       //
+       //     success: function (msg) {
+       //         if(msg != ""){
+       //             alert(msg);
+       //             location.reload();
+       //         }
+       //     }
+       //
+       // });
    });
+
+    $('#ModalContoh').on('hidden.bs.modal', function (e) {
+        $('#noKTPKaryawan').val();
+        $('#posisiLamaran').val();
+    })
 
     $('#karyawanSelected').on('click', '.removeKaryawanProject', function () {
 
@@ -99,16 +111,48 @@ $(document).ready(function(){
 //MPO semua inih
     $('#listMPO').on('click', '.tambahMPO', function () {
 
-        var spk = $(this).data('kode');
-        var ktp = $(this).data('ktp');
-        var posisi = $(this).data('posisi');
+       if(! confirm('Are you sure want to add?')){
+           return false;
 
+       }else{
+           var spk = $(this).data('kode');
+           var ktp = $(this).data('ktp');
+           var posisi = $(this).data('posisi');
 
+           $('#ModalContoh').modal('show');
+           $('#noKTPKaryawan').val(ktp);
+           $('#posisiLamaran').val(posisi);
+           // $.ajax({
+           //     url : 'php/ajx/crudKaryawanProject.php?type=addKaryawanMPO',
+           //     type: 'post',
+           //     data: 'spk='+spk+'&ktp='+ktp+'&posisi='+posisi,
+           //
+           //     success: function (msg) {
+           //         if(msg != ""){
+           //             alert(msg);
+           //             location.reload();
+           //         }
+           //     }
+           //
+           // });
+       }
+    });
+    $('#pilihLokasiKaryawan').on('submit', function (e) {
+        e.preventDefault();
+
+        var kode = $('#kodeKaryawan').val();
+        var ktp = $('#noKTPKaryawan').val();
+        var lokasi = $('#lokasiKaryawan option:selected').val();
+        var posisi = $('#posisiLamaran').val();
         $.ajax({
-            url : 'php/ajx/crudKaryawanProject.php?type=addKaryawanMPO',
+            url : 'php/ajx/crudKaryawanProject.php?type=addKaryawan',
             type: 'post',
-            data: 'spk='+spk+'&ktp='+ktp+'&posisi='+posisi,
+            data: 'spk='+kode+'&ktp='+ktp+'&lokasi='+lokasi+'&posisi='+posisi,
 
+            beforeSend: function ( xhr ) {
+               $('#addtempatBtn').addClass('hidden');
+               $('#loadBtnTempat').html('Please wait while Saving!');
+            },
             success: function (msg) {
                 if(msg != ""){
                     alert(msg);
@@ -119,11 +163,13 @@ $(document).ready(function(){
         });
     });
    $('#selectMPO').on('change', function () {
-       var kode = $(this).val();
+
        var id = $(this).find('option:selected');
+       var kode = id.val();
        var generate = $(this).find('option:selected');
        var kodeList = generate.data('karyawan');
        var isi = id.data('id');
+
        $('#listMPO').load('php/ajx/selectMPO.php?kode='+kode+'&id='+isi+'&generate='+kodeList);
    })
 

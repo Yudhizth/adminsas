@@ -10,16 +10,18 @@ if(@$_GET['type'] == 'addJudul'){
     $id = $_POST['id'];
     $judul = $_POST['judul'];
     $type = $_POST['type'];
+    $a = $_POST['location'];
     
 
-    $sql = "INSERT INTO tb_job (nomor_kontrak, kode_detail_job, title, type) VALUES (:spk, :id, :title, :type)";
+    $sql = "INSERT INTO tb_job (nomor_kontrak, kode_detail_job, title, type, location) VALUES (:spk, :id, :title, :type, :loc)";
 
     $stmt = $config->runQuery($sql);
     $stmt->execute(array(
         ':spk'  => $spk,
         ':id'   => $id,
         ':title'=> $judul,
-        ':type' => $type
+        ':type' => $type,
+        ':loc'  => $a
     ));
     
     if(!$stmt){

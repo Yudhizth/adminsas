@@ -1,3 +1,40 @@
+function sendInvoice(id, spk) {
+    $.ajax({
+        url: 'php/ajx/CRUD.php?type=invoice',
+        type: 'post',
+        data: 'nomor=' + id + '&kode=' + spk,
+
+        success: function(msg) {
+            if (msg != '') {
+                alert(msg);
+                window.location.reload();
+            }
+
+        }
+    });
+}
+
+function activeCompany(type, id) {
+    $.ajax({
+        url: 'php/ajx/CRUD.php?type=changeStatus',
+        type: 'post',
+        data: 'type=' + type + '&kode_perusahaan=' + id,
+
+        success: function(msg) {
+            if (msg != '') {
+                alert(msg);
+                window.location.reload();
+            }
+
+        }
+    });
+}
+
+function showFilter() {
+    $('#form_filter').removeClass('hidden');
+    $('#btnFilter').addClass('hidden');
+}
+
 function addDetail() {
     var id = $('.tambahDetail').data('id');
     var admin = $('.tambahDetail').data('admin');
@@ -14,35 +51,31 @@ $(document).ready(function() {
 
     var spk = $('#txtSPK').val();
 
-    $('#formJudul').on('submit', function(event) {
-        event.preventDefault();
+    $('#addJobsForm').on('submit', function(e) {
+        e.preventDefault();
 
-        if ($(this).parsley().validate()) {
+        var spk = $('#txtSPK').val();
+        var id = $('#txtID').val();
+        var judul = $('#txtJudul').val();
+        var type = $('#txtType option:selected').val();
+        var location = $('#txtLocation option:selected').val();
 
-            var spk = $('#txtSPK').val();
-            var id = $('#txtID').val();
-            var judul = $('#txtJudul').val();
-            var type = $('#txtType option:selected').val();
+        $.ajax({
+            url: 'php/ajx/crudJob.php?type=addJudul',
+            type: 'post',
+            data: 'spk=' + spk + '&judul=' + judul + '&id=' + id + '&type=' + type + '&location=' + location,
 
-            $.ajax({
-                url: 'php/ajx/crudJob.php?type=addJudul',
-                type: 'post',
-                data: 'spk=' + spk + '&judul=' + judul + '&id=' + id + '&type=' + type,
-
-                success: function(msg) {
-                    if (msg != '') {
-                        alert(msg);
-                        location.reload();
-                        $('#formJudul #txtJudul').val('');
-                        $("#listPanel").load("?p=add-list-job&name=" + spk + " #listPanel");
-                        $("#formJudul1").load("?p=add-list-job&name=" + spk + " #formJudul1");
-                    }
-
+            success: function(msg) {
+                if (msg != '') {
+                    alert(msg);
+                    window.location.reload();
+                    $('#formJudul #txtJudul').val('');
+                    $("#listPanel").load("?p=add-list-job&name=" + spk + " #listPanel");
+                    $("#formJudul1").load("?p=add-list-job&name=" + spk + " #formJudul1");
                 }
-            });
-        } else {
-            alert('System Error');
-        }
+
+            }
+        });
     });
 
     $('#formJudulMPO').on('submit', function(event) {
@@ -54,16 +87,17 @@ $(document).ready(function() {
             var id = $('#txtID').val();
             var type = $('#txtType option:selected').val();
             var judul = $('#txtJudul option:selected').val();
+            var location = $('#txtLocation option:selected').val();
 
             $.ajax({
                 url: 'php/ajx/crudJob.php?type=addJudul',
                 type: 'post',
-                data: 'spk=' + spk + '&judul=' + judul + '&id=' + id + '&type=' + type,
+                data: 'spk=' + spk + '&judul=' + judul + '&id=' + id + '&type=' + type + '&location=' + location,
 
                 success: function(msg) {
                     if (msg != '') {
                         alert(msg);
-                        location.reload();
+                        window.location.reload();
 
                         $("#listPanel").load("?p=add-list-job&name=" + spk + " #listPanel");
                         $("#formJudulMPO").load("?p=add-list-job&name=" + spk + " #formJudulMPO");
@@ -297,29 +331,109 @@ $(document).ready(function() {
         });
     });
 
-    // CKEDITOR.instances.isiArtikel.setData( req,    function()
-    // {
-    //     this.checkDirty();  // true
-    // });
+    $('#optionFilter').on('change', function() {
+        var id = $(this).find('option:selected').val();
+        if (id == 'posisi') {
+            $('#jobsListFilter').removeClass('hidden');
+            $('#locationListFilter').addClass('hidden');
+            $('#kotaListFilter').addClass('hidden');
+            $('#shcListFilter').addClass('hidden');
+            $.ajax({
+                url: 'php/ajx/CRUD.php?type=listJobs',
+                type: 'post',
+                data: 'id=' + id,
 
-    // CKEDITOR.editorConfig = function( config ) {
-    //     config.toolbarGroups = [
-    //         { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
-    //         { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-    //         { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-    //         { name: 'forms', groups: [ 'forms' ] },
-    //         { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-    //         { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-    //         { name: 'links', groups: [ 'links' ] },
-    //         { name: 'insert', groups: [ 'insert' ] },
-    //         { name: 'styles', groups: [ 'styles' ] },
-    //         { name: 'colors', groups: [ 'colors' ] },
-    //         { name: 'tools', groups: [ 'tools' ] },
-    //         { name: 'others', groups: [ 'others' ] },
-    //         { name: 'about', groups: [ 'about' ] }
-    //     ];
-    // };
-    // CKEDITOR.replace( 'isiArtikel' );
+                success: function(msg) {
+                    console.log(msg);
+                    // $('#tempatKerja').empty();
+                    $('#kotaList').removeAttr('required');
+                    $('#shcList').removeAttr('required');
+                    $('#provinsiList').removeAttr('required');
+                    $('.js-example-basic-single').select2();
+                    $.each(msg, function(index, value) {
+                        $('#jobsList').append('<option value="' + value.kd_pekerjaan + '">' + value.nama_pekerjaan + '</option>');
+                    })
+                }
+            });
+        } else if (id == 'locations') {
+            $('#jobsListFilter').addClass('hidden');
+            $('#shcListFilter').addClass('hidden');
+            $.ajax({
+                url: 'php/ajx/CRUD.php?type=prov',
+                type: 'post',
+                data: 'id=' + id,
+
+                success: function(msg) {
+                    console.log(msg);
+                    $('#locationListFilter').removeClass('hidden');
+                    $('#shcList').removeAttr('required');
+                    $('.js-example-basic-single').select2();
+                    $('#jobsList').removeAttr('required');
+                    $.each(msg, function(index, value) {
+                        $('#provinsiList').append('<option value="' + value.id + '">' + value.name + '</option>');
+                    })
+                }
+            });
+        } else if (id == 'pendidikan') {
+            $('#shcListFilter').removeClass('hidden');
+            $('#locationListFilter').addClass('hidden');
+            $('#jobsListFilter').addClass('hidden');
+            $('#jobsList').removeAttr('required');
+            $('#provinsiList').removeAttr('required');
+            $('#kotaList').removeAttr('required');
+        } else {
+
+            $('#jobsList').removeAttr('required');
+            $('#kotaList').removeAttr('required');
+            $('#provinsiList').removeAttr('required');
+
+            if ($('#jobsListFilter').hasClass('hidden')) {
+
+            } else {
+                $('#jobsListFilter').addClass('hidden');
+
+
+            }
+        }
+    });
+
+    $('#provinsiList').on('change', function(e) {
+        e.preventDefault();
+        var id = $(this).find('option:selected').val();
+        $('#kotaList').empty();
+        $.ajax({
+            url: 'php/ajx/CRUD.php?type=provinsi',
+            type: 'post',
+            data: 'id=' + id,
+
+            success: function(msg) {
+                console.log(msg);
+                $('#kotaListFilter').removeClass('hidden');
+                $('.js-example-basic-single').select2();
+                $('#jobsList').removeAttr('required');
+                $.each(msg, function(index, value) {
+                    $('#kotaList').append('<option value="' + value.id + '">' + value.name + '</option>');
+                })
+            }
+        });
+    })
+
+    $('#filterForm').on('submit', function(e) {
+        e.preventDefault();
+        var fil = $('#optionFilter option:selected').val();
+
+
+        if (fil == 'locations') {
+            gen = $('#kotaList option:selected').val();
+        } else if (fil == 'pendidikan') {
+            gen = $('#shcList option:selected').val();
+        } else if (fil == 'posisi') {
+            gen = $('#jobsList option:selected').val();
+        }
+
+        var jobs
+        window.location.href = '?p=calon-karyawan&' + fil + '=' + gen;
+    });
 
 
 })

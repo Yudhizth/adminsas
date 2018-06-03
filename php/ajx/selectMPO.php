@@ -70,7 +70,7 @@ $records_per_page = 10;
                             data-ktp="<?= $row['no_ktp'] ?>" data-placement="right"
                             title="Add"
                             class="btn btn-info btn-xs tambahMPO"
-                            onclick="return confirm('Are you sure you want to add?');">
+                            >
                         <i class="fa fa-fw fa-plus-square"> </i>
                     </button>
                 </td>
@@ -86,4 +86,7 @@ $records_per_page = 10;
 
     $stmt = $config->paginglinkURLJquery($query, $url, $records_per_page);
     ?>
+
+
+
 </div>

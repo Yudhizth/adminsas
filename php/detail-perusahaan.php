@@ -271,6 +271,13 @@ $cek = new Perusahaan();
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-3">
                                         <button  type="submit" name="changePassword" class="btn btn-success">update</button>
+                                        <?php if($row['status'] == '1'){ ?>
+                                        <button  type="button" onclick="activeCompany(2, '<?php echo $row['kode_perusahaan']; ?>')" class="btn btn-danger">disabel</button>
+                                        <?php }elseif($row['status'] == '2'){ ?>
+                                            <button  type="button" onclick="activeCompany(1, '<?php echo $row['kode_perusahaan']; ?>')" class="btn btn-primary">active</button>
+                                        <?php }else{ ?>
+                                            <button  type="button" onclick="activeCompany(1, '<?php echo $row['kode_perusahaan']; ?>')" class="btn btn-primary">active</button>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </form>

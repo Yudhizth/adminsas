@@ -2,7 +2,7 @@
 
 $id = $_GET['id'];
 
-    $query = 'SELECT tb_kerjasama_perusahan.id, tb_kerjasama_perusahan.nomor_kontrak, tb_kerjasama_perusahan.kode_perusahaan, tb_kerjasama_perusahan.kode_request, tb_kerjasama_perusahan.kode_plan, tb_kerjasama_perusahan.kode_list_karyawan, tb_kerjasama_perusahan.total_karyawan, tb_kerjasama_perusahan.type_time, tb_kerjasama_perusahan.deskripsi, tb_kerjasama_perusahan.tugas, tb_kerjasama_perusahan.tanggung_jwb, tb_kerjasama_perusahan.penempatan, tb_kerjasama_perusahan.kontrak_start, tb_kerjasama_perusahan.kontrak_end, tb_kerjasama_perusahan.nilai_kontrak, tb_kerjasama_perusahan.tgl_input, tb_perusahaan.nama_perusahaan, tb_perusahaan.bidang_perusahaan, tb_kategori_pekerjaan.nama_kategori, tb_temporary_perusahaan.kebutuhan, tb_temporary_perusahaan.kode_pekerjaan, tb_temporary_perusahaan.nama_project FROM tb_kerjasama_perusahan
+    $query = 'SELECT tb_kerjasama_perusahan.id, tb_kerjasama_perusahan.nomor_kontrak, tb_kerjasama_perusahan.kode_perusahaan, tb_kerjasama_perusahan.kode_request, tb_kerjasama_perusahan.kode_plan, tb_kerjasama_perusahan.kode_list_karyawan, tb_kerjasama_perusahan.total_karyawan, tb_kerjasama_perusahan.type_time, tb_kerjasama_perusahan.shift_times, tb_kerjasama_perusahan.deskripsi, tb_kerjasama_perusahan.tugas, tb_kerjasama_perusahan.tanggung_jwb, tb_kerjasama_perusahan.penempatan, tb_kerjasama_perusahan.kontrak_start, tb_kerjasama_perusahan.kontrak_end, tb_kerjasama_perusahan.nilai_kontrak, tb_kerjasama_perusahan.tgl_input, tb_perusahaan.nama_perusahaan, tb_perusahaan.bidang_perusahaan, tb_kategori_pekerjaan.nama_kategori, tb_temporary_perusahaan.kebutuhan, tb_temporary_perusahaan.kode_pekerjaan, tb_temporary_perusahaan.nama_project FROM tb_kerjasama_perusahan
     
     LEFT JOIN tb_perusahaan ON tb_perusahaan.kode_perusahaan = tb_kerjasama_perusahan.kode_perusahaan
     LEFT JOIN tb_temporary_perusahaan ON tb_temporary_perusahaan.no_pendaftaran=tb_kerjasama_perusahan.kode_request
@@ -28,9 +28,8 @@ $tglEnd  = date('d M Y', strtotime($data['kontrak_end']));
 
     //show karyawan
 
-    $kodeListKaryawan = $data['kode_list_karyawan'];
-    echo $kodeListKaryawan;
-
+    $kodeListKaryawan = $data['kode_list_karyawan']; echo $kodeListKaryawan;
+   
 //    form addJabatn karyawan
 
 //list jabatan
@@ -45,6 +44,11 @@ $tglEnd  = date('d M Y', strtotime($data['kontrak_end']));
     $maps = "SELECT * FROM tb_koordinat_perusahaan WHERE nomor_kontrak = :nomorKontrak";
     $maps = $config->runQuery($maps);
     $maps->execute(array(':nomorKontrak' => $id));
+
+    //tempat
+
+    $regencies = $config->Products('id, name', "regencies WHERE id IN(".$data['penempatan'].")");
+    $totalTempat = $regencies->rowCount();
 
 //list kayrawan project
     $kk = "SELECT tb_list_karyawan.id, tb_list_karyawan.kode_list_karyawan, tb_list_karyawan.no_nip, tb_karyawan.nama_depan, tb_karyawan.nama_belakang FROM tb_list_karyawan
@@ -96,16 +100,8 @@ tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_kerjasama_perusahan.nomor_
         ':kode' => $id
     ));
 
-    if($data['type_time'] == 'fix'){
-        $typeTime = "SELECT * FROM tb_time_fix WHERE nomor_spk = :spknomor";
-        $typeTime = $config->runQuery($typeTime);
-        $typeTime->execute(array(':spknomor'  => $id));
-    }else{
-        $typeTime = "SELECT * FROM tb_time_fleksible WHERE nomor_spk = :spknomor";
-        $typeTime = $config->runQuery($typeTime);
-        $typeTime->execute(array(':spknomor'  => $id));
-    }
-
+    
+    
     // report jobs
 
     $o = "SELECT tb_report_job.id, tb_report_job.no_NIP, tb_report_job.kode_report, tb_report_job.report, tb_report_job.report_date, tb_report_job.rating, tb_list_job.kode_detail_job, tb_list_job.nama_job, tb_job.title, tb_job.status, tb_job.nomor_kontrak, tb_karyawan.nama_depan, tb_karyawan.nama_belakang
@@ -126,6 +122,13 @@ tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_kerjasama_perusahan.nomor_
     $t = "SELECT * FROM tb_term_pembayaran WHERE kode_term = :kode";
     $term = $config->runQuery($t);
     $term->execute(array(':kode'    => $id));
+
+    //jam absen
+
+    $jamAbsen = $config->runQuery("SELECT tb_time.jamKerja, regencies.name FROM tb_time 
+        INNER JOIN regencies ON regencies.id = tb_time.lokasi
+     WHERE nomor_kontrak = '". $data['nomor_kontrak'] ."'");
+    $jamAbsen->execute();
 
 
 ?>
@@ -467,7 +470,24 @@ tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_kerjasama_perusahan.nomor_
                                                     </table>
                                                 </div>
                                                 <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="absen-tab">
-                                                    Waktu Absen : <?=$data['type_time']?>
+                                                    
+                                                    <?php 
+                                                    if($data['type_time'] == 'shift'){
+                                                    while ($rows = $jamAbsen->fetch(PDO::FETCH_LAZY)){
+                                                               $absen = json_decode($rows['jamKerja'], true);
+                                                                
+                                                                
+
+                                                                // echo "<pre>";
+                                                                // print_r($absen);
+                                                                // echo '</pre>';
+
+                                                            foreach ($absen as $key => $value) {
+                                                                foreach ($value as $key => $val) {
+                                                             // foreach ($val as $key => $value) {
+                                                           
+                                                         ?>
+                                                         Waktu Absen Wilayah: <?=$rows['name']?> 
                                                     <table class="table table-bordered tabel-hover">
                                                         <thead>
                                                         <th>Minggu</th>
@@ -477,23 +497,113 @@ tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_kerjasama_perusahan.nomor_
                                                         <th>Kamis</th>
                                                         <th>Jumat</th>
                                                         <th>Sabtu</th>
-                                                        <th>#</th>
                                                         </thead>
                                                         <tbody>
-                                                        <?php while ($row = $typeTime->fetch(PDO::FETCH_LAZY)){ ?>
                                                             <tr>
-                                                                <td><?=$row['minggu']?></td>
-                                                                <td><?=$row['senin']?></td>
-                                                                <td><?=$row['selasa']?></td>
-                                                                <td><?=$row['rabu']?></td>
-                                                                <td><?=$row['kamis']?></td>
-                                                                <td><?=$row['jumat']?></td>
-                                                                <td><?=$row['sabtu']?></td>
-                                                                <td></td>
+                                                                <td colspan="7" style="text-align: center; font-weight: 600;">Absen Masuk</td>
                                                             </tr>
-                                                        <?php } ?>
+                                                            <tr>
+                                                                <td><?=$val['absen_in']['su']?></td>
+                                                                <td><?=$val['absen_in']['mo']?></td>
+                                                                <td><?=$val['absen_in']['tu']?></td>
+                                                                <td><?=$val['absen_in']['we']?></td>
+                                                                <td><?=$val['absen_in']['th']?></td>
+                                                                <td><?=$val['absen_in']['fr']?></td>
+                                                                <td><?=$val['absen_in']['sa']?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="7" style="text-align: center; font-weight: 600;">Absen Keluar</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><?=$val['absen_out']['su']?></td>
+                                                                <td><?=$val['absen_out']['mo']?></td>
+                                                                <td><?=$val['absen_out']['tu']?></td>
+                                                                <td><?=$val['absen_out']['we']?></td>
+                                                                <td><?=$val['absen_out']['th']?></td>
+                                                                <td><?=$val['absen_out']['fr']?></td>
+                                                                <td><?=$val['absen_out']['sa']?></td>
+                                                            </tr>
                                                         </tbody>
                                                     </table>
+                                                    <?php    # code...
+                                                                # code...
+                                                                    # code...
+                                                             // } 
+                                                              } } } }
+                                                              elseif($data['type_time'] == 'kontrak'){ 
+                                                                while ($rows = $jamAbsen->fetch(PDO::FETCH_LAZY)){
+                                                                   $val = json_decode($rows['jamKerja'], true);
+                                                                  
+                                                                ?>
+                                                                Waktu Absen Wilayah: <?=$rows['name']?> 
+                                                        <table class="table table-bordered tabel-hover">
+                                                        <thead>
+                                                        <th>Minggu</th>
+                                                        <th>Senin</th>
+                                                        <th>Selasa</th>
+                                                        <th>Rabu</th>
+                                                        <th>Kamis</th>
+                                                        <th>Jumat</th>
+                                                        <th>Sabtu</th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td colspan="7" style="text-align: center; font-weight: 600;">Absen Masuk</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><?=$val['absen_in'][0]['minggu']?></td>
+                                                                <td><?=$val['absen_in'][0]['senin']?></td>
+                                                                <td><?=$val['absen_in'][0]['selasa']?></td>
+                                                                <td><?=$val['absen_in'][0]['rabu']?></td>
+                                                                <td><?=$val['absen_in'][0]['kamis']?></td>
+                                                                <td><?=$val['absen_in'][0]['jumat']?></td>
+                                                                <td><?=$val['absen_in'][0]['sabtu']?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="7" style="text-align: center; font-weight: 600;">Absen Keluar</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><?=$val['absen_out'][0]['minggu']?></td>
+                                                                <td><?=$val['absen_out'][0]['senin']?></td>
+                                                                <td><?=$val['absen_out'][0]['selasa']?></td>
+                                                                <td><?=$val['absen_out'][0]['rabu']?></td>
+                                                                <td><?=$val['absen_out'][0]['kamis']?></td>
+                                                                <td><?=$val['absen_out'][0]['jumat']?></td>
+                                                                <td><?=$val['absen_out'][0]['sabtu']?></td>
+                                                            </tr>
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                                <?php } } else{ while ($rows = $jamAbsen->fetch(PDO::FETCH_LAZY)){
+                                                                   $val = json_decode($rows['jamKerja'], true);
+                                                                  
+                                                                ?>
+                                                                Waktu Absen Wilayah: <?=$rows['name']?> 
+                                                        <table class="table table-bordered tabel-hover">
+                                                        <thead>
+                                                        <th>Minggu</th>
+                                                        <th>Senin</th>
+                                                        <th>Selasa</th>
+                                                        <th>Rabu</th>
+                                                        <th>Kamis</th>
+                                                        <th>Jumat</th>
+                                                        <th>Sabtu</th>
+                                                        </thead>
+                                                        <tbody>
+                                                            
+                                                            <tr>
+                                                                <td><?=$val['minggu']?></td>
+                                                                <td><?=$val['senin']?></td>
+                                                                <td><?=$val['selasa']?></td>
+                                                                <td><?=$val['rabu']?></td>
+                                                                <td><?=$val['kamis']?></td>
+                                                                <td><?=$val['jumat']?></td>
+                                                                <td><?=$val['sabtu']?></td>
+                                                            </tr>
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                                    <?php } } ?>
                                                 </div>
                                                 <div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="report-tab">
                                                     <a href="?p=karyawan-project&id=<?=$id?>" class="btn btn-sm btn-primary" style="text-transform: capitalize;">Views Report</a>
@@ -605,6 +715,11 @@ tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_kerjasama_perusahan.nomor_
                                             <a href="php/invoice.php?kode=<?=$id?>&id=<?=$row['id']?>" target="_blank">
                                                 <button class="btn btn-xs btn-primary">GENERATE INVOICE</button>
                                             </a>
+                                            <?php if(empty($row['status'])) {?>
+                                                <button class="btn btn-xs btn-info" onclick="sendInvoice(<?=$row['id']?>, '<?=$row['kode_term']?>')"><span class="fa fa-fw fa-send"></span> SEND INVOICE</button>
+                                            <?php }else{ ?>
+                                                <button class="btn btn-xs btn-success" disabled><span class="fa fa-fw fa-send"></span> INVOICE Has SEND </button>
+                                            <?php } ?>
                                         </li>
 
                                     </ul>
@@ -615,7 +730,7 @@ tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_kerjasama_perusahan.nomor_
 
                                 <?php } ?>
 
-                                <?php if($maps->rowCount() > 0){
+                                <?php if($maps->rowCount() >= $totalTempat){
                                     while ($map = $maps->fetch(PDO::FETCH_LAZY)){
                                     ?>
                                   <br>
@@ -631,11 +746,17 @@ tb_karyawan.nama_depan, tb_karyawan.nama_belakang, tb_kerjasama_perusahan.nomor_
                                     </ul>
                                     <br>
                                 <?php } } else { ?>
-                                    <p>
-                                        <a href="php/new_map.php?spk=<?=$id?>" target="_blank">
-                                            <button class="btn btn-xs btn-success">ADD MAP</button>
+                                    <h5><b>Add Koordinat</b></h5>
+                                    <ul class="list-unstyled project_files">
+                                        <?php while ($cols = $regencies->fetch(PDO::FETCH_LAZY)) {
+                                          ?>
+                                        <li>
+                                            <a href="php/new_map.php?spk=<?=$id?>&kode=<?=$cols['id']?>" target="_blank">
+                                            <button class="btn btn-xs btn-success"><?=$cols['name']?></button>
                                         </a>
-                                    </p>
+                                        </li>
+                                        <?php } ?>
+                                    </ul>
                                 <?php } ?>
                             </div>
                         </div>

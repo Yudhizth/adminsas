@@ -82,6 +82,17 @@ $cek->execute(array(
 
 $row = $stmt->fetch(PDO::FETCH_LAZY);
 
+$base_location = $row['location'];
+if(!empty($base_location)){
+    $loc = $base_location;
+}else{
+    $loc = '0';
+}
+//
+$location_base = $config->runQuery("SELECT id, name FROM regencies WHERE id IN (". $loc .")"); 
+$location_base->execute();
+
+
 $nik = $row['no_NIK'];
 $nilai = $row['nilai'];
 
@@ -275,7 +286,7 @@ if($rating['TotalRating'] > 0){
             <!-- start skills -->
             <h4 class="text-success"><strong>Keahlian</strong></h4>
             <ul class="list-unstyled user_data">
-                <?php
+                <?php if($widget->rowCount() > 0){
                 while ($row = $widget->fetch(PDO::FETCH_LAZY)) {
                     # code...
 
@@ -289,7 +300,45 @@ if($rating['TotalRating'] > 0){
                             </div>
                         </div>
                     </li>
-                <?php } ?>
+                <?php } }else{ ?>
+                    <li>
+                        
+                        <div class="progress progress">
+                            <div class="progress-bar progress-bar-danger" role="progressbar"
+                                 data-transitiongoal="100" aria-valuenow="0"
+                                 style="width: 0%;"> belum tersedia
+                            </div>
+                        </div>
+                    </li>
+                    <?php } ?>
+            </ul>
+
+            <h4 class="text-success"><strong>Available Locations For Job</strong></h4>
+            <ul class="list-unstyled user_data">
+                    <?php
+                    if($location_base->rowCount() > 0){
+                while ($locs = $location_base->fetch(PDO::FETCH_LAZY)) {
+                    ?>
+                    <li>
+                        
+                        <div class="progress progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar"
+                                 data-transitiongoal="100" aria-valuenow="0"
+                                 style="width: 0%;"> <?php echo $locs['name']; ?>
+                            </div>
+                        </div>
+                    </li>
+                <?php } }else{ ?>
+                    <li>
+                        
+                        <div class="progress progress">
+                            <div class="progress-bar progress-bar-danger" role="progressbar"
+                                 data-transitiongoal="100" aria-valuenow="0"
+                                 style="width: 0%;"> belum tersedia
+                            </div>
+                        </div>
+                    </li>
+                    <?php } ?>
 
             </ul>
 

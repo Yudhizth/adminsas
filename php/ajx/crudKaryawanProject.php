@@ -42,73 +42,33 @@ elseif(@$_GET['type'] == 'addKaryawan'){
 
     $kdList = $_POST['spk'];
     $ktp = $_POST['ktp'];
-    $status = '1';
-    $karyawanStatus="KDKRY0002";
-
-    $sql = "INSERT INTO tb_list_karyawan (kode_list_karyawan, no_nip, status_karyawan) VALUES (:kode, :id, :status)";
-    $stmt = $config->runQuery($sql);
-    $stmt->execute(array(
-        ':kode' => $kdList,
-        ':id'   => $ktp,
-        ':status' => $status
-    ));
-
-
-        if($stmt){
-            $id_reff = $config->lastInsertID();
-            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
-            $log = $config->runQuery($log);
-            $log->execute(array(
-                ':a'    => $id_reff,
-                ':b'    => '1',
-                ':c'    => 'tb_list_karyawan',
-                ':d'    => 'menambah rekomendasi karyawan ke list project',
-                ':e'    =>  $config_id['id']
-            ));
-            echo "Karyawan Berhasil Ditambahkan.";
-            $query = "UPDATE tb_karyawan SET kd_status_karyawan = :status WHERE no_ktp = :data";
-
-            $update = $config->runQuery($query);
-            $update->execute(array(
-                ':status'   => $karyawanStatus,
-                ':data'     => $ktp
-            ));
-
-        }else{
-            echo "Gagal ditambahkan";
-        }
-
-//    statuskaryawan = suggest_karyawan : 1
-}
-elseif(@$_GET['type'] == 'addKaryawanMPO'){
-
-    $kdList = $_POST['spk'];
-    $ktp = $_POST['ktp'];
     $posisi = $_POST['posisi'];
+    $lokasi = $_POST['lokasi'];
     $status = '1';
     $karyawanStatus="KDKRY0002";
 
-    $sql = "INSERT INTO tb_list_karyawan (kode_list_karyawan, no_nip, kode_pekerjaan, status_karyawan) VALUES (:kode, :id, :pekerjaan, :status)";
+    $sql = "INSERT INTO tb_list_karyawan (kode_list_karyawan, no_nip, kode_pekerjaan, lokasi, status_karyawan) VALUES (:kode, :id, :pekerjaan, :lokasi, :status)";
     $stmt = $config->runQuery($sql);
     $stmt->execute(array(
         ':kode' => $kdList,
         ':id'   => $ktp,
         ':pekerjaan' => $posisi,
+        ':lokasi' => $lokasi,
         ':status' => $status
     ));
 
 
     if($stmt){
         $id_reff = $config->lastInsertID();
-            $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
-            $log = $config->runQuery($log);
-            $log->execute(array(
-                ':a'    => $id_reff,
-                ':b'    => '1',
-                ':c'    => 'tb_list_karyawan',
-                ':d'    => 'menambah rekomendasi karyawan MPO ke list project',
-                ':e'    =>  $config_id['id']
-            ));
+        $log = "INSERT INTO tb_log_event (id_reff, types, tables, ket, admin_id) VALUES (:a, :b, :c, :d, :e)";
+        $log = $config->runQuery($log);
+        $log->execute(array(
+            ':a'    => $id_reff,
+            ':b'    => '1',
+            ':c'    => 'tb_list_karyawan',
+            ':d'    => 'menambah rekomendasi karyawan ke list project',
+            ':e'    =>  $config_id['id']
+        ));
 
         echo "Karyawan Berhasil Ditambahkan.";
         $query = "UPDATE tb_karyawan SET kd_status_karyawan = :status WHERE no_ktp = :data";

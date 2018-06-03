@@ -1,5 +1,6 @@
 <?php
 $id = $_GET['spk'];
+$kode = $_GET['kode'];
 
 ?>
 
@@ -129,6 +130,7 @@ $id = $_GET['spk'];
                 <form id="fast-map">
                     <div class="input-group mb-3">
                         <input type="hidden" id="spk" value="<?=$id?>">
+                        <input type="hidden" id="kode" value="<?=$kode?>">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon3">Latitued</span>
                         </div>
@@ -160,11 +162,12 @@ $id = $_GET['spk'];
         var spk = $('#spk').val();
         var label = 'Map-'+spk;
         var location = 'Unset';
+        var kode = $('#kode').val();
         $.ajax({
 
             url  : 'ajx/CRUD.php?type=saveMap',
             type: 'post',
-            data: 'spk='+spk+'&label='+label+'&lat='+lat+'&lng='+lng+'&location='+location,
+            data: 'spk='+spk+'&label='+label+'&lat='+lat+'&lng='+lng+'&location='+location+'&kode='+kode,
 
             success : function (msg) {
                 if(msg == '1'){
@@ -229,7 +232,7 @@ $id = $_GET['spk'];
                 var lng = response.data.results[0].geometry.location.lng;
                 var geometryOutput = '<ul class="list-group"><li class="list-group-item"><strong>Latitude:  </strong> '+lat+'</li> <li class="list-group-item"><strong>Longitude:  </strong> '+lng+'</li></ul>';
 
-                var btn = '<button type="button" data-label="'+location+'" data-spk="<?=$id?>" data-lat="'+lat+'" data-lng="'+lng+'" data-location="'+formattedAddress+'" class="dataMap btn btn-success btn-lg btn-block">SET MAP</button>';
+                var btn = '<button type="button" data-label="'+location+'" data-kode="<?=$kode?>" data-spk="<?=$id?>" data-lat="'+lat+'" data-lng="'+lng+'" data-location="'+formattedAddress+'" class="dataMap btn btn-success btn-lg btn-block">SET MAP</button>';
                 //output App
 
                 document.getElementById('formatted-address').innerHTML = formattedAddressOutput;
@@ -255,12 +258,13 @@ $id = $_GET['spk'];
             var lat = $(this).data('lat');
             var lng = $(this).data('lng');
             var location = $(this).data('location');
+            var kode = $(this).data('kode');
 
             $.ajax({
 
                 url  : 'ajx/CRUD.php?type=saveMap',
                 type: 'post',
-                data: 'spk='+spk+'&label='+label+'&lat='+lat+'&lng='+lng+'&location='+location,
+                data: 'spk='+spk+'&label='+label+'&lat='+lat+'&lng='+lng+'&location='+location +'&kode='+kode,
 
                 success : function (msg) {
                     if(msg == '1'){

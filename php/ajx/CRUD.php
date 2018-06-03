@@ -11,6 +11,7 @@ $config = new Admin();
     $admin_id = $config->adminID();
     $admin_id = $admin_id['id'];
 
+
 if(@$_GET['type'] == 'addNIP'){
     $ktp = $_POST['ktp'];
 
@@ -440,12 +441,14 @@ elseif (@$_GET['type'] == 'saveMap'){
     $c = $_POST['lat'];
     $d = $_POST['lng'];
     $e = $_POST['location'];
+    $f = $_POST['kode'];
 
-    $sql = "INSERT INTO tb_koordinat_perusahaan (nomor_kontrak, label, lat, lng, location) VALUES (:a, :b, :c, :d, :e)";
+    $sql = "INSERT INTO tb_koordinat_perusahaan (nomor_kontrak, kode, label, lat, lng, location) VALUES (:a, :kode, :b, :c, :d, :e)";
 
     $stmt = $config->runQuery($sql);
     $stmt->execute(array(
         ':a'    => $a,
+        ':kode' => $f,
         ':b'    => $b,
         ':c'    => $c,
         ':d'    => $d,
@@ -582,6 +585,50 @@ elseif (@$_GET['type'] == 'provinsi'){
     $stmt->execute(array(':id' => $id));
     header('Content-Type: application/json');
     echo json_encode($stmt->fetchAll());
+}
+
+elseif (@$_GET['type'] == 'listJobs'){
+    
+    $stmt = $config->runQuery('SELECT * FROM tb_jenis_pekerjaan');
+    $stmt->execute();
+    header('Content-Type: application/json');
+    echo json_encode($stmt->fetchAll());
+}
+
+elseif (@$_GET['type'] == 'prov'){
+    
+    $stmt = $config->runQuery('SELECT * FROM provinces');
+    $stmt->execute();
+    header('Content-Type: application/json');
+    echo json_encode($stmt->fetchAll());
+}
+
+elseif (@$_GET['type'] == 'changeStatus'){
+    $a = $_POST['type'];
+    $b = $_POST['kode_perusahaan'];
+    
+    $stmt = $config->runQuery('UPDATE tb_login_perusahaan SET status = :status WHERE kd_perusahaan = :kode ');
+    $stmt->execute(array(':status' => $a, ':kode' => $b ));
+    
+    if($stmt){
+        echo 'Update Status Perusahaan Success!';
+    }else{
+        echo 'Failed!';
+    }
+}
+
+elseif (@$_GET['type'] == 'invoice'){
+    $a = $_POST['nomor'];
+    $b = $_POST['kode'];
+    
+    $stmt = $config->runQuery("UPDATE tb_term_pembayaran SET status = '1' WHERE id = :kode ");
+    $stmt->execute(array(':kode' => $a ));
+    
+    if($stmt){
+        echo 'Invoice Berhasil di Kirim!';
+    }else{
+        echo 'Failed!';
+    }
 }
 
 

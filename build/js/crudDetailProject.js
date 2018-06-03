@@ -91,5 +91,24 @@ $(document).ready(function() {
 
     });
 
+    $('#txt_type_kontrak').on('change', function(e) {
+        e.preventDefault();
+
+        var type = $(this).find('option:selected').val();
+        var kontent = 'jam kerja ditentukan oleh perusahaan jam masuk kerja, jam keluar kerja, serta libur karyawan secara bergantian.';
+        if (type == 'kontrak') {
+            kontent = 'jam kerja ditentukan oleh perusahaan untuk jam masuk kerja, jam keluar kerja, serta hari libur.';
+        } else if (type == 'freelance') {
+            kontent = 'total jam kerja ditentukan oleh perusahaan sebagai acuan untuk lamanya jam kerja karyawan, tidak terpaku dengan jam masuk/keluar.';
+        }
+
+        if (type != '') {
+            $('#keteranganKontrak').removeClass('hidden');
+            $('#isiKontrak').html(kontent);
+        } else {
+            $('#keteranganKontrak').addClass('hidden');
+        }
+    });
+
 
 })

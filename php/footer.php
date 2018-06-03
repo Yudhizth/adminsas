@@ -61,12 +61,12 @@
     <script src="vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
     <script src="vendors/timepicker/jquery.timepicker.min.js"></script>
 <script src="vendors/echarts/dist/echarts.min.js"></script>
-
+<script src="vendors/parsleyjs/dist/parsley.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="build/js/custom.js"></script>
  <script src="build/js/crud.js"></script>
 
-<?php if($footer == 'data-entry' OR $footer == 'map'){ ?>
+<?php if($footer == 'data-entry' OR $footer == 'map' OR $footer == 'calon-karyawan'){ ?>
     <script src="build/js/crudDetailProject.js"></script>
     <script src="vendors/select2/dist/js/select2.min.js"></script>
 <?php } ?>
@@ -115,8 +115,15 @@
     <script src="build/js/artikel.js"></script>
 <?php } ?>
 
+<?php if($footer == 'schedule') { ?>
+    <script src="build/js/jamKerja.js"></script>
+<?php } ?>
 
-<script src="vendors/parsleyjs/dist/parsley.js"></script>
+
+
+
+
+
 
 
     <script type="text/javascript">

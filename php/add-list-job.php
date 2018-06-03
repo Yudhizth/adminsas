@@ -33,12 +33,16 @@ $sort_num = (int)substr($id, 1, 6);
 $sort_num++;
 $new_code = sprintf("$kode2%04s", $sort_num);
 
-$query = "SELECT tb_job.nomor_kontrak, tb_job.id, tb_job.kode_detail_job, tb_job.title, tb_job.type, tb_job.status, tb_jenis_pekerjaan.nama_pekerjaan
+$query = "SELECT tb_job.nomor_kontrak, tb_job.id, tb_job.kode_detail_job, tb_job.title, tb_job.type, regencies.name, tb_job.status, tb_jenis_pekerjaan.nama_pekerjaan
 FROM tb_job 
 LEFT JOIN tb_jenis_pekerjaan ON tb_jenis_pekerjaan.kd_pekerjaan=tb_job.title
+LEFT JOIN regencies ON regencies.id = tb_job.location
 WHERE tb_job.nomor_kontrak = :kode ";
 $done = $config->runQuery($query);
 $done->execute(array(':kode' => $kode));
+
+$tempat = $config->runQuery("SELECT id, name FROM regencies WHERE id IN (". $typeProject['penempatan'] . ")");
+$tempat->execute();
 
 
 ?>
@@ -81,7 +85,7 @@ $done->execute(array(':kode' => $kode));
                         </div>
 
                         <div class="input-group col-md-12 col-xs-12">
-                            <select class="form-control" name="txtJudul" id="txtJudul" required>
+                            <select class="form-control" name="txtJudul" id="txtJudul" required="">
                                 <option value="">Jobs Posisi</option>
                                 <?php while ($show = $bb->fetch(PDO::FETCH_LAZY)) { ?>
                                     <option value="<?= $show['name_list'] ?>"><?= $show['nama_pekerjaan'] ?></option>
@@ -89,15 +93,23 @@ $done->execute(array(':kode' => $kode));
                             </select>
                         </div>
                         <div class="input-group col-md-12 col-xs-12">
-                            <select class="form-control" name="txtType" id="txtType" required>
+                            <select class="form-control" name="txtLocation" id="txtLocation" required="">
+                                <option value="">Location</option>
+                                <?php while ($tmpt = $tempat->fetch(PDO::FETCH_LAZY)) { ?>
+                                    <option value="<?= $tmpt['id'] ?>"><?= $tmpt['name'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="input-group col-md-12 col-xs-12">
+                            <select class="form-control" name="txtType" id="txtType" required="">
                                 <option value="">Type Jobs</option>
                                 <option value="main">Main Jobs</option>
                                 <option value="additional">Additional Jobs</option>
                             </select>
                         </div>
                         <div class="from-group">
-                            <button type="submit" id="addJudulMPO"
-                                    class="addJudulMPO from-control btn-block btn btn-info">Add a
+                            <button type="submit"
+                                    class=" from-control btn-block btn btn-info">Add a
                                 Job <span class="fa fa-fw fa-plus"></span></button>
                         </div>
 
@@ -109,7 +121,7 @@ $done->execute(array(':kode' => $kode));
 
             <div class="x_content" id="formJudul1">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                    <form method="post" id="formJudul" class="form-horizontal" data-parsley-validate="">
+                    <form id="addJobsForm" data-parsley-validate=""  class="form-horizontal" >
 
                         <div class="input-group col-md-12 col-xs-12">
                             <input type="hidden" class="form-control" name="txtSPK" id="txtSPK" value="<?= $kode ?>"
@@ -124,18 +136,26 @@ $done->execute(array(':kode' => $kode));
                             <input type="text" class="form-control" name="txtJudul" id="txtJudul"
                                    placeholder="Title Jobs"
                                    data-parsley-minlength="6" data-parsley-maxlength="100"
-                                   data-parsley-required-message="Title is required" required autocomplete="off">
+                                   data-parsley-required-message="Title is required" autocomplete="off" required="" >
 
                         </div>
                         <div class="input-group col-md-12 col-xs-12">
-                            <select class="form-control" name="txtType" id="txtType" required>
+                                <select class="form-control" name="txtLocation" id="txtLocation" required="">
+                                <option value="">Location</option>
+                                <?php while ($tmpt = $tempat->fetch(PDO::FETCH_LAZY)) { ?>
+                                    <option value="<?= $tmpt['id'] ?>"><?= $tmpt['name'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="input-group col-md-12 col-xs-12">
+                            <select class="form-control" name="txtType" id="txtType" required="">
                                 <option value="">Type Jobs</option>
                                 <option value="main">Main Jobs</option>
                                 <option value="additional">Additional Jobs</option>
                             </select>
                         </div>
                         <div class="from-group">
-                            <button type="submit" id="addJudul" class="addJudul from-control btn-block btn btn-info">Add
+                            <button type="submit" class="from-control btn-block btn btn-info">Add
                                 a
                                 Job <span class="fa fa-fw fa-plus"></span></button>
                         </div>
@@ -176,7 +196,7 @@ $done->execute(array(':kode' => $kode));
                                 <a href="#<?= $row['kode_detail_job'] ?>" class="" role="button" data-toggle="collapse"
                                    aria-expanded="true" aria-controls="collapseListGroup1">
                                     <h4 class="panel-title">
-                                        <?= $row['nama_pekerjaan'] ?>
+                                        <?= $row['nama_pekerjaan'] ?> <b><?= $row['name'] ?></b>
                                     </h4>
                                 </a>
                                 <div class="pull-right" style="display: inline;">
@@ -285,7 +305,7 @@ $done->execute(array(':kode' => $kode));
                             <div class="panel-heading" role="tab" id="collapseListGroupHeading1">
                                 <a href="#<?= $row['kode_detail_job'] ?>" class="" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="collapseListGroup1">
                                     <h4 class="panel-title">
-                                        <?= $row['title'] ?>
+                                        <?= $row['title'] ?> <?= $row['nama_pekerjaan'] ?> <b><?= $row['name'] ?></b>
                                     </h4>
                                 </a>
                                 <div class="pull-right" style="display: inline;">

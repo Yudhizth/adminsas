@@ -73,7 +73,11 @@ TRUNCATE tb_time_fleksible;
 TRUNCATE tb_info_interview;
 TRUNCATE tb_info_test;
 TRUNCATE tb_temp_remove_karyawan;
-TRUNCATE tb_time_fix;TRUNCATE tb_activity_project; TRUNCATE tb_report_job;
+TRUNCATE tb_time_fix;
+TRUNCATE tb_activity_project;
+TRUNCATE tb_report_job;
+TRUNCATE tb_log_event;
+TRUNCATE tb_info_gaji;
 
 CREDENTIAL GOOGLE API MAP : AIzaSyA1oiLMSeZ-HV2Yy-oqjdDdme2WmTtOWVc
 

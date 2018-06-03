@@ -6,10 +6,10 @@
             <table class="table table-striped jambo_table bulk_action">
                 <thead>
                 <tr class="headings">
-                    <th class="column-title">#</th>
                     <th class="column-title">Nama Lengkap</th>
                     <th class="column-title">Posisi</th>
-                    <th class="column-title no-link last"><span class="nobr">Status Konfirmasi</span>
+                    <th class="column-title">Lokasi</th>
+                    <th class="column-title no-link last"><span class="nobr">Konfirmasi</span>
                     </th>
                     <th class="column-title no-link last"><span class="nobr">#</span>
                     </th>
@@ -32,7 +32,6 @@
                             $status = '<label class="label label-lg label-info">Suggested</label>';
                         } ?>
                         <tr class="even pointer">
-                            <td class=" "><?= $i++; ?></td>
                             <td class=" ">
                                 <a href="?p=detail-karyawan&id=<?= $data['no_nip']; ?>"
                                    data-toggle="tooltip" data-placement="right" title="Detail!">
@@ -40,6 +39,7 @@
                                 </a>
                             </td>
                             <td class=" "><?= $data['nama_pekerjaan']; ?></td>
+                            <td class=" "><?= $data['Lokasi']; ?></td>
 
                             <td><?=$status?></td>
                             <td>
@@ -67,10 +67,10 @@
             <table class="table table-striped jambo_table bulk_action">
                 <thead>
                 <tr class="headings">
-                    <th class="column-title">#</th>
                     <th class="column-title">Nama Lengkap</th>
                     <th class="column-title">Jenis Kelamin</th>
-                    <th class="column-title no-link last"><span class="nobr">Status Konfirmasi</span>
+                    <th class="column-title">Lokasi</th>
+                    <th class="column-title no-link last"><span class="nobr">Konfirmasi</span>
                     </th>
                     <th class="column-title no-link last"><span class="nobr">#</span>
                     </th>
@@ -93,7 +93,6 @@
                             $status = '<label class="label label-lg label-info">Suggested</label>';
                         } ?>
                         <tr class="even pointer">
-                            <td class=" "><?= $i++; ?></td>
                             <td class=" ">
                                 <a href="?p=detail-karyawan&id=<?= $data['no_nip']; ?>"
                                    data-toggle="tooltip" data-placement="right" title="Detail!">
@@ -101,6 +100,7 @@
                                 </a>
                             </td>
                             <td class=" "><?= $data['jenis_kelamin']; ?></td>
+                            <td class=" "><?= $data['Lokasi']; ?></td>
 
                             <td><?=$status?></td>
                             <td>

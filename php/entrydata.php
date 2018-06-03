@@ -23,6 +23,7 @@ $admin_id = $cek->adminID();
         $admin = $_POST['txt_admin'];
         $dateProject = $_POST['txt_start'];
         $totalDates = $_POST['txt_ends']; 
+        $jamKerja = $_POST['txt_type_kontrak'];
        
         // $time_select = $_POST['typeTime'];
         // $sun1 = $_POST['txt_minggu_start'];
@@ -149,7 +150,7 @@ $admin_id = $cek->adminID();
         //     ));
         // }else{}
 
-        $query = "INSERT INTO tb_kerjasama_perusahan (nomor_kontrak, kode_perusahaan, kode_request, kode_plan, total_karyawan, deskripsi, tugas, tanggung_jwb, penempatan, kontrak_start, kontrak_end, total, nilai_kontrak, lembur, kode_admin) VALUES (:kontrak, :kode, :plan, :req, :total, :deskripsi, :tgs, :tgjwb, :tmpt, :start, :ends, :totalDate, :nilai, :lembur, :admin)";
+        $query = "INSERT INTO tb_kerjasama_perusahan (nomor_kontrak, kode_perusahaan, kode_request, kode_plan, total_karyawan, type_time, deskripsi, tugas, tanggung_jwb, penempatan, kontrak_start, kontrak_end, total, nilai_kontrak, lembur, kode_admin) VALUES (:kontrak, :kode, :plan, :req, :total, :typeTime, :deskripsi, :tgs, :tgjwb, :tmpt, :start, :ends, :totalDate, :nilai, :lembur, :admin)";
 
         $stmt = $cek->runQuery($query);
         $stmt->execute(array(
@@ -158,7 +159,7 @@ $admin_id = $cek->adminID();
           ':plan'     =>$req,
           ':req'      =>$kodeMPO,
           ':total'    =>$jmlh,
-        //   ':type_time'=>$time_select,
+          ':typeTime'=>$jamKerja,
           ':deskripsi'=>$deskripsi,
           ':tgs'      =>$tugas,
           ':tgjwb'    =>$tanggung,
@@ -174,7 +175,7 @@ $admin_id = $cek->adminID();
           echo "data tidak masuk";
         } else{
             //bahwa nama perusahaan dengan request tersebut telah melalui tahap "entry detail Project"
-          $sql = "UPDATE tb_temporary_perusahaan SET status = '3' WHERE tb_temporary_perusahaan.no_pendaftaran = :id";
+          $sql = "UPDATE tb_temporary_perusahaan SET status = '2' WHERE tb_temporary_perusahaan.no_pendaftaran = :id";
           $stmt = $cek->runQuery($sql);
             $stmt->execute(array(
                 ':id'   =>$req));
